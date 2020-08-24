@@ -1,24 +1,63 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import rtl from "jss-rtl";
+import { create } from "jss";
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import {StylesProvider, ThemeProvider, jssPreset} from "@material-ui/styles";
+import {Theme} from "./themes/Theme";
+import {LanguageContext} from "./contexts/contexts";
+import LanguageContextProvider from "./contexts/LanguageContext";
+import MainPageLayout from "./layouts/MainPageLayout";
+import LogInLayout from "./layouts/LogInLayout";
+import sideMenuContextProvider from "./contexts/sideMenuContext";
+function ChangeDir(dir){
+    document.body.dir=dir;
+}
 function App() {
+  const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+        <sideMenuContextProvider>
+            <LanguageContextProvider>
+                <LanguageContext.Consumer>
+                    {context=>(
+                        <>
+                            {
+                                context.language==='fa'?
+                                    <ThemeProvider theme={Theme("rtl")}>
+                                        {
+                                            ChangeDir("rtl")
+                                        }
+                                        <StylesProvider jss={jss}>
+                                            <BrowserRouter>
+                                                <Switch>
+                                                    <Route exact path="/login" render={(props) => <LogInLayout {...props} />}/>
+
+                                                    <Route path='/dashboard' render={(props) => <MainPageLayout {...props} />}/>
+                                                </Switch>
+                                            </BrowserRouter>
+                                        </StylesProvider>
+                                    </ThemeProvider
+                                    >
+                                    :
+                                    <ThemeProvider theme={Theme("ltr")}>
+                                        {ChangeDir("ltr")}
+                                        <StylesProvider jss={jss}>
+                                            <BrowserRouter>
+                                                <Switch>
+                                                    <Route exact path="/login" render={(props) => <LogInLayout {...props} />}/>
+                                                    <Route path='/dashboard' render={(props) => <MainPageLayout {...props} />}/>
+                                                </Switch>
+                                            </BrowserRouter>
+                                        </StylesProvider>
+                                    </ThemeProvider
+                                    >
+                            }
+                        </>
+
+                    )}
+                </LanguageContext.Consumer>
+            </LanguageContextProvider>
+        </sideMenuContextProvider>
     </div>
   );
 }
