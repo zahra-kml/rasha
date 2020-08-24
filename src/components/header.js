@@ -152,7 +152,7 @@ export default function HeaderAppBar(props) {
                                                 <AppBar
                                                     id={'AppBar'}
                                                     className={clsx(classes.appBar, {
-                                                        [classes.appBarShift]:false,
+                                                        [classes.appBarShift]:menuContext.menuIsOpen,
                                                     })}
                                                 >
                                                     <Toolbar>
