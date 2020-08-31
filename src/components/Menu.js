@@ -38,25 +38,25 @@ export default function DrawerMenu(props) {
       {(languageContext) => (
         <SideMenuContext.Consumer>
           {(menuContext) => (
-            <>
-              <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={menuContext.menuIsOpen}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-              >
-                <div className={classes.drawerHeader}>
-                  <IconButton onClick={menuContext.setOpen}>
-                    {theme.direction === "ltr" ? (
-                      <ChevronLeftIcon style={{ color: "white" }} />
-                    ) : (
-                      <ChevronRightIcon style={{ color: "white" }} />
-                    )}
-                  </IconButton>
-                </div>
+            <Drawer
+              className={classes.drawer}
+              variant="persistent"
+              anchor="left"
+              open={menuContext.menuIsOpen}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              <div className={classes.drawerHeader}>
+                <IconButton onClick={menuContext.setOpen}>
+                  {theme.direction === "ltr" ? (
+                    <ChevronLeftIcon style={{ color: "white" }} />
+                  ) : (
+                    <ChevronRightIcon style={{ color: "white" }} />
+                  )}
+                </IconButton>
+              </div>
+              {/*
                 <div
                   style={{
                     backgroundColor: "gray",
@@ -67,8 +67,8 @@ export default function DrawerMenu(props) {
                     alignItems: "center",
                   }}
                 ></div>
-              </Drawer>
-            </>
+             */}
+            </Drawer>
           )}
         </SideMenuContext.Consumer>
       )}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import PropTypes from "prop-types";
@@ -9,26 +9,71 @@ import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import DrawerMenu from "../components/Menu";
+import clsx from "clsx";
 
 const drawerWidth = 140;
+const styles = {
+  test: {
+    backgroundColor: "red",
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+  },
+};
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
+  },
+  content: {
     flexGrow: 1,
+    //padding: theme.spacing(3),
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    marginLeft: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+    marginLeft: 0,
   },
 }));
 
 export default function MainPageLayout(props) {
   const { match } = props;
   const classes = useStyles();
+  const [StickyPaper, setStickyPaper] = useState(0);
+
+  useEffect(() => {
+    let Height = document.getElementById("AppBar").clientHeight;
+    setStickyPaper(2.8 * Height);
+  }, []);
 
   return (
     <SideMenuContext.Consumer>
       {(context) => (
-        <div className={classes.root}>
-          <CssBaseline />
-          <HeaderAppBar />
-          <DrawerMenu />
-          {/*
+        <SideMenuContext.Consumer>
+          {(menuContext) => (
+            <div className={classes.root}>
+              <HeaderAppBar />
+              <DrawerMenu />
+              <main
+                className={clsx(classes.content, {
+                  [classes.contentShift]: menuContext.menuIsOpen,
+                })}
+                style={{
+                  backgroundColor: "red",
+                  marginTop: `calc(${StickyPaper}px)`,
+                }}
+              >
+                <div>fghjkl</div>
+              </main>
+
+              {/*
                         <Header appTitle=""/>
                         <Switch>
                         <Route
@@ -41,7 +86,9 @@ export default function MainPageLayout(props) {
                         </Switch>
 
                     */}
-        </div>
+            </div>
+          )}
+        </SideMenuContext.Consumer>
       )}
     </SideMenuContext.Consumer>
   );
