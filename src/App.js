@@ -14,6 +14,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexDirection: "column",
   },
 }));
 
@@ -29,7 +30,7 @@ function App() {
       <LanguageContextProvider>
         <LanguageContext.Consumer>
           {(context) => (
-            <>
+            <div className={classes.root}>
               {context.language === "fa" ? (
                 <ThemeProvider theme={Theme("rtl")}>
                   {ChangeDir("rtl")}
@@ -70,7 +71,7 @@ function App() {
                   </StylesProvider>
                 </ThemeProvider>
               )}
-            </>
+            </div>
           )}
         </LanguageContext.Consumer>
       </LanguageContextProvider>

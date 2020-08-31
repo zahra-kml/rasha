@@ -23,10 +23,6 @@ const styles = {
   },
 };
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-  },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -48,19 +44,13 @@ const useStyles = makeStyles((theme) => ({
 export default function MainPageLayout(props) {
   const { match } = props;
   const classes = useStyles();
-  const [StickyPaper, setStickyPaper] = useState(0);
-
-  useEffect(() => {
-    let Height = document.getElementById("AppBar").clientHeight;
-    setStickyPaper(2.8 * Height);
-  }, []);
 
   return (
     <SideMenuContext.Consumer>
       {(context) => (
         <SideMenuContext.Consumer>
           {(menuContext) => (
-            <div className={classes.root}>
+            <>
               <HeaderAppBar />
               <DrawerMenu />
               <main
@@ -69,18 +59,16 @@ export default function MainPageLayout(props) {
                 })}
                 style={{
                   zIndex: 3,
-                  backgroundColor: "red",
                 }}
               >
                 <div
                   style={{
-                    marginTop: `calc(${StickyPaper / 2.8}px)`,
                     position: "relative",
                     backgroundColor: "gray",
                     height: "200vh",
                   }}
                 >
-                  hjk
+                  sdfghjk
                 </div>
               </main>
 
@@ -97,7 +85,7 @@ export default function MainPageLayout(props) {
                         </Switch>
 
                     */}
-            </div>
+            </>
           )}
         </SideMenuContext.Consumer>
       )}
