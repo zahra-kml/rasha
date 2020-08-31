@@ -1,34 +1,32 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-import PropTypes from 'prop-types';
-import HeaderAppBar from "../components/header";
+import PropTypes from "prop-types";
+import HeaderAppBar from "../components/Header";
 import SideMenuContextProvider from "../contexts/sideMenuContext";
-import {SideMenuContext} from "../contexts/contexts";
-import {makeStyles} from "@material-ui/core/styles";
+import { SideMenuContext } from "../contexts/contexts";
+import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const drawerWidth = 140;
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
+  root: {
+    flexGrow: 1,
+  },
 }));
 
-
-
-
 export default function MainPageLayout(props) {
+  const { match } = props;
+  const classes = useStyles();
 
-        const { match } = props
-        return(
-
-                <SideMenuContext.Consumer>
-                    {context=>(
-                        <div >
-                        <HeaderAppBar />
-
-                        {/*
+  return (
+    <SideMenuContext.Consumer>
+      {(context) => (
+        <div className={classes.root}>
+          <CssBaseline />
+          <HeaderAppBar />
+          {/*
                         <Header appTitle=""/>
                         <Switch>
                         <Route
@@ -41,12 +39,12 @@ export default function MainPageLayout(props) {
                         </Switch>
 
                     */}
-                    </div>)}
-                </SideMenuContext.Consumer>
-
-        )
+        </div>
+      )}
+    </SideMenuContext.Consumer>
+  );
 }
 
 MainPageLayout.propTypes = {
-    match: PropTypes.any.isRequired
-}
+  match: PropTypes.any.isRequired,
+};
