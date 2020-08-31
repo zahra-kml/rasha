@@ -27,19 +27,19 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    //padding: theme.spacing(3),
+    padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth,
+    marginLeft: -drawerWidth / 2,
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: 0,
+    marginLeft: drawerWidth,
   },
 }));
 
@@ -60,17 +60,17 @@ export default function MainPageLayout(props) {
           {(menuContext) => (
             <div className={classes.root}>
               <HeaderAppBar />
-              <DrawerMenu />
               <main
                 className={clsx(classes.content, {
                   [classes.contentShift]: menuContext.menuIsOpen,
                 })}
                 style={{
                   backgroundColor: "red",
-                  marginTop: `calc(${StickyPaper}px)`,
+                  marginTop: `calc(${StickyPaper / 2.8}px)`,
+                  zIndex: 3,
                 }}
               >
-                <div>fghjkl</div>
+                <div>f</div>
               </main>
 
               {/*
