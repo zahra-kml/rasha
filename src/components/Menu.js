@@ -1,37 +1,75 @@
 import React, { useEffect, useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { withStyles } from "@material-ui/core/styles";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import PropTypes from "prop-types";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import ListItemText from "@material-ui/core/ListItemText";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import { LanguageContext, SideMenuContext } from "../contexts/contexts";
 import clsx from "clsx";
+import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
+import useTheme from "@material-ui/core/styles/useTheme";
 
 const drawerWidth = 140;
 
-const useStyles = makeStyles((theme) => ({}));
+const useStyles = makeStyles((theme) => ({
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    backgroundColor: "blue",
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: "#041104",
+  },
+  drawerHeader: {
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "flex-end",
+  },
+}));
 
-export default function HeaderAppBar(props) {
+export default function DrawerMenu(props) {
   const classes = useStyles();
-
+  const theme = useTheme();
   return (
     <LanguageContext.Consumer>
       {(languageContext) => (
         <SideMenuContext.Consumer>
-          {(menuContext) => <></>}
+          {(menuContext) => (
+            <>
+              <Drawer
+                className={classes.drawer}
+                variant="persistent"
+                anchor="left"
+                open={menuContext.menuIsOpen}
+                classes={{
+                  paper: classes.drawerPaper,
+                }}
+              >
+                <div className={classes.drawerHeader}>
+                  <IconButton onClick={menuContext.setOpen}>
+                    {theme.direction === "ltr" ? (
+                      <ChevronLeftIcon style={{ color: "white" }} />
+                    ) : (
+                      <ChevronRightIcon style={{ color: "white" }} />
+                    )}
+                  </IconButton>
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "gray",
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                ></div>
+              </Drawer>
+            </>
+          )}
         </SideMenuContext.Consumer>
       )}
     </LanguageContext.Consumer>

@@ -8,6 +8,7 @@ import { SideMenuContext } from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import DrawerMenu from "../components/Menu";
 
 const drawerWidth = 140;
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,7 @@ export default function MainPageLayout(props) {
         <div className={classes.root}>
           <CssBaseline />
           <HeaderAppBar />
+          <DrawerMenu />
           {/*
                         <Header appTitle=""/>
                         <Switch>
