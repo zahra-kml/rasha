@@ -19,6 +19,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { LanguageContext, SideMenuContext } from "../contexts/contexts";
 import clsx from "clsx";
+import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
 
 const drawerWidth = 140;
 const StyledMenu = withStyles({
@@ -156,6 +157,10 @@ export default function HeaderAppBar(props) {
                       >
                         <MenuIcon />
                       </IconButton>
+                      <img
+                        src={logo}
+                        style={{ height: `calc(${StickyPaper / 3}px)` }}
+                      />
                       <div variant="h6" className={classes.space} />
 
                       <Button
