@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import DrawerMenu from "../components/Menu";
+import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 
 const drawerWidth = 140;
@@ -61,15 +62,10 @@ export default function MainPageLayout(props) {
                   zIndex: 3,
                 }}
               >
-                <div
-                  style={{
-                    position: "relative",
-                    backgroundColor: "gray",
-                    height: "200vh",
-                  }}
-                >
-                  sdfghjk
-                </div>
+                <Paper
+                  elevation={3}
+                  style={{ width: "100%", height: "100vh" }}
+                ></Paper>
               </main>
 
               {/*

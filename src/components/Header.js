@@ -139,89 +139,86 @@ export default function HeaderAppBar(props) {
         <SideMenuContext.Consumer>
           {(menuContext) => (
             <>
-              <React.Fragment>
-                <ElevationScroll {...props}>
-                  <AppBar
-                    id={"AppBar"}
-                    className={clsx(classes.appBar, {
-                      [classes.appBarShift]: menuContext.menuIsOpen,
-                    })}
-                  >
-                    <Toolbar>
-                      <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="menu"
-                        onClick={menuContext.setOpen}
-                      >
-                        <MenuIcon />
-                      </IconButton>
-                      <img
-                        src={logo}
-                        style={{ height: `calc(${StickyPaper / 3}px)` }}
-                      />
-                      <div variant="h6" className={classes.space} />
+              <ElevationScroll {...props}>
+                <AppBar
+                  id={"AppBar"}
+                  className={clsx(classes.appBar, {
+                    [classes.appBarShift]: menuContext.menuIsOpen,
+                  })}
+                >
+                  <Toolbar>
+                    <IconButton
+                      edge="start"
+                      className={classes.menuButton}
+                      color="inherit"
+                      aria-label="menu"
+                      onClick={menuContext.setOpen}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                    <img
+                      src={logo}
+                      style={{ height: `calc(${StickyPaper / 3}px)` }}
+                    />
+                    <div variant="h6" className={classes.space} />
 
-                      <Button
-                        className={classes.LanguageButton}
-                        color="inherit"
-                        endIcon={<ExpandMoreIcon />}
-                        onClick={LanguageHandleClick}
-                      >
-                        {" "}
-                        {languageContext.language === "fa"
-                          ? "فارسی"
-                          : "English"}
-                      </Button>
-                      <IconButton
-                        edge="end"
-                        color="inherit"
-                        aria-controls="profile-menu"
-                        aria-haspopup="true"
-                        onClick={ProfileHandleClick}
-                      >
-                        <AccountCircle />
-                      </IconButton>
+                    <Button
+                      className={classes.LanguageButton}
+                      color="inherit"
+                      endIcon={<ExpandMoreIcon />}
+                      onClick={LanguageHandleClick}
+                    >
+                      {" "}
+                      {languageContext.language === "fa" ? "فارسی" : "English"}
+                    </Button>
+                    <IconButton
+                      edge="end"
+                      color="inherit"
+                      aria-controls="profile-menu"
+                      aria-haspopup="true"
+                      onClick={ProfileHandleClick}
+                    >
+                      <AccountCircle />
+                    </IconButton>
 
-                      <StyledMenu
-                        id="profile-menu"
-                        anchorEl={ProfileAnchorEl}
-                        keepMounted
-                        open={Boolean(ProfileAnchorEl)}
-                        onClose={ProfileHandleClose}
-                      >
-                        <StyledMenuItem onClick={ProfileHandleClose}>
-                          <ListItemText primary="profile" />
-                        </StyledMenuItem>
-                        <StyledMenuItem onClick={ProfileHandleClose}>
-                          <ListItemText primary="logout" />
-                        </StyledMenuItem>
-                      </StyledMenu>
+                    <StyledMenu
+                      id="profile-menu"
+                      anchorEl={ProfileAnchorEl}
+                      keepMounted
+                      open={Boolean(ProfileAnchorEl)}
+                      onClose={ProfileHandleClose}
+                    >
+                      <StyledMenuItem onClick={ProfileHandleClose}>
+                        <ListItemText primary="profile" />
+                      </StyledMenuItem>
+                      <StyledMenuItem onClick={ProfileHandleClose}>
+                        <ListItemText primary="logout" />
+                      </StyledMenuItem>
+                    </StyledMenu>
 
-                      <StyledMenu
-                        id="profile-menu"
-                        anchorEl={LanguageAnchorEl}
-                        keepMounted
-                        open={Boolean(LanguageAnchorEl)}
-                        onClose={LanguageHandleClose}
-                      >
-                        <StyledMenuItem onClick={LanguageHandleClose}>
-                          <ListItemText
-                            primary={
-                              languageContext.language === "fa"
-                                ? "English"
-                                : "فارسی"
-                            }
-                            onClick={languageContext.changeLanguage}
-                          />
-                        </StyledMenuItem>
-                      </StyledMenu>
-                    </Toolbar>
-                  </AppBar>
-                </ElevationScroll>
-                <Toolbar />
-              </React.Fragment>
+                    <StyledMenu
+                      id="profile-menu"
+                      anchorEl={LanguageAnchorEl}
+                      keepMounted
+                      open={Boolean(LanguageAnchorEl)}
+                      onClose={LanguageHandleClose}
+                    >
+                      <StyledMenuItem onClick={LanguageHandleClose}>
+                        <ListItemText
+                          primary={
+                            languageContext.language === "fa"
+                              ? "English"
+                              : "فارسی"
+                          }
+                          onClick={languageContext.changeLanguage}
+                        />
+                      </StyledMenuItem>
+                    </StyledMenu>
+                  </Toolbar>
+                </AppBar>
+              </ElevationScroll>
+              <Toolbar />
+
               <div
                 style={{ height: `calc(${StickyPaper}px)` }}
                 className={classes.stickyPaper}

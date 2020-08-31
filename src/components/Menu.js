@@ -56,18 +56,25 @@ export default function DrawerMenu(props) {
                   )}
                 </IconButton>
               </div>
-              {/*
+
+              <div
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginTop: "8%",
+                }}
+              >
                 <div
                   style={{
-                    backgroundColor: "gray",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    width: "50%",
+                    backgroundColor: "red",
+                    height: "10vh",
                   }}
                 ></div>
-             */}
+              </div>
             </Drawer>
           )}
         </SideMenuContext.Consumer>
