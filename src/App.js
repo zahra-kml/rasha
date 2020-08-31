@@ -8,15 +8,14 @@ import {LanguageContext} from "./contexts/contexts";
 import LanguageContextProvider from "./contexts/LanguageContext";
 import MainPageLayout from "./layouts/MainPageLayout";
 import LogInLayout from "./layouts/LogInLayout";
-import sideMenuContextProvider from "./contexts/sideMenuContext";
+import SideMenuContextProvider from "./contexts/sideMenuContext";
 function ChangeDir(dir){
     document.body.dir=dir;
 }
 function App() {
   const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
   return (
-    <div >
-        <sideMenuContextProvider>
+        <SideMenuContextProvider>
             <LanguageContextProvider>
                 <LanguageContext.Consumer>
                     {context=>(
@@ -57,8 +56,7 @@ function App() {
                     )}
                 </LanguageContext.Consumer>
             </LanguageContextProvider>
-        </sideMenuContextProvider>
-    </div>
+        </SideMenuContextProvider>
   );
 }
 

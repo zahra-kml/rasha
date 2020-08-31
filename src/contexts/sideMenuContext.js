@@ -1,7 +1,7 @@
 import React from 'react';
-import {sideMenuContext} from "./contexts";
+import {SideMenuContext} from "./contexts";
 
-class sideMenuContextProvider extends React.Component {
+class SideMenuContextProvider extends React.Component {
     state = {
       menuIsOpen:false,
 
@@ -9,7 +9,7 @@ class sideMenuContextProvider extends React.Component {
 
     render() {
         return (
-            <sideMenuContext.Provider value={{
+            <SideMenuContext.Provider value={{
                 menuIsOpen:this.state.menuIsOpen,
                 setOpen:()=>{
                     {
@@ -21,9 +21,9 @@ class sideMenuContextProvider extends React.Component {
                 }
             }}>
                 {this.props.children}
-            </sideMenuContext.Provider>
+            </SideMenuContext.Provider>
         );
     }
 }
 
-export default sideMenuContextProvider
+export default SideMenuContextProvider

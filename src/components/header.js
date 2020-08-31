@@ -17,7 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {LanguageContext, sideMenuContext} from "../contexts/contexts";
+import {LanguageContext, SideMenuContext} from "../contexts/contexts";
 import clsx from "clsx";
 
 
@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
+
 }));
 
 function ElevationScroll(props) {
@@ -141,7 +142,7 @@ export default function HeaderAppBar(props) {
         <LanguageContext.Consumer>
             {
                 (languageContext)=>(
-                    <sideMenuContext.Consumer>
+                    <SideMenuContext.Consumer>
                         {
                             (menuContext)=>
                                 (
@@ -156,7 +157,7 @@ export default function HeaderAppBar(props) {
                                                     })}
                                                 >
                                                     <Toolbar>
-                                                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"  >
+                                                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" onClick={menuContext.setOpen}  >
                                                             <MenuIcon />
                                                         </IconButton>
                                                         <div variant="h6" className={classes.space}/>
@@ -219,7 +220,7 @@ export default function HeaderAppBar(props) {
                                     </div>
                                 )
                         }
-                    </sideMenuContext.Consumer>
+                    </SideMenuContext.Consumer>
 
                 )
             }

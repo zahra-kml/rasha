@@ -3,19 +3,29 @@ import { Switch, Route } from 'react-router-dom'
 
 import PropTypes from 'prop-types';
 import HeaderAppBar from "../components/header";
-import sideMenuContextProvider from "../contexts/sideMenuContext";
-import {sideMenuContext} from "../contexts/contexts";
+import SideMenuContextProvider from "../contexts/sideMenuContext";
+import {SideMenuContext} from "../contexts/contexts";
+import {makeStyles} from "@material-ui/core/styles";
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 const drawerWidth = 140;
-class MainPageLayout extends React.Component {
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+}));
 
-    render(){
-        const { match } = this.props
+
+
+
+export default function MainPageLayout(props) {
+
+        const { match } = props
         return(
 
-                <sideMenuContext.Consumer>
+                <SideMenuContext.Consumer>
                     {context=>(
-                        <div>
+                        <div >
                         <HeaderAppBar />
 
                         {/*
@@ -32,14 +42,11 @@ class MainPageLayout extends React.Component {
 
                     */}
                     </div>)}
-                </sideMenuContext.Consumer>
+                </SideMenuContext.Consumer>
 
         )
-    }
 }
 
 MainPageLayout.propTypes = {
     match: PropTypes.any.isRequired
 }
-
-export default MainPageLayout
