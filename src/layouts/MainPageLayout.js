@@ -19,11 +19,13 @@ const styles = {
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
+    flexDirection: "column",
   },
 };
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexDirection: "column",
   },
   content: {
     flexGrow: 1,
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: -drawerWidth / 2,
+    marginLeft: 0,
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
@@ -60,17 +62,26 @@ export default function MainPageLayout(props) {
           {(menuContext) => (
             <div className={classes.root}>
               <HeaderAppBar />
+              <DrawerMenu />
               <main
                 className={clsx(classes.content, {
                   [classes.contentShift]: menuContext.menuIsOpen,
                 })}
                 style={{
-                  backgroundColor: "red",
-                  marginTop: `calc(${StickyPaper / 2.8}px)`,
                   zIndex: 3,
+                  backgroundColor: "red",
                 }}
               >
-                <div>f</div>
+                <div
+                  style={{
+                    marginTop: `calc(${StickyPaper / 2.8}px)`,
+                    position: "relative",
+                    backgroundColor: "gray",
+                    height: "200vh",
+                  }}
+                >
+                  hjk
+                </div>
               </main>
 
               {/*
