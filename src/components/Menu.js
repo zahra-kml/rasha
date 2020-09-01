@@ -54,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     display: "flex",
     flexDirection: "column",
+    overflow: "hidden",
+    height: "100%",
+    transition: theme.transitions.create("height", {
+      easing: theme.transitions.easing.easeIn,
+      duration: "1s",
+    }),
   },
   subMenuItem: {
     display: "flex",
@@ -99,7 +105,15 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButtonName: {},
   close: {
-    display: "none",
+    overflow: "hidden",
+    height: 0,
+    color: "white",
+    display: "flex",
+    flexDirection: "column",
+    transition: theme.transitions.create("height", {
+      easing: theme.transitions.easing.easeIn,
+      duration: "1s",
+    }),
   },
   Arrow: {
     alignSelf: "flex-end",
@@ -160,7 +174,11 @@ export default function DrawerMenu(props) {
                                       tmp[i].open = !menuArray[i].open;
                                       setMenuArray(tmp);
                                     }
-                                  : () => {}
+                                  : () => {
+                                      userContext.setChosenMenuItemId(
+                                        menuItem.id
+                                      );
+                                    }
                               }
                             >
                               <div className={classes.menuButtonIcons}>
@@ -196,8 +214,14 @@ export default function DrawerMenu(props) {
                               </div>
                             </div>
                           </Button>
-                          {menuItem.url === "" && menuItem.open && (
-                            <div className={classes.subMenuContainer}>
+                          {menuItem.url === "" && (
+                            <div
+                              className={
+                                menuItem.open
+                                  ? classes.subMenuContainer
+                                  : classes.close
+                              }
+                            >
                               {menuItem.subMenu.map((subMenuItem, i) => (
                                 <div className={classes.subMenuItem}>
                                   <div className={classes.subMenuItemName}>
