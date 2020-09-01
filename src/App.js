@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
+    "&:hover": {
+      color: "#23a267",
+    },
   },
 }));
 

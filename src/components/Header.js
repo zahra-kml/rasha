@@ -64,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     backgroundColor: theme.palette.primary.main,
     position: "fixed",
-    top: "0",
+    top: 0,
+    right: 0,
     zIndex: 1,
   },
   appBar: {
