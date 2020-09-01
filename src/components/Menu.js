@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import { LanguageContext, SideMenuContext } from "../contexts/contexts";
+import {
+  LanguageContext,
+  SideMenuContext,
+  UserContext,
+} from "../contexts/contexts";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
@@ -19,7 +23,6 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
-    //backgroundColor: "blue",
   },
   drawerPaper: {
     width: drawerWidth,
@@ -114,102 +117,108 @@ export default function DrawerMenu(props) {
     setMenuItemMargin(Width);
   }, []);
   return (
-    <LanguageContext.Consumer>
-      {(languageContext) => (
-        <SideMenuContext.Consumer>
-          {(menuContext) => (
-            <Drawer
-              className={classes.drawer}
-              variant="persistent"
-              anchor="left"
-              open={menuContext.menuIsOpen}
-              classes={{
-                paper: classes.drawerPaper,
-              }}
-            >
-              <div className={classes.drawerHeader}>
-                <IconButton onClick={menuContext.setOpen}>
-                  {theme.direction === "ltr" ? (
-                    <ChevronLeftIcon style={{ color: "white" }} />
-                  ) : (
-                    <ChevronRightIcon style={{ color: "white" }} />
-                  )}
-                </IconButton>
-              </div>
+    <UserContext.Consumer>
+      {(userContext) => (
+        <LanguageContext.Consumer>
+          {(languageContext) => (
+            <SideMenuContext.Consumer>
+              {(menuContext) => (
+                <Drawer
+                  className={classes.drawer}
+                  variant="persistent"
+                  anchor="left"
+                  open={menuContext.menuIsOpen}
+                  classes={{
+                    paper: classes.drawerPaper,
+                  }}
+                >
+                  <div className={classes.drawerHeader}>
+                    <IconButton onClick={menuContext.setOpen}>
+                      {theme.direction === "ltr" ? (
+                        <ChevronLeftIcon style={{ color: "white" }} />
+                      ) : (
+                        <ChevronRightIcon style={{ color: "white" }} />
+                      )}
+                    </IconButton>
+                  </div>
 
-              <div className={classes.menuContainer}>
-                {menuArray.map((menuItem, i) => (
-                  <>
-                    <div className={classes.menuItemContainer}>
-                      <Button color="inherit">
-                        <div
-                          className={
-                            menuItem.open
-                              ? classes.chosenMenuButton
-                              : classes.menuButton
-                          }
-                          onClick={
-                            menuItem.url === ""
-                              ? () => {
-                                  let tmp = [...menuArray];
-                                  tmp[i].open = !menuArray[i].open;
-                                  setMenuArray(tmp);
-                                }
-                              : () => {}
-                          }
-                        >
-                          <div className={classes.menuButtonIcons}>
-                            {menuItem.url === "" && (
-                              <div
-                                style={{ width: `calc(${MenuItemMargin}px)` }}
-                              />
-                            )}
-                            <menuItem.icon
-                              fontSize="medium"
-                              className={classes.menuIcon}
-                            />
-                            {menuItem.url === "" &&
-                              (menuItem.open ? (
-                                <ExpandLessOutlinedIcon
-                                  id={"Arrow"}
-                                  className={classes.Arrow}
+                  <div className={classes.menuContainer}>
+                    {menuArray.map((menuItem, i) => (
+                      <>
+                        <div className={classes.menuItemContainer}>
+                          <Button color="inherit">
+                            <div
+                              className={
+                                userContext.chosenMenuItemId === menuItem.id
+                                  ? classes.chosenMenuButton
+                                  : classes.menuButton
+                              }
+                              onClick={
+                                menuItem.url === ""
+                                  ? () => {
+                                      let tmp = [...menuArray];
+                                      tmp[i].open = !menuArray[i].open;
+                                      setMenuArray(tmp);
+                                    }
+                                  : () => {}
+                              }
+                            >
+                              <div className={classes.menuButtonIcons}>
+                                {menuItem.url === "" && (
+                                  <div
+                                    style={{
+                                      width: `calc(${MenuItemMargin}px)`,
+                                    }}
+                                  />
+                                )}
+                                <menuItem.icon
+                                  fontSize="medium"
+                                  className={classes.menuIcon}
                                 />
-                              ) : (
-                                <KeyboardArrowDownOutlinedIcon
-                                  id={"Arrow"}
-                                  className={classes.Arrow}
-                                />
-                              ))}
-                          </div>
+                                {menuItem.url === "" &&
+                                  (menuItem.open ? (
+                                    <ExpandLessOutlinedIcon
+                                      id={"Arrow"}
+                                      className={classes.Arrow}
+                                    />
+                                  ) : (
+                                    <KeyboardArrowDownOutlinedIcon
+                                      id={"Arrow"}
+                                      className={classes.Arrow}
+                                    />
+                                  ))}
+                              </div>
 
-                          <div className={classes.menuButtonName}>
-                            {languageContext.language === "en"
-                              ? menuItem.EnName
-                              : menuItem.FaName}
-                          </div>
-                        </div>
-                      </Button>
-                      {menuItem.url === "" && menuItem.open && (
-                        <div className={classes.subMenuContainer}>
-                          {menuItem.subMenu.map((subMenuItem, i) => (
-                            <div className={classes.subMenuItem}>
-                              <div className={classes.subMenuItemName}>
+                              <div className={classes.menuButtonName}>
                                 {languageContext.language === "en"
-                                  ? subMenuItem.EnName
-                                  : subMenuItem.FaName}
+                                  ? menuItem.EnName
+                                  : menuItem.FaName}
                               </div>
                             </div>
-                          ))}
+                          </Button>
+                          {menuItem.url === "" && menuItem.open && (
+                            <div className={classes.subMenuContainer}>
+                              {menuItem.subMenu.map((subMenuItem, i) => (
+                                <div className={classes.subMenuItem}>
+                                  <div className={classes.subMenuItemName}>
+                                    {languageContext.language === "en"
+                                      ? subMenuItem.EnName
+                                      : subMenuItem.FaName}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </>
-                ))}
-              </div>
-            </Drawer>
+                      </>
+                    ))}
+                  </div>
+                </Drawer>
+              )}
+            </SideMenuContext.Consumer>
           )}
-        </SideMenuContext.Consumer>
+        </LanguageContext.Consumer>
       )}
-    </LanguageContext.Consumer>
+    </UserContext.Consumer>
   );
 }
