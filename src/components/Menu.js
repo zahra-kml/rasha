@@ -10,6 +10,7 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import Button from "@material-ui/core/Button";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
+import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 
 const drawerWidth = 140;
 const styles = {
@@ -57,9 +58,22 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   subMenuContainer: {
-    width: "100%",
-    backgroundColor: "gray",
+    //  backgroundColor: "gray",
     color: "white",
+    //padding: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+  },
+  subMenuItem: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    // backgroundColor: "red",
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  subMenuItemName: {
+    padding: theme.spacing(0.5),
   },
   menuButton: {
     padding: theme.spacing(1),
@@ -74,12 +88,17 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menuButtonIcons: {
-    // width: "100%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
   },
+  menuIcon: {
+    padding: theme.spacing(1),
+  },
   menuButtonName: {},
+  close: {
+    display: "none",
+  },
 }));
 
 export default function DrawerMenu(props) {
@@ -120,10 +139,14 @@ export default function DrawerMenu(props) {
                     <div className={classes.menuButton}>
                       <div className={classes.menuButtonIcons}>
                         <div style={{ width: `calc(${MenuItemMargin}px)` }} />
-                        <HomeOutlinedIcon fontSize="large" />
+                        <HomeOutlinedIcon
+                          fontSize="large"
+                          className={classes.menuIcon}
+                        />
                         <KeyboardArrowDownOutlinedIcon
                           fontSize="small"
                           id={"Arrow"}
+                          style={{ alignSelf: "flex-end" }}
                         />
                       </div>
 
@@ -131,7 +154,20 @@ export default function DrawerMenu(props) {
                     </div>
                   </Button>
 
-                  <div className={classes.subMenuContainer}>.asdfghjk</div>
+                  <div className={classes.close}>
+                    <div className={classes.subMenuItem}>
+                      <div className={classes.subMenuItemName}>item</div>
+                    </div>
+                    <div className={classes.subMenuItem}>
+                      <div className={classes.subMenuItemName}>item</div>
+                    </div>
+                    <div className={classes.subMenuItem}>
+                      <div className={classes.subMenuItemName}>item</div>
+                    </div>
+                    <div className={classes.subMenuItem}>
+                      <div className={classes.subMenuItemName}>item</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Drawer>
