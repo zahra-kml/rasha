@@ -66,6 +66,7 @@ export const MenuArray = [
     icon: RestoreOutlinedIcon,
     EnName: "Leases",
     FaName: "اجاره ها",
+    url: "",
     subMenu: [
       {
         id: 1,

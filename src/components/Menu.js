@@ -44,11 +44,10 @@ const useStyles = makeStyles((theme) => ({
   menuItemContainer: {
     display: "flex",
     flexDirection: "column",
+    width: "100%",
   },
   subMenuContainer: {
-    //  backgroundColor: "gray",
     color: "white",
-    //padding: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
   },
@@ -56,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "red",
     justifyContent: "center",
     alignContent: "center",
   },
@@ -64,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0.5),
   },
   menuButton: {
+    width: "100%",
     padding: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
@@ -74,6 +73,16 @@ const useStyles = makeStyles((theme) => ({
       background: "#000000",
       color: "#23a267",
     },
+  },
+  chosenMenuButton: {
+    width: "100%",
+    padding: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    borderRadius: "5%",
+    background: "#000000",
+    color: "#23a267",
   },
   menuButtonIcons: {
     display: "flex",
@@ -86,6 +95,10 @@ const useStyles = makeStyles((theme) => ({
   menuButtonName: {},
   close: {
     display: "none",
+  },
+  Arrow: {
+    alignSelf: "flex-end",
+    fontSize: 15,
   },
 }));
 
@@ -127,19 +140,38 @@ export default function DrawerMenu(props) {
                   <>
                     <div className={classes.menuItemContainer}>
                       <Button color="inherit">
-                        <div className={classes.menuButton}>
+                        <div
+                          className={
+                            menuItem.open
+                              ? classes.chosenMenuButton
+                              : classes.menuButton
+                          }
+                          onClick={
+                            menuItem.url === ""
+                              ? () => {
+                                  let tmp = [...menuArray];
+                                  tmp[i].open = !menuArray[i].open;
+                                  setMenuArray(tmp);
+                                }
+                              : () => {}
+                          }
+                        >
                           <div className={classes.menuButtonIcons}>
-                            <div
-                              style={{ width: `calc(${MenuItemMargin}px)` }}
-                            />
+                            {menuItem.url === "" && (
+                              <div
+                                style={{ width: `calc(${MenuItemMargin}px)` }}
+                              />
+                            )}
                             <menuItem.icon
                               fontSize="medium"
                               className={classes.menuIcon}
                             />
-                            <KeyboardArrowDownOutlinedIcon
-                              id={"Arrow"}
-                              style={{ alignSelf: "flex-end", fontSize: 15 }}
-                            />
+                            {menuItem.url === "" && (
+                              <KeyboardArrowDownOutlinedIcon
+                                id={"Arrow"}
+                                className={classes.Arrow}
+                              />
+                            )}
                           </div>
 
                           <div className={classes.menuButtonName}>
