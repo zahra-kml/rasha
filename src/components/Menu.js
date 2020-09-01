@@ -12,6 +12,18 @@ import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
 
 const drawerWidth = 140;
+const styles = {
+  test: {
+    backgroundColor: "red",
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    right: 0,
+    borderRadius: "25%",
+  },
+};
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -21,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#041104",
+    backgroundColor: "#131513",
   },
   drawerHeader: {
     display: "flex",
@@ -30,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
+    background: "#000000",
   },
   menuContainer: {
     width: "100%",
@@ -40,14 +53,33 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "8%",
   },
   menuItemContainer: {
-    //width: "50%",
-    // backgroundColor: "red",
-    //height: "10vh",
     display: "flex",
     flexDirection: "column",
-    color: "#d7d4d4",
   },
-  subMenuContainer: { width: "100%", backgroundColor: "gray" },
+  subMenuContainer: {
+    width: "100%",
+    backgroundColor: "gray",
+    color: "white",
+  },
+  menuButton: {
+    padding: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    color: "#d7d4d4",
+    borderRadius: "5%",
+    "&:hover": {
+      background: "#000000",
+      color: "#23a267",
+    },
+  },
+  menuButtonIcons: {
+    // width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  menuButtonName: {},
 }));
 
 export default function DrawerMenu(props) {
@@ -85,37 +117,21 @@ export default function DrawerMenu(props) {
               <div className={classes.menuContainer}>
                 <div className={classes.menuItemContainer}>
                   <Button color="inherit">
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                      }}
-                    >
-                      <div
-                        style={{
-                          // width: "100%",
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                        }}
-                      >
+                    <div className={classes.menuButton}>
+                      <div className={classes.menuButtonIcons}>
                         <div style={{ width: `calc(${MenuItemMargin}px)` }} />
-                        <HomeOutlinedIcon
-                          fontSize="large"
-                          style={{ margin: "4%" }}
-                        />
+                        <HomeOutlinedIcon fontSize="large" />
                         <KeyboardArrowDownOutlinedIcon
                           fontSize="small"
                           id={"Arrow"}
                         />
                       </div>
 
-                      <div>home</div>
+                      <div className={classes.menuButtonName}>home</div>
                     </div>
                   </Button>
 
-                  <div className={classes.subMenuContainer}>g</div>
+                  <div className={classes.subMenuContainer}>.asdfghjk</div>
                 </div>
               </div>
             </Drawer>
