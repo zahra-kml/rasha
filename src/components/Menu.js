@@ -57,8 +57,19 @@ const useStyles = makeStyles((theme) => ({
     overflow: "hidden",
     height: "100%",
     transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.easeIn,
-      duration: "1s",
+      easing: theme.transitions.easing.sharp,
+      duration: ".3s",
+    }),
+  },
+  close: {
+    overflow: "hidden",
+    height: 0,
+    color: "white",
+    display: "flex",
+    flexDirection: "column",
+    transition: theme.transitions.create("height", {
+      easing: theme.transitions.easing.sharp,
+      duration: ".3s",
     }),
   },
   subMenuItem: {
@@ -78,11 +89,11 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    color: "#d7d4d4",
+    color: "#aca8a8",
     borderRadius: "5%",
     "&:hover": {
-      background: "#000000",
-      color: "#23a267",
+      background: "#23a267",
+      color: "#ffffff",
     },
   },
   chosenMenuButton: {
@@ -92,8 +103,8 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     borderRadius: "5%",
-    background: "#000000",
-    color: "#23a267",
+    background: "#1b774c",
+    color: "#ffffff",
   },
   menuButtonIcons: {
     display: "flex",
@@ -104,17 +115,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
   menuButtonName: {},
-  close: {
-    overflow: "hidden",
-    height: 0,
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.easeIn,
-      duration: "1s",
-    }),
-  },
+
   Arrow: {
     alignSelf: "flex-end",
     fontSize: 15,
@@ -190,7 +191,7 @@ export default function DrawerMenu(props) {
                                   />
                                 )}
                                 <menuItem.icon
-                                  fontSize="medium"
+                                  fontSize="large"
                                   className={classes.menuIcon}
                                 />
                                 {menuItem.url === "" &&
