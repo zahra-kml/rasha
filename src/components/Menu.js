@@ -8,8 +8,9 @@ import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import useTheme from "@material-ui/core/styles/useTheme";
 import Button from "@material-ui/core/Button";
-import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
+
 import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
+import ExpandLessOutlinedIcon from "@material-ui/icons/ExpandLessOutlined";
 import { MenuArray } from "../values/strings";
 
 const drawerWidth = 140;
@@ -60,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
   },
   subMenuItemName: {
     padding: theme.spacing(0.5),
+    fontSize: 10,
   },
   menuButton: {
     width: "100%",
@@ -166,12 +168,18 @@ export default function DrawerMenu(props) {
                               fontSize="medium"
                               className={classes.menuIcon}
                             />
-                            {menuItem.url === "" && (
-                              <KeyboardArrowDownOutlinedIcon
-                                id={"Arrow"}
-                                className={classes.Arrow}
-                              />
-                            )}
+                            {menuItem.url === "" &&
+                              (menuItem.open ? (
+                                <ExpandLessOutlinedIcon
+                                  id={"Arrow"}
+                                  className={classes.Arrow}
+                                />
+                              ) : (
+                                <KeyboardArrowDownOutlinedIcon
+                                  id={"Arrow"}
+                                  className={classes.Arrow}
+                                />
+                              ))}
                           </div>
 
                           <div className={classes.menuButtonName}>
@@ -181,20 +189,17 @@ export default function DrawerMenu(props) {
                           </div>
                         </div>
                       </Button>
-                      {menuItem.url !== "" && (
-                        <div className={classes.close}>
-                          <div className={classes.subMenuItem}>
-                            <div className={classes.subMenuItemName}>item</div>
-                          </div>
-                          <div className={classes.subMenuItem}>
-                            <div className={classes.subMenuItemName}>item</div>
-                          </div>
-                          <div className={classes.subMenuItem}>
-                            <div className={classes.subMenuItemName}>item</div>
-                          </div>
-                          <div className={classes.subMenuItem}>
-                            <div className={classes.subMenuItemName}>item</div>
-                          </div>
+                      {menuItem.url === "" && menuItem.open && (
+                        <div className={classes.subMenuContainer}>
+                          {menuItem.subMenu.map((subMenuItem, i) => (
+                            <div className={classes.subMenuItem}>
+                              <div className={classes.subMenuItemName}>
+                                {languageContext.language === "en"
+                                  ? subMenuItem.EnName
+                                  : subMenuItem.FaName}
+                              </div>
+                            </div>
+                          ))}
                         </div>
                       )}
                     </div>
