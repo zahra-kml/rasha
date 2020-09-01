@@ -72,8 +72,26 @@ export default function DrawerMenu(props) {
                     width: "50%",
                     backgroundColor: "red",
                     height: "10vh",
+                    display: "flex",
+                    flexDirection: "column",
                   }}
-                ></div>
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      backgroundColor: "blue",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div>g</div>
+                    <div>home</div>
+                  </div>
+                  <div style={{ width: "100%", backgroundColor: "gray" }}>
+                    b
+                  </div>
+                </div>
               </div>
             </Drawer>
           )}
