@@ -10,21 +10,9 @@ import useTheme from "@material-ui/core/styles/useTheme";
 import Button from "@material-ui/core/Button";
 import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import KeyboardArrowDownOutlinedIcon from "@material-ui/icons/KeyboardArrowDownOutlined";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
+import { MenuArray } from "../values/strings";
 
 const drawerWidth = 140;
-const styles = {
-  test: {
-    backgroundColor: "red",
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    right: 0,
-    borderRadius: "25%",
-  },
-};
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -105,6 +93,7 @@ export default function DrawerMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [MenuItemMargin, setMenuItemMargin] = useState(0);
+  const [menuArray, setMenuArray] = useState(MenuArray);
   useEffect(() => {
     let Width = document.getElementById("Arrow").clientHeight;
     setMenuItemMargin(Width);
@@ -134,41 +123,51 @@ export default function DrawerMenu(props) {
               </div>
 
               <div className={classes.menuContainer}>
-                <div className={classes.menuItemContainer}>
-                  <Button color="inherit">
-                    <div className={classes.menuButton}>
-                      <div className={classes.menuButtonIcons}>
-                        <div style={{ width: `calc(${MenuItemMargin}px)` }} />
-                        <HomeOutlinedIcon
-                          fontSize="large"
-                          className={classes.menuIcon}
-                        />
-                        <KeyboardArrowDownOutlinedIcon
-                          fontSize="small"
-                          id={"Arrow"}
-                          style={{ alignSelf: "flex-end" }}
-                        />
-                      </div>
+                {menuArray.map((menuItem, i) => (
+                  <>
+                    <div className={classes.menuItemContainer}>
+                      <Button color="inherit">
+                        <div className={classes.menuButton}>
+                          <div className={classes.menuButtonIcons}>
+                            <div
+                              style={{ width: `calc(${MenuItemMargin}px)` }}
+                            />
+                            <menuItem.icon
+                              fontSize="medium"
+                              className={classes.menuIcon}
+                            />
+                            <KeyboardArrowDownOutlinedIcon
+                              id={"Arrow"}
+                              style={{ alignSelf: "flex-end", fontSize: 15 }}
+                            />
+                          </div>
 
-                      <div className={classes.menuButtonName}>home</div>
+                          <div className={classes.menuButtonName}>
+                            {languageContext.language === "en"
+                              ? menuItem.EnName
+                              : menuItem.FaName}
+                          </div>
+                        </div>
+                      </Button>
+                      {menuItem.url !== "" && (
+                        <div className={classes.close}>
+                          <div className={classes.subMenuItem}>
+                            <div className={classes.subMenuItemName}>item</div>
+                          </div>
+                          <div className={classes.subMenuItem}>
+                            <div className={classes.subMenuItemName}>item</div>
+                          </div>
+                          <div className={classes.subMenuItem}>
+                            <div className={classes.subMenuItemName}>item</div>
+                          </div>
+                          <div className={classes.subMenuItem}>
+                            <div className={classes.subMenuItemName}>item</div>
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </Button>
-
-                  <div className={classes.close}>
-                    <div className={classes.subMenuItem}>
-                      <div className={classes.subMenuItemName}>item</div>
-                    </div>
-                    <div className={classes.subMenuItem}>
-                      <div className={classes.subMenuItemName}>item</div>
-                    </div>
-                    <div className={classes.subMenuItem}>
-                      <div className={classes.subMenuItemName}>item</div>
-                    </div>
-                    <div className={classes.subMenuItem}>
-                      <div className={classes.subMenuItemName}>item</div>
-                    </div>
-                  </div>
-                </div>
+                  </>
+                ))}
               </div>
             </Drawer>
           )}
