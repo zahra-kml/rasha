@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   LanguageButton: {
     marginRight: theme.spacing(2),
+    fontFamily: "ir_sans",
   },
   stickyPaper: {
     width: "100%",
@@ -191,7 +192,6 @@ export default function HeaderAppBar(props) {
                       endIcon={<ExpandMoreIcon />}
                       onClick={LanguageHandleClick}
                     >
-                      {" "}
                       {languageContext.language === "fa" ? "فارسی" : "English"}
                     </Button>
                     <IconButton

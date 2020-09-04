@@ -29,6 +29,9 @@ const styles = {
     height: 0,
     maxHeight: "auto",
     borderBottom: "2px solid white",
+    fontFamily: "ir_sans",
+    flexGrow: 1,
+    alignSelf: "flex-end",
   },
 };
 const useStyles = makeStyles((theme) => ({

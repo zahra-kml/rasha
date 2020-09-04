@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import UserContextProvider from "./contexts/UserContext";
+import "./fonts/FontsFree-Net-ir_sans.ttf";
 
 ReactDOM.render(
   <React.StrictMode>

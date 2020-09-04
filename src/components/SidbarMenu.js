@@ -83,10 +83,12 @@ const useStyles = makeStyles((theme) => ({
   },
   subListItemText: {
     fontSize: 12,
+    fontFamily: "ir_sans",
   },
   ListItemText: {
     fontSize: 13,
     marginTop: theme.spacing(1),
+    fontFamily: "ir_sans",
   },
   RightDash: {
     fontSize: 16,
