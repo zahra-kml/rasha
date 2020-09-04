@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     width: "100%",
+    backgroundColor: "blue",
+    marginTop: "2%",
   },
   subMenuContainer: {
     color: "white",
@@ -56,9 +58,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     overflow: "hidden",
     height: "100%",
+    backgroundColor: "red",
     transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.sharp,
-      duration: ".3s",
+      easing: theme.transitions.easing.easeIn,
+      duration: "3s",
     }),
   },
   close: {
@@ -67,9 +70,10 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     display: "flex",
     flexDirection: "column",
+    backgroundColor: "red",
     transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.sharp,
-      duration: ".3s",
+      easing: theme.transitions.easing.easeOut,
+      duration: "3s",
     }),
   },
   subMenuItem: {
@@ -216,23 +220,24 @@ export default function DrawerMenu(props) {
                             </div>
                           </Button>
                           {menuItem.url === "" && (
-                            <div
-                              className={
-                                menuItem.open
-                                  ? classes.subMenuContainer
-                                  : classes.close
-                              }
-                            >
-                              {menuItem.subMenu.map((subMenuItem, i) => (
-                                <div className={classes.subMenuItem}>
-                                  <div className={classes.subMenuItemName}>
+                            <>
+                              <div
+                                className={
+                                  menuItem.open
+                                    ? classes.subMenuContainer
+                                    : classes.close
+                                }
+                              >
+                                {menuItem.subMenu.map((subMenuItem, i) => (
+                                  <div className={classes.subMenuItem}>
                                     {languageContext.language === "en"
                                       ? subMenuItem.EnName
                                       : subMenuItem.FaName}
                                   </div>
-                                </div>
-                              ))}
-                            </div>
+                                ))}
+                              </div>
+                              <div>aaa</div>
+                            </>
                           )}
                         </div>
                       </>
