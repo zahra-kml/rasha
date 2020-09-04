@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import DraftsIcon from "@material-ui/icons/Drafts";
+import SendIcon from "@material-ui/icons/Send";
 import {
   LanguageContext,
   MenuContext,
@@ -13,6 +16,13 @@ import IconButton from "@material-ui/core/IconButton";
 import useTheme from "@material-ui/core/styles/useTheme";
 import Button from "@material-ui/core/Button";
 import { MenuArray } from "../values/strings";
+import ListItemText from "@material-ui/core/ListItemText";
+import { ExpandLess, ExpandMore, StarBorder } from "@material-ui/icons";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItem from "@material-ui/core/ListItem";
+import List from "@material-ui/core/List";
+import Collapse from "@material-ui/core/Collapse";
+import ListSubheader from "@material-ui/core/ListSubheader";
 
 const drawerWidth = 140;
 
@@ -128,8 +138,11 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
-
+  const [open, setOpen] = React.useState(true);
   const [menuArray, setMenuArray] = useState(MenuArray);
+  const handleClick = () => {
+    setOpen(!open);
+  };
   return (
     <UserContext.Consumer>
       {(userContext) => (

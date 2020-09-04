@@ -41,9 +41,7 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   contentShift: {
-    [theme.breakpoints.up("md")]: {
-      marginLeft: drawerWidth,
-    },
+    marginLeft: drawerWidth,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
@@ -57,9 +55,9 @@ export default function MainPageLayout(props) {
 
   return (
     <MenuContext.Consumer>
-      {(context) => (
+      {(menuContext) => (
         <LanguageContext.Consumer>
-          {(menuContext) => (
+          {(languageContext) => (
             <>
               <HeaderAppBar />
               <Hidden smDown implementation="css">
