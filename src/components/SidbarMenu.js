@@ -57,17 +57,23 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "#ffffffff",
       "& $ListItemIcon": {
-        color: "#ffffffff",
+        color: "#23a267",
       },
       "& $ExpandIcon": {
         color: "#ffffffff",
       },
     },
   },
+  chosenListItemIcon: {
+    color: "#23a267",
+  },
   SubListItem: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
     color: "#999999",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
     "&:hover": {
       color: "#ffffff",
     },
@@ -151,10 +157,18 @@ export default function SideMenu(props) {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
                         <ListItem button className={classes.SubListItem}>
+                          <div style={{ fontSize: 13 }}>- </div>
                           <div style={{ fontSize: 13 }}>Starred</div>
+                          <div style={{ fontSize: 13 }}> -</div>
                         </ListItem>
                         <ListItem button className={classes.SubListItem}>
-                          <div style={{ fontSize: 13 }}>Starred</div>
+                          <div style={{ fontSize: 13, marginLeft: "10%" }}>
+                            -
+                          </div>
+                          <div style={{ fontSize: 13 }}> Starred </div>
+                          <div style={{ fontSize: 13, marginRight: "10%" }}>
+                            -
+                          </div>
                         </ListItem>
                       </List>
                     </Collapse>
