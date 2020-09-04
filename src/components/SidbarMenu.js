@@ -54,6 +54,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     marginTop: "10%",
+    "&:hover": {
+      color: "#ffffffff",
+      "& $ListItemIcon": {
+        color: "#ffffffff",
+      },
+      "& $ExpandIcon": {
+        color: "#ffffffff",
+      },
+    },
   },
   SubListItem: {
     display: "flex",
