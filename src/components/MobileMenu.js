@@ -35,8 +35,16 @@ const useStyles = makeStyles((theme) => ({
   },
   ItemText: {
     fontFamily: "ir_sans",
+    fontSize: 15,
+    flexGrow: 1,
+  },
+  SubItemText: {
+    fontFamily: "ir_sans",
     fontSize: 13,
     flexGrow: 1,
+  },
+  nested: {
+    paddingLeft: theme.spacing(9.5),
   },
 }));
 
@@ -72,17 +80,42 @@ export default function MobileMenu(props) {
                     <List className={classes.list} component="nav">
                       {menuArray.map((item, i) => (
                         <>
-                          <ListItem button onClick={() => {}}>
+                          <ListItem
+                            button
+                            onClick={
+                              item.subMenu
+                                ? () => {
+                                    let tmp = [...menuArray];
+                                    tmp[i].open = !tmp[i].open;
+                                    setMenuArray(tmp);
+                                  }
+                                : () => {
+                                    userContext.setChosenMenuItemId(item.id);
+                                  }
+                            }
+                          >
                             <ListItemIcon>
-                              <item.icon fontSize={"large"} />
+                              <item.icon fontSize={"medium"} />
                             </ListItemIcon>
                             <div className={classes.ItemText}>
                               {languageContext.language === "fa"
                                 ? item.FaName
                                 : item.EnName}
                             </div>
-                            {item.open ? <ExpandLess /> : <ExpandMore />}
+                            {item.subMenu &&
+                              (item.open ? <ExpandLess /> : <ExpandMore />)}
                           </ListItem>
+                          <Collapse in={item.open} timeout="auto" unmountOnExit>
+                            <List component="div" disablePadding>
+                              <ListItem button className={classes.nested}>
+                                <div className={classes.SubItemText}>
+                                  {languageContext.language === "fa"
+                                    ? item.FaName
+                                    : item.EnName}
+                                </div>
+                              </ListItem>
+                            </List>
+                          </Collapse>
                         </>
                       ))}
                     </List>
