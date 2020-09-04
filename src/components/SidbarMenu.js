@@ -193,11 +193,14 @@ export default function SideMenu(props) {
                       <>
                         <ListItem
                           button
-                          onClick={() => {
-                            let tmp = [...menuArray];
-                            tmp[i].open = !tmp[i].open;
-                            setMenuArray(tmp);
-                          }}
+                          onClick={
+                            item.subMenu &&
+                            (() => {
+                              let tmp = [...menuArray];
+                              tmp[i].open = !tmp[i].open;
+                              setMenuArray(tmp);
+                            })
+                          }
                           className={
                             item.open
                               ? classes.openListItem
