@@ -3,14 +3,17 @@ import { Switch, Route } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/Header";
-import SideMenuContextProvider from "../contexts/sideMenuContext";
+import SideMenuContextProvider from "../contexts/MenuContext";
 import { SideMenuContext } from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import DrawerMenu from "../components/Menu";
+import DrawerMenu from "../components/SidbarMenu";
 import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
+import Hidden from "@material-ui/core/Hidden";
+import useTheme from "@material-ui/core/styles/useTheme";
+import MobileMenu from "../components/MobileMenu";
 
 const drawerWidth = 140;
 const styles = {
@@ -24,24 +27,27 @@ const styles = {
     right: 0,
     overflow: "hidden",
     height: 0,
+    maxHeight: "auto",
   },
 };
 const useStyles = makeStyles((theme) => ({
   content: {
+    marginLeft: 0,
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: 0,
   },
   contentShift: {
+    [theme.breakpoints.up("md")]: {
+      marginLeft: drawerWidth,
+    },
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: drawerWidth,
   },
 }));
 
@@ -56,7 +62,12 @@ export default function MainPageLayout(props) {
           {(menuContext) => (
             <>
               <HeaderAppBar />
-              <DrawerMenu />
+              <Hidden smDown implementation="css">
+                <DrawerMenu />
+              </Hidden>
+              <Hidden smUp implementation="css">
+                <MobileMenu />
+              </Hidden>
               <main
                 className={clsx(classes.content, {
                   [classes.contentShift]: menuContext.menuIsOpen,

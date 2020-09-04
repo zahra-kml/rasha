@@ -8,7 +8,7 @@ import { LanguageContext } from "./contexts/contexts";
 import LanguageContextProvider from "./contexts/LanguageContext";
 import MainPageLayout from "./layouts/MainPageLayout";
 import LogInLayout from "./layouts/LogInLayout";
-import SideMenuContextProvider from "./contexts/sideMenuContext";
+import SideMenuContextProvider from "./contexts/MenuContext";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
