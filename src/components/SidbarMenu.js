@@ -22,7 +22,7 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import Collapse from "@material-ui/core/Collapse";
 
-const drawerWidth = 150;
+const drawerWidth = 180;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   List: {
     backgroundColor: "#000000",
     color: "#999999",
-    padding: theme.spacing(0, 1),
   },
   ListItem: {
     display: "flex",
@@ -75,8 +74,12 @@ const useStyles = makeStyles((theme) => ({
       color: "#ffffffff",
     },
   },
+  subListItemText: {
+    fontSize: 12,
+  },
   ListItemText: {
     fontSize: 13,
+    marginTop: theme.spacing(1),
   },
   RightDash: {
     fontSize: 16,
@@ -138,11 +141,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
     color: "#999999",
   },
   ExpandIcon: {
-    marginLeft: "20%",
-    marginRight: "20%",
+    marginLeft: "10%",
+    marginRight: "10%",
     color: "#999999",
   },
 }));
@@ -192,22 +196,35 @@ export default function SideMenu(props) {
                           }
                         >
                           <ListItemIcon className={classes.ListItemIcon}>
-                            {
+                            {item.subMenu && (
                               <ExpandMore
+                                fontSize="small"
                                 style={{
                                   visibility: "hidden",
                                 }}
                                 className={classes.ExpandIcon}
                               />
-                            }
-                            <InboxIcon />
-                            {item.open ? (
-                              <ExpandLess className={classes.ExpandIcon} />
-                            ) : (
-                              <ExpandMore className={classes.ExpandIcon} />
                             )}
+                            <item.icon fontSize="large" />
+                            {item.open
+                              ? item.subMenu && (
+                                  <ExpandLess
+                                    className={classes.ExpandIcon}
+                                    fontSize="small"
+                                  />
+                                )
+                              : item.subMenu && (
+                                  <ExpandMore
+                                    className={classes.ExpandIcon}
+                                    fontSize="small"
+                                  />
+                                )}
                           </ListItemIcon>
-                          <ListItemText primary="Inbox" />
+                          <div className={classes.ListItemText}>
+                            {languageContext.language === "fa"
+                              ? item.FaName
+                              : item.EnName}
+                          </div>
                         </ListItem>
                         <Collapse in={item.open} timeout="auto" unmountOnExit>
                           <List component="div" disablePadding>
@@ -216,7 +233,7 @@ export default function SideMenu(props) {
                               className={classes.chosenSubListItem}
                             >
                               <div className={classes.LeftDash}>-</div>
-                              <div className={classes.ListItemText}>
+                              <div className={classes.subListItemText}>
                                 {" "}
                                 Starred{" "}
                               </div>
@@ -224,7 +241,7 @@ export default function SideMenu(props) {
                             </ListItem>
                             <ListItem button className={classes.SubListItem}>
                               <div className={classes.LeftDash}>-</div>
-                              <div className={classes.ListItemText}>
+                              <div className={classes.subListItemText}>
                                 {" "}
                                 Starred{" "}
                               </div>

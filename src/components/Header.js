@@ -19,7 +19,7 @@ import { LanguageContext, MenuContext } from "../contexts/contexts";
 import clsx from "clsx";
 import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
 
-const drawerWidth = 150;
+const drawerWidth = 180;
 const StyledMenu = withStyles({
   paper: {},
 })((props) => (

@@ -12,8 +12,9 @@ export const MenuArray = [
     EnName: "Home",
     FaName: "خانه",
     url: "/dashboard",
-    subMenu: [],
+    subMenuItems: [],
     open: false,
+    subMenu: false,
   },
   {
     id: 2,
@@ -21,7 +22,7 @@ export const MenuArray = [
     EnName: "Devices",
     FaName: "دستگاه ها",
     url: "",
-    subMenu: [
+    subMenuItems: [
       {
         id: 1,
         EnName: "item",
@@ -42,6 +43,7 @@ export const MenuArray = [
       },
     ],
     open: false,
+    subMenu: true,
   },
   {
     id: 3,
@@ -49,8 +51,9 @@ export const MenuArray = [
     EnName: "Users",
     FaName: "کاربران",
     url: "#",
-    subMenu: [],
+    subMenuItems: [],
     open: false,
+    subMenu: false,
   },
   {
     id: 4,
@@ -58,8 +61,9 @@ export const MenuArray = [
     EnName: "Power Banks",
     FaName: "پاوربانک ها",
     url: "#",
-    subMenu: [],
+    subMenuItems: [],
     open: false,
+    subMenu: false,
   },
   {
     id: 5,
@@ -67,7 +71,7 @@ export const MenuArray = [
     EnName: "Leases",
     FaName: "اجاره ها",
     url: "",
-    subMenu: [
+    subMenuItems: [
       {
         id: 1,
         EnName: "item",
@@ -88,6 +92,7 @@ export const MenuArray = [
       },
     ],
     open: false,
+    subMenu: true,
   },
   {
     id: 6,
@@ -95,8 +100,9 @@ export const MenuArray = [
     EnName: "Banking transactions",
     FaName: "تراکنش های بانکی",
     url: "#",
-    subMenu: [],
+    subMenuItems: [],
     open: false,
+    subMenu: false,
   },
   {
     id: 7,
@@ -104,7 +110,8 @@ export const MenuArray = [
     EnName: "Gift codes",
     FaName: "کد های هدیه",
     url: "#",
-    subMenu: [],
+    subMenuItems: [],
     open: false,
+    subMenu: false,
   },
 ];
