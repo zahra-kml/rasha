@@ -194,12 +194,15 @@ export default function SideMenu(props) {
                         <ListItem
                           button
                           onClick={
-                            item.subMenu &&
-                            (() => {
-                              let tmp = [...menuArray];
-                              tmp[i].open = !tmp[i].open;
-                              setMenuArray(tmp);
-                            })
+                            item.subMenu
+                              ? () => {
+                                  let tmp = [...menuArray];
+                                  tmp[i].open = !tmp[i].open;
+                                  setMenuArray(tmp);
+                                }
+                              : () => {
+                                  userContext.setChosenMenuItemId(item.id);
+                                }
                           }
                           className={
                             item.open
@@ -253,6 +256,12 @@ export default function SideMenu(props) {
                                       ? classes.chosenSubListItem
                                       : classes.SubListItem
                                   }
+                                  onClick={() => {
+                                    userContext.setChosenMenuItemId(item.id);
+                                    userContext.setChosenSubMenuItemId(
+                                      subItem.id
+                                    );
+                                  }}
                                 >
                                   <div className={classes.LeftDash}>-</div>
                                   <div className={classes.subListItemText}>
