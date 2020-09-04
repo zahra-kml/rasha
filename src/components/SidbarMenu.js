@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: "10%",
     color: "#ffffffff",
-    borderBottom: "1px solid white",
+    //borderBottom: "1px solid white",
     "& $ListItemIcon": {
       color: "#23a267",
     },
@@ -192,7 +192,11 @@ export default function SideMenu(props) {
                             setMenuArray(tmp);
                           }}
                           className={
-                            item.open ? classes.openListItem : classes.ListItem
+                            item.open
+                              ? classes.openListItem
+                              : userContext.chosenMenuItemId === item.id
+                              ? classes.chosenListItem
+                              : classes.ListItem
                           }
                         >
                           <ListItemIcon className={classes.ListItemIcon}>
@@ -228,25 +232,28 @@ export default function SideMenu(props) {
                         </ListItem>
                         <Collapse in={item.open} timeout="auto" unmountOnExit>
                           <List component="div" disablePadding>
-                            <ListItem
-                              button
-                              className={classes.chosenSubListItem}
-                            >
-                              <div className={classes.LeftDash}>-</div>
-                              <div className={classes.subListItemText}>
-                                {" "}
-                                Starred{" "}
-                              </div>
-                              <div className={classes.RightDash}>-</div>
-                            </ListItem>
-                            <ListItem button className={classes.SubListItem}>
-                              <div className={classes.LeftDash}>-</div>
-                              <div className={classes.subListItemText}>
-                                {" "}
-                                Starred{" "}
-                              </div>
-                              <div className={classes.RightDash}>-</div>
-                            </ListItem>
+                            {item.subMenuItems.map((subItem, index) => (
+                              <>
+                                <ListItem
+                                  button
+                                  className={
+                                    userContext.chosenMenuItemId === item.id &&
+                                    userContext.chosenSubMenuItemId ===
+                                      subItem.id
+                                      ? classes.chosenSubListItem
+                                      : classes.SubListItem
+                                  }
+                                >
+                                  <div className={classes.LeftDash}>-</div>
+                                  <div className={classes.subListItemText}>
+                                    {languageContext.language === "fa"
+                                      ? subItem.FaName
+                                      : subItem.EnName}
+                                  </div>
+                                  <div className={classes.RightDash}>-</div>
+                                </ListItem>
+                              </>
+                            ))}
                           </List>
                         </Collapse>
                       </>
