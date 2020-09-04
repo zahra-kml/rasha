@@ -28,6 +28,7 @@ const styles = {
     overflow: "hidden",
     height: 0,
     maxHeight: "auto",
+    borderBottom: "2px solid white",
   },
 };
 const useStyles = makeStyles((theme) => ({

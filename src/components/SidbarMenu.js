@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   List: {
     backgroundColor: "#000000",
     color: "#999999",
+    padding: theme.spacing(0, 1),
   },
   ListItem: {
     display: "flex",
@@ -64,6 +65,18 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  openListItem: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10%",
+    color: "#ffffffff",
+    "& $ListItemIcon": {
+      color: "#23a267",
+    },
+    "& $ExpandIcon": {
+      color: "#ffffffff",
+    },
+  },
   ListItemText: {
     fontSize: 13,
   },
@@ -75,8 +88,18 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     marginRight: "5%",
   },
-  chosenListItemIcon: {
-    color: "#23a267",
+  chosenListItem: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10%",
+    color: "#ffffffff",
+    borderBottom: "1px solid white",
+    "& $ListItemIcon": {
+      color: "#23a267",
+    },
+    "& $ExpandIcon": {
+      color: "#ffffffff",
+    },
   },
   SubListItem: {
     display: "flex",
@@ -95,6 +118,22 @@ const useStyles = makeStyles((theme) => ({
         color: "#23a267",
         fontSize: 16,
       },
+    },
+  },
+  chosenSubListItem: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignContent: "center",
+    alignItems: "center",
+    color: "#ffffff",
+    "& $LeftDash": {
+      color: "#23a267",
+      fontSize: 16,
+    },
+    "& $RightDash": {
+      color: "#23a267",
+      fontSize: 16,
     },
   },
   ListItemIcon: {
@@ -144,7 +183,7 @@ export default function SideMenu(props) {
                     </IconButton>
                   </div>
                   <List className={classes.List} component="nav">
-                    <ListItem button className={classes.ListItem}>
+                    <ListItem button className={classes.chosenListItem}>
                       <ListItemIcon className={classes.ListItemIcon}>
                         <SendIcon />
                       </ListItemIcon>
@@ -153,7 +192,7 @@ export default function SideMenu(props) {
                     <ListItem
                       button
                       onClick={handleClick}
-                      className={classes.ListItem}
+                      className={open ? classes.openListItem : classes.ListItem}
                     >
                       <ListItemIcon className={classes.ListItemIcon}>
                         {
@@ -175,7 +214,7 @@ export default function SideMenu(props) {
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        <ListItem button className={classes.SubListItem}>
+                        <ListItem button className={classes.chosenSubListItem}>
                           <div className={classes.LeftDash}>-</div>
                           <div className={classes.ListItemText}> Starred </div>
                           <div className={classes.RightDash}>-</div>
