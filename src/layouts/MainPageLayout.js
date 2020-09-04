@@ -15,7 +15,7 @@ import Hidden from "@material-ui/core/Hidden";
 import useTheme from "@material-ui/core/styles/useTheme";
 import MobileMenu from "../components/MobileMenu";
 
-const drawerWidth = 140;
+const drawerWidth = 150;
 const styles = {
   test: {
     backgroundColor: "red",

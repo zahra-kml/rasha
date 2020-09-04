@@ -24,7 +24,7 @@ import List from "@material-ui/core/List";
 import Collapse from "@material-ui/core/Collapse";
 import ListSubheader from "@material-ui/core/ListSubheader";
 
-const drawerWidth = 140;
+const drawerWidth = 150;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
