@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   drawerHeader: {
     display: "flex",
     alignItems: "center",
-    padding: theme.spacing(0, 1),
+    //padding: theme.spacing(0, 1),
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   ListItem: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "10%",
+    marginTop: "5%",
     "&:hover": {
       color: "#ffffffff",
       "& $ListItemIcon": {
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   openListItem: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "10%",
+    marginTop: "5%",
     color: "#ffffffff",
     "& $ListItemIcon": {
       color: "#23a267",
@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
   chosenListItem: {
     display: "flex",
     flexDirection: "column",
-    marginTop: "10%",
+    marginTop: "5%",
     color: "#ffffffff",
     //borderBottom: "1px solid white",
     "& $ListItemIcon": {
