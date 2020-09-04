@@ -68,11 +68,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 13,
   },
   RightDash: {
-    fontSize: 13,
+    fontSize: 16,
     marginLeft: "5%",
   },
   LeftDash: {
-    fontSize: 13,
+    fontSize: 16,
     marginRight: "5%",
   },
   chosenListItemIcon: {
