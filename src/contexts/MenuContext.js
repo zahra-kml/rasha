@@ -3,19 +3,19 @@ import { MenuContext } from "./contexts";
 
 class SideMenuContextProvider extends React.Component {
   state = {
-    menuIsOpen: false,
+    SideMenuIsOpen: false,
   };
 
   render() {
     return (
       <MenuContext.Provider
         value={{
-          menuIsOpen: this.state.menuIsOpen,
-          setOpen: () => {
+          SideMenuIsOpen: this.state.SideMenuIsOpen,
+          setSideMenuOpen: () => {
             {
-              this.state.menuIsOpen === true
-                ? this.setState({ menuIsOpen: false })
-                : this.setState({ menuIsOpen: true });
+              this.state.SideMenuIsOpen === true
+                ? this.setState({ SideMenuIsOpen: false })
+                : this.setState({ SideMenuIsOpen: true });
             }
           },
         }}

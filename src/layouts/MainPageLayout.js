@@ -70,7 +70,7 @@ export default function MainPageLayout(props) {
               </Hidden>
               <main
                 className={clsx(classes.content, {
-                  [classes.contentShift]: menuContext.menuIsOpen,
+                  [classes.contentShift]: menuContext.SideMenuIsOpen,
                 })}
                 style={{
                   zIndex: 3,

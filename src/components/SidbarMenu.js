@@ -141,13 +141,13 @@ export default function DrawerMenu(props) {
                   className={classes.drawer}
                   variant="persistent"
                   anchor="left"
-                  open={menuContext.menuIsOpen}
+                  open={menuContext.SideMenuIsOpen}
                   classes={{
                     paper: classes.drawerPaper,
                   }}
                 >
                   <div className={classes.drawerHeader}>
-                    <IconButton onClick={menuContext.setOpen}>
+                    <IconButton onClick={menuContext.setSideMenuOpen}>
                       {theme.direction === "ltr" ? (
                         <ChevronLeftIcon style={{ color: "white" }} />
                       ) : (

@@ -144,7 +144,7 @@ export default function HeaderAppBar(props) {
                 <AppBar
                   id={"AppBar"}
                   className={clsx(classes.appBar, {
-                    [classes.appBarShift]: menuContext.menuIsOpen,
+                    [classes.appBarShift]: menuContext.SideMenuIsOpen,
                   })}
                 >
                   <Toolbar>
@@ -153,7 +153,7 @@ export default function HeaderAppBar(props) {
                       className={classes.menuButton}
                       color="inherit"
                       aria-label="menu"
-                      onClick={menuContext.setOpen}
+                      onClick={menuContext.setSideMenuOpen}
                     >
                       <MenuIcon />
                     </IconButton>
