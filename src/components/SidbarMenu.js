@@ -14,7 +14,6 @@ import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import useTheme from "@material-ui/core/styles/useTheme";
-import Button from "@material-ui/core/Button";
 import { MenuArray } from "../values/strings";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ExpandLess, ExpandMore, StarBorder } from "@material-ui/icons";
@@ -22,7 +21,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import Collapse from "@material-ui/core/Collapse";
-import ListSubheader from "@material-ui/core/ListSubheader";
 
 const drawerWidth = 150;
 
@@ -111,11 +109,11 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: "#ffffff",
       "& $LeftDash": {
-        color: "#23a267",
+        color: "#ffffff",
         fontSize: 16,
       },
       "& $RightDash": {
-        color: "#23a267",
+        color: "#ffffff",
         fontSize: 16,
       },
     },
@@ -152,11 +150,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SideMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
   const [menuArray, setMenuArray] = useState(MenuArray);
-  const handleClick = () => {
-    setOpen(!open);
-  };
+
   return (
     <UserContext.Consumer>
       {(userContext) => (
@@ -183,55 +178,62 @@ export default function SideMenu(props) {
                     </IconButton>
                   </div>
                   <List className={classes.List} component="nav">
-                    <ListItem button className={classes.chosenListItem}>
-                      <ListItemIcon className={classes.ListItemIcon}>
-                        <SendIcon />
-                      </ListItemIcon>
-                      <ListItemText primary="Sent mail" />
-                    </ListItem>
-                    <ListItem
-                      button
-                      onClick={handleClick}
-                      className={open ? classes.openListItem : classes.ListItem}
-                    >
-                      <ListItemIcon className={classes.ListItemIcon}>
-                        {
-                          <ExpandMore
-                            style={{
-                              visibility: "hidden",
-                            }}
-                            className={classes.ExpandIcon}
-                          />
-                        }
-                        <InboxIcon />
-                        {open ? (
-                          <ExpandLess className={classes.ExpandIcon} />
-                        ) : (
-                          <ExpandMore className={classes.ExpandIcon} />
-                        )}
-                      </ListItemIcon>
-                      <ListItemText primary="Inbox" />
-                    </ListItem>
-                    <Collapse in={open} timeout="auto" unmountOnExit>
-                      <List component="div" disablePadding>
-                        <ListItem button className={classes.chosenSubListItem}>
-                          <div className={classes.LeftDash}>-</div>
-                          <div className={classes.ListItemText}> Starred </div>
-                          <div className={classes.RightDash}>-</div>
+                    {menuArray.map((item, i) => (
+                      <>
+                        <ListItem
+                          button
+                          onClick={() => {
+                            let tmp = [...menuArray];
+                            tmp[i].open = !tmp[i].open;
+                            setMenuArray(tmp);
+                          }}
+                          className={
+                            item.open ? classes.openListItem : classes.ListItem
+                          }
+                        >
+                          <ListItemIcon className={classes.ListItemIcon}>
+                            {
+                              <ExpandMore
+                                style={{
+                                  visibility: "hidden",
+                                }}
+                                className={classes.ExpandIcon}
+                              />
+                            }
+                            <InboxIcon />
+                            {item.open ? (
+                              <ExpandLess className={classes.ExpandIcon} />
+                            ) : (
+                              <ExpandMore className={classes.ExpandIcon} />
+                            )}
+                          </ListItemIcon>
+                          <ListItemText primary="Inbox" />
                         </ListItem>
-                        <ListItem button className={classes.SubListItem}>
-                          <div className={classes.LeftDash}>-</div>
-                          <div className={classes.ListItemText}> Starred </div>
-                          <div className={classes.RightDash}>-</div>
-                        </ListItem>
-                      </List>
-                    </Collapse>
-                    <ListItem button className={classes.ListItem}>
-                      <ListItemIcon className={classes.ListItemIcon}>
-                        <DraftsIcon />
-                      </ListItemIcon>
-                      <ListItemText primary="Drafts" />
-                    </ListItem>
+                        <Collapse in={item.open} timeout="auto" unmountOnExit>
+                          <List component="div" disablePadding>
+                            <ListItem
+                              button
+                              className={classes.chosenSubListItem}
+                            >
+                              <div className={classes.LeftDash}>-</div>
+                              <div className={classes.ListItemText}>
+                                {" "}
+                                Starred{" "}
+                              </div>
+                              <div className={classes.RightDash}>-</div>
+                            </ListItem>
+                            <ListItem button className={classes.SubListItem}>
+                              <div className={classes.LeftDash}>-</div>
+                              <div className={classes.ListItemText}>
+                                {" "}
+                                Starred{" "}
+                              </div>
+                              <div className={classes.RightDash}>-</div>
+                            </ListItem>
+                          </List>
+                        </Collapse>
+                      </>
+                    ))}
                   </List>
                 </Drawer>
               )}
