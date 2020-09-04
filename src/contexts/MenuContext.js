@@ -11,6 +11,14 @@ class SideMenuContextProvider extends React.Component {
       <MenuContext.Provider
         value={{
           SideMenuIsOpen: this.state.SideMenuIsOpen,
+          MobileMenuIsOpen: this.state.MobileMenuIsOpen,
+          setMobileMenuOpen: () => {
+            {
+              this.state.MobileMenuIsOpen === true
+                ? this.setState({ MobileMenuIsOpen: false })
+                : this.setState({ MobileMenuIsOpen: true });
+            }
+          },
           setSideMenuOpen: () => {
             {
               this.state.SideMenuIsOpen === true
