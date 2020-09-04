@@ -41,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
     }),
   },
   contentShift: {
-    marginLeft: drawerWidth,
+    [theme.breakpoints.up("md")]: {
+      marginLeft: drawerWidth,
+    },
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,

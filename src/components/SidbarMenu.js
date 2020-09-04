@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#131513",
+    backgroundColor: "#000000",
   },
   drawerHeader: {
     display: "flex",
@@ -45,93 +45,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
     background: "#000000",
-  },
-  menuContainer: {
-    width: "100%",
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    marginTop: "8%",
-  },
-  menuItemContainer: {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    backgroundColor: "blue",
-    marginTop: "2%",
-  },
-  subMenuContainer: {
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    overflow: "hidden",
-    height: "100%",
-    backgroundColor: "red",
-    transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.easeInOut,
-      duration: "3s",
-    }),
-  },
-  close: {
-    overflow: "hidden",
-    height: 0,
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    backgroundColor: "red",
-    transition: theme.transitions.create("height", {
-      easing: theme.transitions.easing.easeInOut,
-      duration: "3s",
-    }),
-  },
-  subMenuItem: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    alignContent: "center",
-  },
-  subMenuItemName: {
-    padding: theme.spacing(0.5),
-    fontSize: 10,
-  },
-  menuButton: {
-    width: "100%",
-    padding: theme.spacing(1),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    color: "#aca8a8",
-    borderRadius: "5%",
-    "&:hover": {
-      background: "#23a267",
-      color: "#ffffff",
-    },
-  },
-  chosenMenuButton: {
-    width: "100%",
-    padding: theme.spacing(1),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    borderRadius: "5%",
-    background: "#1b774c",
-    color: "#ffffff",
-  },
-  menuButtonIcons: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  menuIcon: {
-    padding: theme.spacing(1),
-  },
-  menuButtonName: {},
-
-  Arrow: {
-    alignSelf: "flex-end",
-    fontSize: 15,
   },
 }));
 
@@ -168,6 +81,123 @@ export default function SideMenu(props) {
                       )}
                     </IconButton>
                   </div>
+                  <List
+                    style={{
+                      backgroundColor: "#000000",
+                      color: "#999999",
+                    }}
+                    component="nav"
+                  >
+                    <ListItem
+                      button
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginTop: "10%",
+                      }}
+                    >
+                      <ListItemIcon
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          color: "#999999",
+                        }}
+                      >
+                        <SendIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Sent mail" />
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={handleClick}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginTop: "10%",
+                      }}
+                    >
+                      <ListItemIcon
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          color: "#999999",
+                        }}
+                      >
+                        {
+                          <ExpandMore
+                            style={{
+                              visibility: "hidden",
+                              marginLeft: "20%%",
+                              marginRight: "20%",
+                            }}
+                          />
+                        }
+                        <InboxIcon />
+                        {open ? (
+                          <ExpandLess
+                            style={{
+                              marginLeft: "20%%",
+                              marginRight: "20%",
+                              color: "#999999",
+                            }}
+                          />
+                        ) : (
+                          <ExpandMore
+                            style={{
+                              marginLeft: "20%%",
+                              marginRight: "20%",
+                              color: "#999999",
+                            }}
+                          />
+                        )}
+                      </ListItemIcon>
+                      <ListItemText primary="Inbox" />
+                    </ListItem>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        <ListItem
+                          button
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <div style={{ fontSize: 13 }}>Starred</div>
+                        </ListItem>
+                        <ListItem
+                          button
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <div style={{ fontSize: 13 }}>Starred</div>
+                        </ListItem>
+                      </List>
+                    </Collapse>
+                    <ListItem
+                      button
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        marginTop: "10%",
+                      }}
+                    >
+                      <ListItemIcon
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: "center",
+                          color: "#999999",
+                        }}
+                      >
+                        <DraftsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary="Drafts" />
+                    </ListItem>
+                  </List>
                 </Drawer>
               )}
             </MenuContext.Consumer>
