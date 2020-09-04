@@ -43,6 +43,13 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
     justifyContent: "flex-end",
     background: "#000000",
+    //borderBottom: "1px solid #999999",
+  },
+  backIcon: {
+    color: "#999999",
+    "&:hover": {
+      color: "#ffffff",
+    },
   },
   List: {
     backgroundColor: "#000000",
@@ -175,9 +182,9 @@ export default function SideMenu(props) {
                   <div className={classes.drawerHeader}>
                     <IconButton onClick={menuContext.setSideMenuOpen}>
                       {theme.direction === "ltr" ? (
-                        <ChevronLeftIcon style={{ color: "white" }} />
+                        <ChevronLeftIcon className={classes.backIcon} />
                       ) : (
-                        <ChevronRightIcon style={{ color: "white" }} />
+                        <ChevronRightIcon className={classes.backIcon} />
                       )}
                     </IconButton>
                   </div>
