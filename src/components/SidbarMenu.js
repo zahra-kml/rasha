@@ -64,6 +64,17 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  ListItemText: {
+    fontSize: 13,
+  },
+  RightDash: {
+    fontSize: 13,
+    marginLeft: "5%",
+  },
+  LeftDash: {
+    fontSize: 13,
+    marginRight: "5%",
+  },
   chosenListItemIcon: {
     color: "#23a267",
   },
@@ -76,6 +87,14 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     "&:hover": {
       color: "#ffffff",
+      "& $LeftDash": {
+        color: "#23a267",
+        fontSize: 16,
+      },
+      "& $RightDash": {
+        color: "#23a267",
+        fontSize: 16,
+      },
     },
   },
   ListItemIcon: {
@@ -85,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#999999",
   },
   ExpandIcon: {
-    marginLeft: "20%%",
+    marginLeft: "20%",
     marginRight: "20%",
     color: "#999999",
   },
@@ -157,18 +176,14 @@ export default function SideMenu(props) {
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
                         <ListItem button className={classes.SubListItem}>
-                          <div style={{ fontSize: 13 }}>- </div>
-                          <div style={{ fontSize: 13 }}>Starred</div>
-                          <div style={{ fontSize: 13 }}> -</div>
+                          <div className={classes.LeftDash}>-</div>
+                          <div className={classes.ListItemText}> Starred </div>
+                          <div className={classes.RightDash}>-</div>
                         </ListItem>
                         <ListItem button className={classes.SubListItem}>
-                          <div style={{ fontSize: 13, marginLeft: "10%" }}>
-                            -
-                          </div>
-                          <div style={{ fontSize: 13 }}> Starred </div>
-                          <div style={{ fontSize: 13, marginRight: "10%" }}>
-                            -
-                          </div>
+                          <div className={classes.LeftDash}>-</div>
+                          <div className={classes.ListItemText}> Starred </div>
+                          <div className={classes.RightDash}>-</div>
                         </ListItem>
                       </List>
                     </Collapse>
