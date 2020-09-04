@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   LanguageContext,
-  SideMenuContext,
+  MenuContext,
   UserContext,
 } from "../contexts/contexts";
 
@@ -32,7 +32,7 @@ export default function MobileMenu(props) {
       {(userContext) => (
         <LanguageContext.Consumer>
           {(languageContext) => (
-            <SideMenuContext.Consumer>
+            <MenuContext.Consumer>
               {(menuContext) => (
                 <Hidden smUp implementation="css">
                   <Drawer
@@ -50,7 +50,7 @@ export default function MobileMenu(props) {
                   ></Drawer>
                 </Hidden>
               )}
-            </SideMenuContext.Consumer>
+            </MenuContext.Consumer>
           )}
         </LanguageContext.Consumer>
       )}

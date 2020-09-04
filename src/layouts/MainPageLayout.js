@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/Header";
 import SideMenuContextProvider from "../contexts/MenuContext";
-import { SideMenuContext } from "../contexts/contexts";
+import { LanguageContext, MenuContext } from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -56,9 +56,9 @@ export default function MainPageLayout(props) {
   const classes = useStyles();
 
   return (
-    <SideMenuContext.Consumer>
+    <MenuContext.Consumer>
       {(context) => (
-        <SideMenuContext.Consumer>
+        <LanguageContext.Consumer>
           {(menuContext) => (
             <>
               <HeaderAppBar />
@@ -97,9 +97,9 @@ export default function MainPageLayout(props) {
                     */}
             </>
           )}
-        </SideMenuContext.Consumer>
+        </LanguageContext.Consumer>
       )}
-    </SideMenuContext.Consumer>
+    </MenuContext.Consumer>
   );
 }
 

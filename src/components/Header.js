@@ -15,7 +15,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { LanguageContext, SideMenuContext } from "../contexts/contexts";
+import { LanguageContext, MenuContext } from "../contexts/contexts";
 import clsx from "clsx";
 import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
 
@@ -137,7 +137,7 @@ export default function HeaderAppBar(props) {
   return (
     <LanguageContext.Consumer>
       {(languageContext) => (
-        <SideMenuContext.Consumer>
+        <MenuContext.Consumer>
           {(menuContext) => (
             <>
               <ElevationScroll {...props}>
@@ -226,7 +226,7 @@ export default function HeaderAppBar(props) {
               />
             </>
           )}
-        </SideMenuContext.Consumer>
+        </MenuContext.Consumer>
       )}
     </LanguageContext.Consumer>
   );

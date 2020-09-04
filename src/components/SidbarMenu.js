@@ -4,7 +4,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import {
   LanguageContext,
-  SideMenuContext,
+  MenuContext,
   UserContext,
 } from "../contexts/contexts";
 import clsx from "clsx";
@@ -135,7 +135,7 @@ export default function DrawerMenu(props) {
       {(userContext) => (
         <LanguageContext.Consumer>
           {(languageContext) => (
-            <SideMenuContext.Consumer>
+            <MenuContext.Consumer>
               {(menuContext) => (
                 <Drawer
                   className={classes.drawer}
@@ -157,7 +157,7 @@ export default function DrawerMenu(props) {
                   </div>
                 </Drawer>
               )}
-            </SideMenuContext.Consumer>
+            </MenuContext.Consumer>
           )}
         </LanguageContext.Consumer>
       )}
