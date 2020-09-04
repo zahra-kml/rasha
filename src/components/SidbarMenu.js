@@ -46,6 +46,34 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "flex-end",
     background: "#000000",
   },
+  List: {
+    backgroundColor: "#000000",
+    color: "#999999",
+  },
+  ListItem: {
+    display: "flex",
+    flexDirection: "column",
+    marginTop: "10%",
+  },
+  SubListItem: {
+    display: "flex",
+    flexDirection: "column",
+    color: "#999999",
+    "&:hover": {
+      color: "#ffffff",
+    },
+  },
+  ListItemIcon: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    color: "#999999",
+  },
+  ExpandIcon: {
+    marginLeft: "20%%",
+    marginRight: "20%",
+    color: "#999999",
+  },
 }));
 
 export default function SideMenu(props) {
@@ -81,29 +109,9 @@ export default function SideMenu(props) {
                       )}
                     </IconButton>
                   </div>
-                  <List
-                    style={{
-                      backgroundColor: "#000000",
-                      color: "#999999",
-                    }}
-                    component="nav"
-                  >
-                    <ListItem
-                      button
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginTop: "10%",
-                      }}
-                    >
-                      <ListItemIcon
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          color: "#999999",
-                        }}
-                      >
+                  <List className={classes.List} component="nav">
+                    <ListItem button className={classes.ListItem}>
+                      <ListItemIcon className={classes.ListItemIcon}>
                         <SendIcon />
                       </ListItemIcon>
                       <ListItemText primary="Sent mail" />
@@ -111,88 +119,38 @@ export default function SideMenu(props) {
                     <ListItem
                       button
                       onClick={handleClick}
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginTop: "10%",
-                      }}
+                      className={classes.ListItem}
                     >
-                      <ListItemIcon
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          color: "#999999",
-                        }}
-                      >
+                      <ListItemIcon className={classes.ListItemIcon}>
                         {
                           <ExpandMore
                             style={{
                               visibility: "hidden",
-                              marginLeft: "20%%",
-                              marginRight: "20%",
                             }}
+                            className={classes.ExpandIcon}
                           />
                         }
                         <InboxIcon />
                         {open ? (
-                          <ExpandLess
-                            style={{
-                              marginLeft: "20%%",
-                              marginRight: "20%",
-                              color: "#999999",
-                            }}
-                          />
+                          <ExpandLess className={classes.ExpandIcon} />
                         ) : (
-                          <ExpandMore
-                            style={{
-                              marginLeft: "20%%",
-                              marginRight: "20%",
-                              color: "#999999",
-                            }}
-                          />
+                          <ExpandMore className={classes.ExpandIcon} />
                         )}
                       </ListItemIcon>
                       <ListItemText primary="Inbox" />
                     </ListItem>
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        <ListItem
-                          button
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                        >
+                        <ListItem button className={classes.SubListItem}>
                           <div style={{ fontSize: 13 }}>Starred</div>
                         </ListItem>
-                        <ListItem
-                          button
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                          }}
-                        >
+                        <ListItem button className={classes.SubListItem}>
                           <div style={{ fontSize: 13 }}>Starred</div>
                         </ListItem>
                       </List>
                     </Collapse>
-                    <ListItem
-                      button
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        marginTop: "10%",
-                      }}
-                    >
-                      <ListItemIcon
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          justifyContent: "center",
-                          color: "#999999",
-                        }}
-                      >
+                    <ListItem button className={classes.ListItem}>
+                      <ListItemIcon className={classes.ListItemIcon}>
                         <DraftsIcon />
                       </ListItemIcon>
                       <ListItemText primary="Drafts" />
