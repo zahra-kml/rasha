@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DrawerMenu(props) {
+export default function SideMenu(props) {
   const classes = useStyles();
   const theme = useTheme();
 

@@ -49,8 +49,21 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 const useStyles = makeStyles((theme) => ({
-  menuButton: {
-    marginRight: theme.spacing(2),
+  sideMenuButton: {
+    [theme.breakpoints.up("md")]: {
+      marginRight: theme.spacing(2),
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: "none",
+    },
+  },
+  MobileMenuButton: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginRight: theme.spacing(2),
+    },
   },
   space: {
     flexGrow: 1,
@@ -150,10 +163,19 @@ export default function HeaderAppBar(props) {
                   <Toolbar>
                     <IconButton
                       edge="start"
-                      className={classes.menuButton}
+                      className={classes.sideMenuButton}
                       color="inherit"
                       aria-label="menu"
                       onClick={menuContext.setSideMenuOpen}
+                    >
+                      <MenuIcon />
+                    </IconButton>
+                    <IconButton
+                      edge="start"
+                      className={classes.MobileMenuButton}
+                      color="inherit"
+                      aria-label="menu"
+                      onClick={menuContext.setMobileMenuOpen}
                     >
                       <MenuIcon />
                     </IconButton>

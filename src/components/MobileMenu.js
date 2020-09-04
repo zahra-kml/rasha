@@ -19,10 +19,6 @@ export default function MobileMenu(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
@@ -39,8 +35,8 @@ export default function MobileMenu(props) {
                     container={container}
                     variant="temporary"
                     anchor={theme.direction === "rtl" ? "right" : "left"}
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
+                    open={menuContext.MobileMenuIsOpen}
+                    onClose={menuContext.setMobileMenuOpen}
                     classes={{
                       paper: classes.drawerPaper,
                     }}

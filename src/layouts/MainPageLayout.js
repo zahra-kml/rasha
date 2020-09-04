@@ -8,7 +8,7 @@ import { LanguageContext, MenuContext } from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import DrawerMenu from "../components/SidbarMenu";
+import SideMenu from "../components/SidbarMenu";
 import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
@@ -63,7 +63,7 @@ export default function MainPageLayout(props) {
             <>
               <HeaderAppBar />
               <Hidden smDown implementation="css">
-                <DrawerMenu />
+                <SideMenu />
               </Hidden>
               <Hidden smUp implementation="css">
                 <MobileMenu />
