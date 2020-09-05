@@ -68,9 +68,11 @@ const useStyles = makeStyles((theme) => ({
   },
   ListItem: {
     color: "black",
+    marginBottom: "2%",
   },
   chosenListItem: {
     color: "black",
+    marginBottom: "2%",
     "& $icon": {
       color: "#23a267",
     },
@@ -135,6 +137,7 @@ export default function MobileMenu(props) {
                                   }
                                 : () => {
                                     userContext.setChosenMenuItemId(item.id);
+                                    menuContext.setMobileMenuOpen();
                                   }
                             }
                           >
@@ -171,6 +174,7 @@ export default function MobileMenu(props) {
                                     userContext.setChosenSubMenuItemId(
                                       subItem.id
                                     );
+                                    menuContext.setMobileMenuOpen();
                                   }}
                                 >
                                   <div className={classes.SubItemText}>
