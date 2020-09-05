@@ -93,14 +93,10 @@ export default function MainPageLayout(props) {
                       style={{ width: "100%", height: "100vh" }}
                     >
                       <Switch>
+                        <Route path={`${match.path}`} component={Dashboard} />
                         <Route
                           exact
-                          path={"/dashboard"}
-                          component={Dashboard}
-                        />
-                        <Route
-                          exact
-                          path={"/dashboard/devices"}
+                          path={`${match.path}/devices`}
                           component={Devices}
                         />
                       </Switch>
