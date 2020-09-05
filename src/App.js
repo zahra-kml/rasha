@@ -54,12 +54,10 @@ function App() {
                               }}
                             />
                             <Route
-                              exact
                               path="/login"
                               render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
-                              exact
                               path="/dashboard"
                               render={(props) => <MainPageLayout {...props} />}
                             />

@@ -95,24 +95,13 @@ export default function MainPageLayout(props) {
                       <Switch>
                         <Route
                           exact
-                          path={`${match.path}`}
-                          render={() => {
-                            return userContext.isUserAuthenticated ? (
-                              (props) => <Dashboard {...props} />
-                            ) : (
-                              <Redirect to="/login" />
-                            );
-                          }}
+                          path={"/dashboard"}
+                          component={Dashboard}
                         />
                         <Route
-                          path={`${match.path}/devices`}
-                          render={() => {
-                            return userContext.isUserAuthenticated ? (
-                              (props) => <Devices {...props} />
-                            ) : (
-                              <Redirect to="/login" />
-                            );
-                          }}
+                          exact
+                          path={"/dashboard/devices"}
+                          component={Devices}
                         />
                       </Switch>
                     </Paper>
