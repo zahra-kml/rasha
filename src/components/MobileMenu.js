@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
     width: drawerWidth,
+    padding: theme.spacing(1),
   },
   drawerHeader: {
     [theme.breakpoints.up("md")]: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     width: "100%",
+    backgroundColor: theme.palette.background.paper,
   },
   ItemText: {
     fontFamily: "ir_sans",
@@ -63,6 +65,21 @@ const useStyles = makeStyles((theme) => ({
   },
   nested: {
     paddingLeft: theme.spacing(9.5),
+  },
+  ListItem: {
+    color: "black",
+  },
+  chosenListItem: {
+    color: "black",
+    "& $icon": {
+      color: "#23a267",
+    },
+  },
+  chosenSubListItem: {
+    color: "black",
+  },
+  icon: {
+    color: "black",
   },
 }));
 
@@ -102,6 +119,12 @@ export default function MobileMenu(props) {
                       {menuArray.map((item, i) => (
                         <>
                           <ListItem
+                            className={
+                              userContext.chosenMenuItemId === item.id
+                                ? classes.chosenListItem
+                                : classes.ListItem
+                            }
+                            selected={userContext.chosenMenuItemId === item.id}
                             button
                             onClick={
                               item.subMenu
@@ -116,7 +139,10 @@ export default function MobileMenu(props) {
                             }
                           >
                             <ListItemIcon>
-                              <item.icon fontSize={"large"} />
+                              <item.icon
+                                fontSize={"large"}
+                                className={classes.icon}
+                              />
                             </ListItemIcon>
                             <div className={classes.ItemText}>
                               {languageContext.language === "fa"
@@ -126,17 +152,36 @@ export default function MobileMenu(props) {
                             {item.subMenu &&
                               (item.open ? <ExpandLess /> : <ExpandMore />)}
                           </ListItem>
-                          <Collapse in={item.open} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                              <ListItem button className={classes.nested}>
-                                <div className={classes.SubItemText}>
-                                  {languageContext.language === "fa"
-                                    ? item.FaName
-                                    : item.EnName}
-                                </div>
-                              </ListItem>
-                            </List>
-                          </Collapse>
+                          {item.subMenuItems.map((subItem, index) => (
+                            <Collapse
+                              in={item.open}
+                              timeout="auto"
+                              unmountOnExit
+                            >
+                              <List component="div" disablePadding>
+                                <ListItem
+                                  button
+                                  className={classes.nested}
+                                  selected={
+                                    userContext.chosenSubMenuItemId ===
+                                    subItem.id
+                                  }
+                                  onClick={() => {
+                                    userContext.setChosenMenuItemId(item.id);
+                                    userContext.setChosenSubMenuItemId(
+                                      subItem.id
+                                    );
+                                  }}
+                                >
+                                  <div className={classes.SubItemText}>
+                                    {languageContext.language === "fa"
+                                      ? subItem.FaName
+                                      : subItem.EnName}
+                                  </div>
+                                </ListItem>
+                              </List>
+                            </Collapse>
+                          ))}
                         </>
                       ))}
                     </List>
