@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/Header";
 import SideMenuContextProvider from "../contexts/MenuContext";
-import { LanguageContext, MenuContext } from "../contexts/contexts";
+import {
+  LanguageContext,
+  MenuContext,
+  UserContext,
+} from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +18,7 @@ import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
 import useTheme from "@material-ui/core/styles/useTheme";
 import MobileMenu from "../components/MobileMenu";
+import Dashboard from "../pages/dashboard";
 
 const drawerWidth = 180;
 const styles = {
@@ -60,50 +65,54 @@ export default function MainPageLayout(props) {
   const classes = useStyles();
 
   return (
-    <MenuContext.Consumer>
-      {(menuContext) => (
-        <LanguageContext.Consumer>
-          {(languageContext) => (
-            <>
-              <HeaderAppBar />
-              <Hidden smDown implementation="css">
-                <SideMenu />
-              </Hidden>
-              <Hidden smUp implementation="css">
-                <MobileMenu />
-              </Hidden>
-              <main
-                className={clsx(classes.content, {
-                  [classes.contentShift]: menuContext.SideMenuIsOpen,
-                })}
-                style={{
-                  zIndex: 3,
-                }}
-              >
-                <Paper
-                  elevation={3}
-                  style={{ width: "100%", height: "100vh" }}
-                ></Paper>
-              </main>
-
-              {/*
-                        <Header appTitle=""/>
-                        <Switch>
+    <UserContext.Consumer>
+      {(userContext) => (
+        <MenuContext.Consumer>
+          {(menuContext) => (
+            <LanguageContext.Consumer>
+              {(languageContext) => (
+                <>
+                  <HeaderAppBar />
+                  <Hidden smDown implementation="css">
+                    <SideMenu />
+                  </Hidden>
+                  <Hidden smUp implementation="css">
+                    <MobileMenu />
+                  </Hidden>
+                  <main
+                    className={clsx(classes.content, {
+                      [classes.contentShift]: menuContext.SideMenuIsOpen,
+                    })}
+                    style={{
+                      zIndex: 3,
+                    }}
+                  >
+                    <Paper
+                      elevation={3}
+                      style={{ width: "100%", height: "100vh" }}
+                    >
+                      <Switch>
                         <Route
-                        exact path={`${match.path}`}
-                        render={(props) => <DashboardPage {...props} />}/>
+                          exact
+                          path={`${match.path}`}
+                          render={() =>
+                            userContext.isUserAuthenticated ? (
+                              (props) => <Dashboard {...props} />
+                            ) : (
+                              <Redirect to="/login" />
+                            )
+                          }
                         />
-                        <Route path={`${match.path}/pagea`} component={PageA} />
-                        <Route path={`${match.path}/pageb`} component={PageB} />
-                        <Route path={`${match.path}/pagec`} component={PageC} />
-                        </Switch>
-
-                    */}
-            </>
+                      </Switch>
+                    </Paper>
+                  </main>
+                </>
+              )}
+            </LanguageContext.Consumer>
           )}
-        </LanguageContext.Consumer>
+        </MenuContext.Consumer>
       )}
-    </MenuContext.Consumer>
+    </UserContext.Consumer>
   );
 }
 

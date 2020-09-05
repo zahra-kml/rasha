@@ -46,8 +46,8 @@ function App() {
                               exact
                               path="/"
                               render={() => {
-                                return userContext.login ? (
-                                  <Redirect to="/login" />
+                                return userContext.isUserAuthenticated ? (
+                                  <Redirect to="/dashboard" />
                                 ) : (
                                   <Redirect to="/login" />
                                 );
@@ -78,7 +78,7 @@ function App() {
                               path="/"
                               render={() => {
                                 return userContext.isUserAuthenticated ? (
-                                  <Redirect to="/login" />
+                                  <Redirect to="/dashboard" />
                                 ) : (
                                   <Redirect to="/login" />
                                 );
