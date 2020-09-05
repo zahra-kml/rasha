@@ -3,7 +3,7 @@ import { UserContext } from "./contexts";
 
 class UserContextProvider extends React.Component {
   state = {
-    isUserAuthenticated: false,
+    isUserAuthenticated: true,
     chosenMenuItemId: 1,
     chosenSubMenuItemId: 0,
   };

@@ -19,6 +19,7 @@ import Hidden from "@material-ui/core/Hidden";
 import useTheme from "@material-ui/core/styles/useTheme";
 import MobileMenu from "../components/MobileMenu";
 import Dashboard from "../pages/dashboard";
+import Devices from "../pages/devices";
 
 const drawerWidth = 180;
 const styles = {
@@ -95,13 +96,23 @@ export default function MainPageLayout(props) {
                         <Route
                           exact
                           path={`${match.path}`}
-                          render={() =>
-                            userContext.isUserAuthenticated ? (
+                          render={() => {
+                            return userContext.isUserAuthenticated ? (
                               (props) => <Dashboard {...props} />
                             ) : (
                               <Redirect to="/login" />
-                            )
-                          }
+                            );
+                          }}
+                        />
+                        <Route
+                          path={`${match.path}/devices`}
+                          render={() => {
+                            return userContext.isUserAuthenticated ? (
+                              (props) => <Devices {...props} />
+                            ) : (
+                              <Redirect to="/login" />
+                            );
+                          }}
                         />
                       </Switch>
                     </Paper>
