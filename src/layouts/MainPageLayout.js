@@ -93,11 +93,27 @@ export default function MainPageLayout(props) {
                       style={{ width: "100%", height: "100vh" }}
                     >
                       <Switch>
-                        <Route path={`${match.path}`} component={Dashboard} />
+                        <Route
+                          exact
+                          path={`${match.path}`}
+                          render={
+                            userContext.isUserAuthenticated ? (
+                              (props) => <Dashboard {...props} />
+                            ) : (
+                              <Redirect to="/login" />
+                            )
+                          }
+                        />
                         <Route
                           exact
                           path={`${match.path}/devices`}
-                          component={Devices}
+                          render={
+                            userContext.isUserAuthenticated ? (
+                              (props) => <Devices {...props} />
+                            ) : (
+                              <Redirect to="/login" />
+                            )
+                          }
                         />
                       </Switch>
                     </Paper>
