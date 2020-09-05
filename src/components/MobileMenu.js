@@ -104,7 +104,7 @@ export default function MobileMenu(props) {
                   <Drawer
                     container={container}
                     variant="temporary"
-                    anchor={theme.direction === "rtl" ? "left" : "right"}
+                    anchor={languageContext.language === "e" ? "right" : "left"}
                     open={menuContext.MobileMenuIsOpen}
                     onClose={menuContext.setMobileMenuOpen}
                     classes={{
