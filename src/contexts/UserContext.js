@@ -3,7 +3,7 @@ import { UserContext } from "./contexts";
 
 class UserContextProvider extends React.Component {
   state = {
-    login: false,
+    isUserAuthenticated: true,
     chosenMenuItemId: 1,
     chosenSubMenuItemId: 0,
   };
@@ -12,10 +12,10 @@ class UserContextProvider extends React.Component {
     return (
       <UserContext.Provider
         value={{
-          login: this.state.login,
+          isUserAuthenticated: this.state.isUserAuthenticated,
           chosenMenuItemId: this.state.chosenMenuItemId,
           chosenSubMenuItemId: this.state.chosenSubMenuItemId,
-          setLogin: () => {},
+          setIsUserAuthenticated: () => {},
           setChosenSubMenuItemId: (ChosenSubMenuItemId) => {
             this.setState({ chosenSubMenuItemId: ChosenSubMenuItemId });
           },

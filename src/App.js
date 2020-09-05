@@ -1,7 +1,7 @@
 import React from "react";
 import rtl from "jss-rtl";
 import { create } from "jss";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { StylesProvider, ThemeProvider, jssPreset } from "@material-ui/styles";
 import { Theme } from "./themes/Theme";
 import { LanguageContext, UserContext } from "./contexts/contexts";
@@ -44,13 +44,41 @@ function App() {
                           <Switch>
                             <Route
                               exact
-                              path="/login"
-                              render={(props) => <LogInLayout {...props} />}
+                              path="/"
+                              render={() => {
+                                return userContext.isUserAuthenticated ? (
+                                  <Redirect to="/dashboard" />
+                                ) : (
+                                  <Redirect to="/login" />
+                                );
+                              }}
                             />
-
                             <Route
-                              path=""
-                              render={(props) => <MainPageLayout {...props} />}
+                              exact
+                              path="/login"
+                              render={() => {
+                                return userContext.isUserAuthenticated ===
+                                  false ? (
+                                  (props) => <LogInLayout {...props} />
+                                ) : (
+                                  <Redirect to="/dashboard" />
+                                );
+                              }}
+                              component={(props) => <LogInLayout {...props} />}
+                            />
+                            <Route
+                              exact
+                              path="/dashboard"
+                              render={() => {
+                                return userContext.isUserAuthenticated ? (
+                                  (props) => <MainPageLayout {...props} />
+                                ) : (
+                                  <Redirect to="/login" />
+                                );
+                              }}
+                              component={(props) => (
+                                <MainPageLayout {...props} />
+                              )}
                             />
                           </Switch>
                         </BrowserRouter>
@@ -64,12 +92,26 @@ function App() {
                           <Switch>
                             <Route
                               exact
-                              path="/login"
-                              render={(props) => <LogInLayout {...props} />}
+                              path="/"
+                              render={() => {
+                                return userContext.login ? (
+                                  <Redirect to="/dashboard" />
+                                ) : (
+                                  <Redirect to="/login" />
+                                );
+                              }}
                             />
                             <Route
+                              exact
+                              path="/login"
+                              component={(props) => <LogInLayout {...props} />}
+                            />
+                            <Route
+                              exact
                               path="/dashboard"
-                              render={(props) => <MainPageLayout {...props} />}
+                              component={(props) => (
+                                <MainPageLayout {...props} />
+                              )}
                             />
                           </Switch>
                         </BrowserRouter>
