@@ -46,8 +46,8 @@ function App() {
                               exact
                               path="/"
                               render={() => {
-                                return userContext.isUserAuthenticated ? (
-                                  <Redirect to="/dashboard" />
+                                return userContext.login ? (
+                                  <Redirect to="/login" />
                                 ) : (
                                   <Redirect to="/login" />
                                 );
@@ -56,29 +56,12 @@ function App() {
                             <Route
                               exact
                               path="/login"
-                              render={() => {
-                                return userContext.isUserAuthenticated ===
-                                  false ? (
-                                  (props) => <LogInLayout {...props} />
-                                ) : (
-                                  <Redirect to="/dashboard" />
-                                );
-                              }}
-                              component={(props) => <LogInLayout {...props} />}
+                              render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
                               exact
                               path="/dashboard"
-                              render={() => {
-                                return userContext.isUserAuthenticated ? (
-                                  (props) => <MainPageLayout {...props} />
-                                ) : (
-                                  <Redirect to="/login" />
-                                );
-                              }}
-                              component={(props) => (
-                                <MainPageLayout {...props} />
-                              )}
+                              render={(props) => <MainPageLayout {...props} />}
                             />
                           </Switch>
                         </BrowserRouter>
@@ -94,8 +77,8 @@ function App() {
                               exact
                               path="/"
                               render={() => {
-                                return userContext.login ? (
-                                  <Redirect to="/dashboard" />
+                                return userContext.isUserAuthenticated ? (
+                                  <Redirect to="/login" />
                                 ) : (
                                   <Redirect to="/login" />
                                 );
@@ -104,14 +87,12 @@ function App() {
                             <Route
                               exact
                               path="/login"
-                              component={(props) => <LogInLayout {...props} />}
+                              render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
                               exact
                               path="/dashboard"
-                              component={(props) => (
-                                <MainPageLayout {...props} />
-                              )}
+                              render={(props) => <MainPageLayout {...props} />}
                             />
                           </Switch>
                         </BrowserRouter>
