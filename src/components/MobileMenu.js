@@ -5,7 +5,7 @@ import {
   MenuContext,
   UserContext,
 } from "../contexts/contexts";
-
+import logo from "../assets/Rasha-Fav-Energy.png";
 import useTheme from "@material-ui/core/styles/useTheme";
 
 import { MenuArray } from "../values/strings";
@@ -18,17 +18,35 @@ import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 
-const drawerWidth = 240;
+const drawerWidth = 260;
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
     [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+    [theme.breakpoints.down("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
+      padding: theme.spacing(1),
     },
   },
   drawerPaper: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
     width: drawerWidth,
+  },
+  drawerHeader: {
+    [theme.breakpoints.up("md")]: {
+      display: "none",
+    },
+    display: "flex",
+    alignItems: "center",
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: "center",
   },
   list: {
     width: "100%",
@@ -77,6 +95,9 @@ export default function MobileMenu(props) {
                       keepMounted: true, // Better open performance on mobile.
                     }}
                   >
+                    <div className={classes.drawerHeader}>
+                      <img src={logo} style={{ width: "30%" }} />
+                    </div>
                     <List className={classes.list} component="nav">
                       {menuArray.map((item, i) => (
                         <>
@@ -95,7 +116,7 @@ export default function MobileMenu(props) {
                             }
                           >
                             <ListItemIcon>
-                              <item.icon fontSize={"medium"} />
+                              <item.icon fontSize={"large"} />
                             </ListItemIcon>
                             <div className={classes.ItemText}>
                               {languageContext.language === "fa"
