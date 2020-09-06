@@ -8,6 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Dashboard from "../pages/dashboard";
 import Devices from "../pages/devices";
 import { makeStyles } from "@material-ui/core/styles";
+import SignUpPage from "../pages/signup";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -35,12 +36,20 @@ export default function LogInLayout(props) {
       >
         <Paper elevation={3} className={classes.paper}>
           <Switch>
-            <Route
-              exact
-              path={`${match.path}`}
-              render={(props) => <LogInPage {...props} />}
-            />
-            />
+            {match.path === "/login" && (
+              <Route
+                exact
+                path={`${match.path}`}
+                component={(props) => <LogInPage {...props} />}
+              />
+            )}
+            {match.path === "/signup" && (
+              <Route
+                exact
+                path={`${match.path}`}
+                component={(props) => <SignUpPage {...props} />}
+              />
+            )}
           </Switch>
         </Paper>
       </main>

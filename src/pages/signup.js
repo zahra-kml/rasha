@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUpPage(props) {
   const classes = useStyles();
-
   return (
     <UserContext.Consumer>
       {(userContext) => (
@@ -47,7 +46,7 @@ export default function SignUpPage(props) {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5" className={classes.text}>
-              ورود به پنل مدیریت
+              ثبت نام در پنل مدیریت
             </Typography>
             <form className={classes.form} noValidate>
               <TextField

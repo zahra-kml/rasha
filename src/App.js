@@ -58,6 +58,10 @@ function App() {
                               render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
+                              path="/signup"
+                              render={(props) => <LogInLayout {...props} />}
+                            />
+                            <Route
                               path="/dashboard"
                               render={(props) => <MainPageLayout {...props} />}
                             />
