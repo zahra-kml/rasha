@@ -69,6 +69,39 @@ export default function SignUpPage(props) {
                 id="lastName"
                 className={classes.text}
               />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="userName"
+                label="شماره ی موبایل"
+                name="شماره ی موبایل"
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="userName"
+                label="نام کاربری"
+                name="نام کاربری"
+                autoComplete="user-name"
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="رمز"
+                label="رمز"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                className={classes.text}
+              />
 
               <Button
                 type="submit"
@@ -77,7 +110,7 @@ export default function SignUpPage(props) {
                 color="primary"
                 className={classes.submit}
                 onClick={() => {
-                  props.history.push("/dashboard");
+                  props.history.push("/login");
                 }}
               >
                 ثبت نام
