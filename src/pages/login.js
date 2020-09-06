@@ -81,7 +81,7 @@ export default function LogInPage(props) {
                 color="primary"
                 className={classes.submit}
                 onClick={() => {
-                  props.history.push("/dashboard");
+                  props.history.push("/");
                   userContext.setIsUserAuthenticated(true);
                 }}
               >

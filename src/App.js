@@ -43,17 +43,6 @@ function App() {
                         <BrowserRouter>
                           <Switch>
                             <Route
-                              exact
-                              path="/"
-                              render={() => {
-                                return userContext.isUserAuthenticated ? (
-                                  <Redirect to="/dashboard" />
-                                ) : (
-                                  <Redirect to="/login" />
-                                );
-                              }}
-                            />
-                            <Route
                               path="/login"
                               render={(props) => <LogInLayout {...props} />}
                             />
@@ -62,7 +51,7 @@ function App() {
                               render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
-                              path="/dashboard"
+                              path="/"
                               render={(props) => <MainPageLayout {...props} />}
                             />
                           </Switch>
@@ -76,24 +65,15 @@ function App() {
                         <BrowserRouter>
                           <Switch>
                             <Route
-                              exact
-                              path="/"
-                              render={() => {
-                                return userContext.isUserAuthenticated ? (
-                                  <Redirect to="/dashboard" />
-                                ) : (
-                                  <Redirect to="/login" />
-                                );
-                              }}
-                            />
-                            <Route
-                              exact
                               path="/login"
                               render={(props) => <LogInLayout {...props} />}
                             />
                             <Route
-                              exact
-                              path="/dashboard"
+                              path="/signup"
+                              render={(props) => <LogInLayout {...props} />}
+                            />
+                            <Route
+                              path="/"
                               render={(props) => <MainPageLayout {...props} />}
                             />
                           </Switch>
