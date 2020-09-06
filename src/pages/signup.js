@@ -84,7 +84,7 @@ export default function SignUpPage(props) {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2" className={classes.text}>
+                  <Link href="/login" variant="body2" className={classes.text}>
                     قبلا ثبت نام کردید؟ وارد شوید
                   </Link>
                 </Grid>
