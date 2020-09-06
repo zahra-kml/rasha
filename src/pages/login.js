@@ -12,10 +12,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { UserContext } from "../contexts/contexts";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(5),
+    marginBottom: theme.spacing(5),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -39,58 +41,62 @@ export default function LogInPage(props) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Typography component="h1" variant="h5" className={classes.text}>
-          ورود به پنل مدیریت
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="userName"
-            label="نام کاربری"
-            name="نام کاربری"
-            autoComplete="user-name"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="رمز"
-            label="رمز"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            className={classes.text}
-          />
+    <UserContext.Consumer>
+      {(userContext) => (
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <div className={classes.paper}>
+            <Typography component="h1" variant="h5" className={classes.text}>
+              ورود به پنل مدیریت
+            </Typography>
+            <form className={classes.form} noValidate>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="userName"
+                label="نام کاربری"
+                name="نام کاربری"
+                autoComplete="user-name"
+                autoFocus
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                name="رمز"
+                label="رمز"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                className={classes.text}
+              />
 
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={() => {
-              props.history.push("/dashboard");
-            }}
-          >
-            ورود
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2" className={classes.text}>
-                کاربر جدید هستید؟ ثبت نام کنید
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-    </Container>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                onClick={() => {
+                  props.history.push("/dashboard");
+                }}
+              >
+                ورود
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2" className={classes.text}>
+                    کاربر جدید هستید؟ ثبت نام کنید
+                  </Link>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </Container>
+      )}
+    </UserContext.Consumer>
   );
 }

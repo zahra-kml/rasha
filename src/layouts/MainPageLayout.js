@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import PropTypes from "prop-types";
-import HeaderAppBar from "../components/Header";
+import HeaderAppBar from "../components/MainHeader";
 import SideMenuContextProvider from "../contexts/MenuContext";
 import {
   LanguageContext,
