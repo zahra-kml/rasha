@@ -92,18 +92,22 @@ export default function MainPageLayout(props) {
                       elevation={3}
                       style={{ width: "100%", height: "100vh" }}
                     >
-                      <Switch>
-                        <Route
-                          exact
-                          path={`${match.path}`}
-                          component={(props) => <Dashboard {...props} />}
-                        />
-                        <Route
-                          exact
-                          path={`${match.path}/devices`}
-                          component={(props) => <Devices {...props} />}
-                        />
-                      </Switch>
+                      {userContext.isUserAuthenticated ? (
+                        <Switch>
+                          <Route
+                            exact
+                            path={`${match.path}`}
+                            component={(props) => <Dashboard {...props} />}
+                          />
+                          <Route
+                            exact
+                            path={`${match.path}/devices`}
+                            component={(props) => <Devices {...props} />}
+                          />
+                        </Switch>
+                      ) : (
+                        props.history.push("/login")
+                      )}
                     </Paper>
                   </main>
                 </>
