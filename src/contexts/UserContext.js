@@ -15,7 +15,9 @@ class UserContextProvider extends React.Component {
           isUserAuthenticated: this.state.isUserAuthenticated,
           chosenMenuItemId: this.state.chosenMenuItemId,
           chosenSubMenuItemId: this.state.chosenSubMenuItemId,
-          setIsUserAuthenticated: () => {},
+          setIsUserAuthenticated: (login) => {
+            this.setState({ isUserAuthenticated: login });
+          },
           setChosenSubMenuItemId: (ChosenSubMenuItemId) => {
             this.setState({ chosenSubMenuItemId: ChosenSubMenuItemId });
           },

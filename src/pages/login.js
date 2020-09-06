@@ -82,6 +82,7 @@ export default function LogInPage(props) {
                 className={classes.submit}
                 onClick={() => {
                   props.history.push("/dashboard");
+                  userContext.setIsUserAuthenticated(true);
                 }}
               >
                 ورود
