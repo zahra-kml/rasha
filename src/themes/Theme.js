@@ -23,6 +23,7 @@ export const Theme = (Direction) =>
     },
     typography: {
       fontFamily: "Shabnam, Arial",
+      fontSize: 14,
     },
     overrides: {
       MuiCssBaseline: {

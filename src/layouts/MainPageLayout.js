@@ -20,6 +20,7 @@ import MobileMenu from "../components/MobileMenu";
 
 import Devices from "../pages/devices";
 import Summary from "../pages/home";
+import { Typography } from "@material-ui/core";
 
 const drawerWidth = 180;
 
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     marginLeft: 0,
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0, 3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
