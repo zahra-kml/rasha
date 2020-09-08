@@ -3,10 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import LogInPage from "../pages/login";
 import LoginHeader from "../components/LoginHeader";
-import clsx from "clsx";
+
 import Paper from "@material-ui/core/Paper";
-import Dashboard from "../pages/dashboard";
-import Devices from "../pages/devices";
+
 import { makeStyles } from "@material-ui/core/styles";
 import SignUpPage from "../pages/signup";
 

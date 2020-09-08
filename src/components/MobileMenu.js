@@ -54,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
   },
   ItemText: {
-    fontFamily: "ir_sans",
+    // fontFamily: "ir_sans",
     fontSize: 15,
     flexGrow: 1,
   },
   SubItemText: {
-    fontFamily: "ir_sans",
+    //fontFamily: "ir_sans",
     fontSize: 13,
     flexGrow: 1,
   },

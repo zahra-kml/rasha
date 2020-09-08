@@ -21,19 +21,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    fontFamily: "ir_sans",
+    // fontFamily: "ir_sans",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1),
-    fontFamily: "ir_sans",
+    //  fontFamily: "ir_sans",
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    fontFamily: "ir_sans",
+    //fontFamily: "ir_sans",
   },
   text: {
-    fontFamily: "ir_sans",
+    // fontFamily: "ir_sans",
   },
 }));
 

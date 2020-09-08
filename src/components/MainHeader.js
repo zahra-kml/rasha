@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
   LanguageButton: {
     marginRight: theme.spacing(2),
-    fontFamily: "ir_sans",
+    // fontFamily: "ir_sans",
   },
   stickyPaper: {
     width: "100%",

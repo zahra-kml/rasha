@@ -10,36 +10,19 @@ import {
   UserContext,
 } from "../contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import CssBaseline from "@material-ui/core/CssBaseline";
+
 import SideMenu from "../components/SidbarMenu";
 import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
-import useTheme from "@material-ui/core/styles/useTheme";
+
 import MobileMenu from "../components/MobileMenu";
-import Dashboard from "../pages/dashboard";
+
 import Devices from "../pages/devices";
+import Summary from "../pages/home";
 
 const drawerWidth = 180;
-const styles = {
-  test: {
-    backgroundColor: "red",
-    display: "flex",
-    justifyContent: "center",
-    alignContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    right: 0,
-    overflow: "hidden",
-    height: 0,
-    maxHeight: "auto",
-    borderBottom: "2px solid white",
-    fontFamily: "ir_sans",
-    flexGrow: 1,
-    alignSelf: "flex-end",
-  },
-};
+
 const useStyles = makeStyles((theme) => ({
   content: {
     marginLeft: 0,
@@ -88,27 +71,22 @@ export default function MainPageLayout(props) {
                       zIndex: 3,
                     }}
                   >
-                    <Paper
-                      elevation={3}
-                      style={{ width: "100%", height: "100vh" }}
-                    >
-                      {userContext.isUserAuthenticated ? (
-                        <Switch>
-                          <Route
-                            exact
-                            path={`${match.path}`}
-                            component={(props) => <Dashboard {...props} />}
-                          />
-                          <Route
-                            exact
-                            path={`${match.path}/devices`}
-                            component={(props) => <Devices {...props} />}
-                          />
-                        </Switch>
-                      ) : (
-                        props.history.push("/login")
-                      )}
-                    </Paper>
+                    {userContext.isUserAuthenticated ? (
+                      <Switch>
+                        <Route
+                          exact
+                          path={`${match.path}`}
+                          component={(props) => <Summary {...props} />}
+                        />
+                        <Route
+                          exact
+                          path={`${match.path}/devices`}
+                          component={(props) => <Devices {...props} />}
+                        />
+                      </Switch>
+                    ) : (
+                      props.history.push("/login")
+                    )}
                   </main>
                 </>
               )}
