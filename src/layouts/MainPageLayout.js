@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/MainHeader";
+import SideMenuContextProvider from "../contexts/MenuContext";
 import {
   LanguageContext,
   MenuContext,
@@ -11,13 +12,13 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import SideMenu from "../components/SidbarMenu";
-
+import Paper from "@material-ui/core/Paper";
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
 
 import MobileMenu from "../components/MobileMenu";
 
-import Device from "../pages/device";
+import Devices from "../pages/devices";
 import Summary from "../pages/home";
 import { Typography } from "@material-ui/core";
 
@@ -71,22 +72,22 @@ export default function MainPageLayout(props) {
                       zIndex: 3,
                     }}
                   >
-                    <Switch>
-                      <Route
-                        exact
-                        path={`${match.path}`}
-                        component={(props) => <Summary {...props} />}
-                      />
-                      <Route
-                        exact
-                        path={`${match.path}/device`}
-                        component={(props) => <Device {...props} />}
-                      />
-                      {() =>
-                        userContext.isUserAuthenticated === false &&
-                        props.history.push("/login")
-                      }
-                    </Switch>
+                    {userContext.isUserAuthenticated ? (
+                      <Switch>
+                        <Route
+                          exact
+                          path={`${match.path}`}
+                          component={(props) => <Summary {...props} />}
+                        />
+                        <Route
+                          exact
+                          path={`${match.path}/devices`}
+                          component={(props) => <Devices {...props} />}
+                        />
+                      </Switch>
+                    ) : (
+                      () => props.history.push("/login")
+                    )}
                   </main>
                 </>
               )}
