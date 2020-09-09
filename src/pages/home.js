@@ -8,7 +8,13 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   title: {
     color: "white",
-    margin: "1%",
+    margin: theme.spacing(1),
+    [theme.breakpoints.up("md")]: {
+      margin: theme.spacing(1),
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(1.5),
+    },
   },
 }));
 
