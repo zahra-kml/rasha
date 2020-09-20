@@ -72,18 +72,20 @@ export default function MainPageLayout(props) {
                       zIndex: 3,
                     }}
                   >
-                    <Switch>
-                      <Route
-                        exact
-                        path={`${match.path}`}
-                        component={(props) => <Summary {...props} />}
-                      />
-                      <Route
-                        exact
-                        path={`${match.path}/devices`}
-                        component={(props) => <Devices {...props} />}
-                      />
-                    </Switch>
+                    {/*
+                      <Switch>
+                        <Route
+                          exact
+                          path={`${match.path}`}
+                          component={(props) => <Summary {...props} />}
+                        />
+                        <Route
+                          exact
+                          path={`${match.path}/devices`}
+                          component={(props) => <Devices {...props} />}
+                        />
+                      </Switch>
+                   */}
                   </main>
                 </>
               )}

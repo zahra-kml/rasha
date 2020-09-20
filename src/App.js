@@ -1,7 +1,14 @@
 import React from "react";
 import rtl from "jss-rtl";
 import { create } from "jss";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 import { StylesProvider, ThemeProvider, jssPreset } from "@material-ui/styles";
 import { Theme } from "./themes/Theme";
 import { LanguageContext, UserContext } from "./contexts/contexts";
@@ -42,46 +49,24 @@ function App() {
                       <CssBaseline />
                       {ChangeDir("rtl")}
                       <StylesProvider jss={jss}>
-                        <BrowserRouter>
-                          <Switch>
-                            <Route
-                              path="/login"
-                              render={(props) => <LogInLayout {...props} />}
-                            />
-                            <Route
-                              path="/signup"
-                              render={(props) => <LogInLayout {...props} />}
-                            />
-                            <Route
-                              path="/"
-                              render={(props) => <MainPageLayout {...props} />}
-                            />
-                          </Switch>
-                        </BrowserRouter>
+                        <Switch>
+                          <Route exact path="/">
+                            <MainPageLayout />
+                          </Route>
+                          <Route path="/login">
+                            <LogInLayout />
+                          </Route>
+                          <Route path="/signup">
+                            <LogInLayout />
+                          </Route>
+                        </Switch>
                       </StylesProvider>
                     </ThemeProvider>
                   ) : (
                     <ThemeProvider theme={Theme("ltr")}>
                       <CssBaseline />
                       {ChangeDir("ltr")}
-                      <StylesProvider jss={jss}>
-                        <BrowserRouter>
-                          <Switch>
-                            <Route
-                              path="/login"
-                              render={(props) => <LogInLayout {...props} />}
-                            />
-                            <Route
-                              path="/signup"
-                              render={(props) => <LogInLayout {...props} />}
-                            />
-                            <Route
-                              path="/"
-                              render={(props) => <MainPageLayout {...props} />}
-                            />
-                          </Switch>
-                        </BrowserRouter>
-                      </StylesProvider>
+                      <StylesProvider jss={jss}></StylesProvider>
                     </ThemeProvider>
                   )}
                 </div>

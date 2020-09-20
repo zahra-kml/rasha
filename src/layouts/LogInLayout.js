@@ -1,5 +1,11 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Link,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 import PropTypes from "prop-types";
 import LogInPage from "../pages/login";
 import LoginHeader from "../components/LoginHeader";
@@ -23,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LogInLayout(props) {
   const { match } = props;
   const classes = useStyles();
+  let { path, url } = useRouteMatch();
   return (
     <>
       <LoginHeader />
@@ -35,21 +42,34 @@ export default function LogInLayout(props) {
       >
         <Paper elevation={3} className={classes.paper}>
           <Switch>
-            {match.path === "/login" && (
-              <Route
-                exact
-                path={`${match.path}`}
-                component={(props) => <LogInPage {...props} />}
-              />
-            )}
-            {match.path === "/signup" && (
-              <Route
-                exact
-                path={`${match.path}`}
-                component={(props) => <SignUpPage {...props} />}
-              />
+            {path === "/login" ? (
+              <Route exact path={path}>
+                <LogInPage />
+              </Route>
+            ) : (
+              <Route exact path={path}>
+                <SignUpPage />
+              </Route>
             )}
           </Switch>
+          {/*
+            <Switch>
+              {match.path === "/login" && (
+                <Route
+                  exact
+                  path={`${match.path}`}
+                  component={(props) => <LogInPage {...props} />}
+                />
+              )}
+              {match.path === "/signup" && (
+                <Route
+                  exact
+                  path={`${match.path}`}
+                  component={(props) => <SignUpPage {...props} />}
+                />
+              )}
+            </Switch>
+          */}
         </Paper>
       </main>
     </>
