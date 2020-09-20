@@ -16,7 +16,6 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 import Collapse from "@material-ui/core/Collapse";
 import List from "@material-ui/core/List";
-import ListItemText from "@material-ui/core/ListItemText";
 
 const drawerWidth = 260;
 

@@ -72,22 +72,18 @@ export default function MainPageLayout(props) {
                       zIndex: 3,
                     }}
                   >
-                    {userContext.isUserAuthenticated ? (
-                      <Switch>
-                        <Route
-                          exact
-                          path={`${match.path}`}
-                          component={(props) => <Summary {...props} />}
-                        />
-                        <Route
-                          exact
-                          path={`${match.path}/devices`}
-                          component={(props) => <Devices {...props} />}
-                        />
-                      </Switch>
-                    ) : (
-                      () => props.history.push("/login")
-                    )}
+                    <Switch>
+                      <Route
+                        exact
+                        path={`${match.path}`}
+                        component={(props) => <Summary {...props} />}
+                      />
+                      <Route
+                        exact
+                        path={`${match.path}/devices`}
+                        component={(props) => <Devices {...props} />}
+                      />
+                    </Switch>
                   </main>
                 </>
               )}

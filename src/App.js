@@ -10,6 +10,7 @@ import MainPageLayout from "./layouts/MainPageLayout";
 import LogInLayout from "./layouts/LogInLayout";
 import SideMenuContextProvider from "./contexts/MenuContext";
 import { makeStyles } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,6 +39,7 @@ function App() {
                 <div className={classes.root}>
                   {context.language === "fa" ? (
                     <ThemeProvider theme={Theme("rtl")}>
+                      <CssBaseline />
                       {ChangeDir("rtl")}
                       <StylesProvider jss={jss}>
                         <BrowserRouter>
@@ -60,6 +62,7 @@ function App() {
                     </ThemeProvider>
                   ) : (
                     <ThemeProvider theme={Theme("ltr")}>
+                      <CssBaseline />
                       {ChangeDir("ltr")}
                       <StylesProvider jss={jss}>
                         <BrowserRouter>
