@@ -11,9 +11,8 @@ function LoginPrivateRoute({ children, ...rest }) {
       {(userContext) => (
         <Route
           {...rest}
-          exact
           render={() =>
-            userContext.isUserAuthenticated ? (
+            userContext.isUserAuthenticated === true ? (
               <Redirect to={"/app"} />
             ) : (
               children
