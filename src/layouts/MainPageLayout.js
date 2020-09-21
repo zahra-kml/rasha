@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
+import Router from "../routers/MainPageLayoutRouter";
 
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/MainHeader";
@@ -20,9 +20,8 @@ import MobileMenu from "../components/MobileMenu";
 
 import Devices from "../pages/devices";
 import Summary from "../pages/home";
-import { Typography } from "@material-ui/core";
+
 import Error404 from "../pages/Error404";
-import Link from "@material-ui/core/Link";
 
 const drawerWidth = 180;
 
@@ -48,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function MainPageLayout() {
-  let { path, url } = useRouteMatch();
   const classes = useStyles();
   const [hidden, setHidden] = useState(false);
 
@@ -82,17 +80,7 @@ export default function MainPageLayout() {
                     <div style={{ color: "white" }}>
                       {userContext.isUserAuthenticated ? 1 : 2}
                     </div>
-                    <Switch>
-                      <Route exact path={path}>
-                        <Summary />
-                      </Route>
-                      <Route path={`${path}/devices`}>
-                        <Devices />
-                      </Route>
-                      <Route path="*">
-                        <Error404 />
-                      </Route>
-                    </Switch>
+                    <Router />
                   </main>
                 </>
               )}

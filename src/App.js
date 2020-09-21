@@ -9,7 +9,7 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-import MainRouter from "./routers/MainRouter";
+import AppRouter from "./routers/AppRouter";
 import Error404 from "./pages/Error404";
 import { StylesProvider, ThemeProvider, jssPreset } from "@material-ui/styles";
 import { Theme } from "./themes/Theme";
@@ -51,7 +51,7 @@ function App() {
                       <CssBaseline />
                       {ChangeDir("rtl")}
                       <StylesProvider jss={jss}>
-                        <MainRouter />
+                        <AppRouter />
                       </StylesProvider>
                     </ThemeProvider>
                   ) : (
@@ -59,7 +59,7 @@ function App() {
                       <CssBaseline />
                       {ChangeDir("ltr")}
                       <StylesProvider jss={jss}>
-                        <MainRouter />
+                        <AppRouter />
                       </StylesProvider>
                     </ThemeProvider>
                   )}
