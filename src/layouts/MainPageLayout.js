@@ -17,6 +17,7 @@ import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
 
 import MobileMenu from "../components/MobileMenu";
+import Link from "@material-ui/core/Link";
 
 const drawerWidth = 180;
 
@@ -74,6 +75,7 @@ export default function MainPageLayout() {
                   >
                     <div style={{ color: "white" }}>
                       {userContext.isUserAuthenticated ? 1 : 2}
+                      {localStorage.getItem("isUserAuthenticated")}
                     </div>
                     <Router />
                   </main>

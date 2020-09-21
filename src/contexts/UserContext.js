@@ -3,10 +3,18 @@ import { UserContext } from "./contexts";
 
 class UserContextProvider extends React.Component {
   state = {
-    isUserAuthenticated: localStorage.getItem("isUserAuthenticated") || false,
-    chosenMenuItemId: localStorage.getItem("chosenMenuItemId") || 1,
-    chosenSubMenuItemId: localStorage.getItem("chosenSubMenuItemId") || 0,
+    isUserAuthenticated: false,
+    chosenMenuItemId: 1,
+    chosenSubMenuItemId: 0,
   };
+
+  componentDidMount() {
+    const isUserAuthenticated =
+      localStorage.getItem("isUserAuthenticated") === "true";
+    this.setState({ isUserAuthenticated: isUserAuthenticated });
+    const chosenMenuItemId = localStorage.getItem("chosenMenuItemId");
+    const chosenSubMenuItemId = localStorage.getItem("chosenSubMenuItemId");
+  }
 
   render() {
     return (

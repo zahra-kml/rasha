@@ -75,7 +75,7 @@ export default function LogInPage() {
                 onClick={() => {
                   userContext.setIsUserAuthenticated(true);
                   history.replace(from);
-                  localStorage.setItem("isUserAuthenticated", true);
+                  localStorage.setItem("isUserAuthenticated", "true");
                 }}
               >
                 ورود
@@ -85,6 +85,7 @@ export default function LogInPage() {
                   <Link href="/signup" variant="body2" className={classes.text}>
                     کاربر جدید هستید؟ ثبت نام کنید
                     {userContext.isUserAuthenticated ? 1 : 2}
+                    {localStorage.getItem("isUserAuthenticated")}
                   </Link>
                 </Grid>
               </Grid>

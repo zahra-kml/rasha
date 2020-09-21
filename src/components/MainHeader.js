@@ -225,13 +225,13 @@ export default function HeaderAppBar(props) {
                           </StyledMenuItem>
                           <StyledMenuItem
                             onClick={() => {
-                              ProfileHandleClose();
-                              userContext.setIsUserAuthenticated(false);
-                              history.push("/");
+                              setProfileAnchorEl(null);
                               localStorage.setItem(
                                 "isUserAuthenticated",
-                                false
+                                "false"
                               );
+                              userContext.setIsUserAuthenticated(false);
+                              history.replace("/");
                             }}
                           >
                             <ListItemText primary="logout" />
