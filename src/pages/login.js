@@ -75,6 +75,7 @@ export default function LogInPage() {
                 onClick={() => {
                   userContext.setIsUserAuthenticated(true);
                   history.replace(from);
+                  localStorage.setItem("isUserAuthenticated", true);
                 }}
               >
                 ورود

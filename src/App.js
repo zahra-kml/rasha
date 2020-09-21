@@ -1,22 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import rtl from "jss-rtl";
 import { create } from "jss";
-import {
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
-import AppRouter from "./routers/AppRouter";
-import Error404 from "./pages/Error404";
+import Router from "./routers/AppRouter";
 import { StylesProvider, ThemeProvider, jssPreset } from "@material-ui/styles";
 import { Theme } from "./themes/Theme";
 import { LanguageContext, UserContext } from "./contexts/contexts";
 import LanguageContextProvider from "./contexts/LanguageContext";
-import MainPageLayout from "./layouts/MainPageLayout";
-import LogInLayout from "./layouts/LogInLayout";
 import SideMenuContextProvider from "./contexts/MenuContext";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -39,37 +28,33 @@ function App() {
   const classes = useStyles();
 
   return (
-    <UserContext.Consumer>
-      {(userContext) => (
-        <SideMenuContextProvider>
-          <LanguageContextProvider>
-            <LanguageContext.Consumer>
-              {(context) => (
-                <div className={classes.root}>
-                  {context.language === "fa" ? (
-                    <ThemeProvider theme={Theme("rtl")}>
-                      <CssBaseline />
-                      {ChangeDir("rtl")}
-                      <StylesProvider jss={jss}>
-                        <AppRouter />
-                      </StylesProvider>
-                    </ThemeProvider>
-                  ) : (
-                    <ThemeProvider theme={Theme("ltr")}>
-                      <CssBaseline />
-                      {ChangeDir("ltr")}
-                      <StylesProvider jss={jss}>
-                        <AppRouter />
-                      </StylesProvider>
-                    </ThemeProvider>
-                  )}
-                </div>
+    <SideMenuContextProvider>
+      <LanguageContextProvider>
+        <LanguageContext.Consumer>
+          {(context) => (
+            <div className={classes.root}>
+              {context.language === "fa" ? (
+                <ThemeProvider theme={Theme("rtl")}>
+                  <CssBaseline />
+                  {ChangeDir("rtl")}
+                  <StylesProvider jss={jss}>
+                    <Router />
+                  </StylesProvider>
+                </ThemeProvider>
+              ) : (
+                <ThemeProvider theme={Theme("ltr")}>
+                  <CssBaseline />
+                  {ChangeDir("ltr")}
+                  <StylesProvider jss={jss}>
+                    <Router />
+                  </StylesProvider>
+                </ThemeProvider>
               )}
-            </LanguageContext.Consumer>
-          </LanguageContextProvider>
-        </SideMenuContextProvider>
-      )}
-    </UserContext.Consumer>
+            </div>
+          )}
+        </LanguageContext.Consumer>
+      </LanguageContextProvider>
+    </SideMenuContextProvider>
   );
 }
 

@@ -1,18 +1,9 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { UserContext } from "../contexts/contexts";
 import MainPageLayout from "../layouts/MainPageLayout";
 import LogInLayout from "../layouts/LogInLayout";
 import Error404 from "../pages/Error404";
-import { StylesProvider } from "@material-ui/styles";
 
 function LoginPrivateRoute({ children, ...rest }) {
   return (

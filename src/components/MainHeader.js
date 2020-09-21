@@ -15,9 +15,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import ListItemText from "@material-ui/core/ListItemText";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { LanguageContext, MenuContext } from "../contexts/contexts";
+import {
+  LanguageContext,
+  MenuContext,
+  UserContext,
+} from "../contexts/contexts";
 import clsx from "clsx";
 import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 180;
 const StyledMenu = withStyles({
@@ -125,7 +130,7 @@ ElevationScroll.propTypes = {
 
 export default function HeaderAppBar(props) {
   const classes = useStyles();
-
+  let history = useHistory();
   const [ProfileAnchorEl, setProfileAnchorEl] = React.useState(null);
   const [LanguageAnchorEl, setLanguageAnchorEl] = React.useState(null);
   const ProfileHandleClick = (event) => {
@@ -149,107 +154,123 @@ export default function HeaderAppBar(props) {
     setStickyPaper(2.8 * Height);
   }, []);
   return (
-    <LanguageContext.Consumer>
-      {(languageContext) => (
-        <MenuContext.Consumer>
-          {(menuContext) => (
-            <>
-              <ElevationScroll {...props}>
-                <AppBar
-                  id={"AppBar"}
-                  className={clsx(classes.appBar, {
-                    [classes.appBarShift]: menuContext.SideMenuIsOpen,
-                  })}
-                >
-                  <Toolbar>
-                    <IconButton
-                      edge="start"
-                      className={classes.sideMenuButton}
-                      color="inherit"
-                      aria-label="menu"
-                      onClick={menuContext.setSideMenuOpen}
+    <UserContext.Consumer>
+      {(userContext) => (
+        <LanguageContext.Consumer>
+          {(languageContext) => (
+            <MenuContext.Consumer>
+              {(menuContext) => (
+                <>
+                  <ElevationScroll {...props}>
+                    <AppBar
+                      id={"AppBar"}
+                      className={clsx(classes.appBar, {
+                        [classes.appBarShift]: menuContext.SideMenuIsOpen,
+                      })}
                     >
-                      <MenuIcon />
-                    </IconButton>
-                    <IconButton
-                      edge="start"
-                      className={classes.MobileMenuButton}
-                      color="inherit"
-                      aria-label="menu"
-                      onClick={menuContext.setMobileMenuOpen}
-                    >
-                      <MenuIcon />
-                    </IconButton>
-                    <img
-                      src={logo}
-                      style={{ height: `calc(${StickyPaper / 3}px)` }}
-                    />
-                    <div variant="h6" className={classes.space} />
-
-                    <Button
-                      className={classes.LanguageButton}
-                      color="inherit"
-                      endIcon={<ExpandMoreIcon />}
-                      onClick={LanguageHandleClick}
-                    >
-                      {languageContext.language === "fa" ? "فارسی" : "English"}
-                    </Button>
-                    <IconButton
-                      edge="end"
-                      color="inherit"
-                      aria-controls="profile-menu"
-                      aria-haspopup="true"
-                      onClick={ProfileHandleClick}
-                    >
-                      <AccountCircle />
-                    </IconButton>
-
-                    <StyledMenu
-                      id="profile-menu"
-                      anchorEl={ProfileAnchorEl}
-                      keepMounted
-                      open={Boolean(ProfileAnchorEl)}
-                      onClose={ProfileHandleClose}
-                    >
-                      <StyledMenuItem onClick={ProfileHandleClose}>
-                        <ListItemText primary="profile" />
-                      </StyledMenuItem>
-                      <StyledMenuItem onClick={ProfileHandleClose}>
-                        <ListItemText primary="logout" />
-                      </StyledMenuItem>
-                    </StyledMenu>
-
-                    <StyledMenu
-                      id="profile-menu"
-                      anchorEl={LanguageAnchorEl}
-                      keepMounted
-                      open={Boolean(LanguageAnchorEl)}
-                      onClose={LanguageHandleClose}
-                    >
-                      <StyledMenuItem onClick={LanguageHandleClose}>
-                        <ListItemText
-                          primary={
-                            languageContext.language === "fa"
-                              ? "English"
-                              : "فارسی"
-                          }
-                          onClick={languageContext.changeLanguage}
+                      <Toolbar>
+                        <IconButton
+                          edge="start"
+                          className={classes.sideMenuButton}
+                          color="inherit"
+                          aria-label="menu"
+                          onClick={menuContext.setSideMenuOpen}
+                        >
+                          <MenuIcon />
+                        </IconButton>
+                        <IconButton
+                          edge="start"
+                          className={classes.MobileMenuButton}
+                          color="inherit"
+                          aria-label="menu"
+                          onClick={menuContext.setMobileMenuOpen}
+                        >
+                          <MenuIcon />
+                        </IconButton>
+                        <img
+                          src={logo}
+                          style={{ height: `calc(${StickyPaper / 3}px)` }}
                         />
-                      </StyledMenuItem>
-                    </StyledMenu>
-                  </Toolbar>
-                </AppBar>
-              </ElevationScroll>
-              <Toolbar />
+                        <div variant="h6" className={classes.space} />
 
-              <div
-                style={{ height: `calc(${StickyPaper}px)` }}
-                className={classes.stickyPaper}
-              />
-            </>
+                        <Button
+                          className={classes.LanguageButton}
+                          color="inherit"
+                          endIcon={<ExpandMoreIcon />}
+                          onClick={LanguageHandleClick}
+                        >
+                          {languageContext.language === "fa"
+                            ? "فارسی"
+                            : "English"}
+                        </Button>
+                        <IconButton
+                          edge="end"
+                          color="inherit"
+                          aria-controls="profile-menu"
+                          aria-haspopup="true"
+                          onClick={ProfileHandleClick}
+                        >
+                          <AccountCircle />
+                        </IconButton>
+
+                        <StyledMenu
+                          id="profile-menu"
+                          anchorEl={ProfileAnchorEl}
+                          keepMounted
+                          open={Boolean(ProfileAnchorEl)}
+                          onClose={ProfileHandleClose}
+                        >
+                          <StyledMenuItem onClick={ProfileHandleClose}>
+                            <ListItemText primary="profile" />
+                          </StyledMenuItem>
+                          <StyledMenuItem
+                            onClick={() => {
+                              ProfileHandleClose();
+                              userContext.setIsUserAuthenticated(false);
+                              history.push("/");
+                              localStorage.setItem(
+                                "isUserAuthenticated",
+                                false
+                              );
+                            }}
+                          >
+                            <ListItemText primary="logout" />
+                          </StyledMenuItem>
+                        </StyledMenu>
+
+                        <StyledMenu
+                          id="profile-menu"
+                          anchorEl={LanguageAnchorEl}
+                          keepMounted
+                          open={Boolean(LanguageAnchorEl)}
+                          onClose={LanguageHandleClose}
+                        >
+                          <StyledMenuItem onClick={LanguageHandleClose}>
+                            <ListItemText
+                              primary={
+                                languageContext.language === "fa"
+                                  ? "English"
+                                  : "فارسی"
+                              }
+                              onClick={languageContext.changeLanguage}
+                            />
+                          </StyledMenuItem>
+                        </StyledMenu>
+                      </Toolbar>
+                    </AppBar>
+                  </ElevationScroll>
+                  <Toolbar />
+
+                  <div
+                    style={{ height: `calc(${StickyPaper}px)` }}
+                    className={classes.stickyPaper}
+                  />
+                </>
+              )}
+            </MenuContext.Consumer>
           )}
-        </MenuContext.Consumer>
+        </LanguageContext.Consumer>
       )}
-    </LanguageContext.Consumer>
+    </UserContext.Consumer>
   );
 }

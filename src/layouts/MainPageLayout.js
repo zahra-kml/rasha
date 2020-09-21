@@ -18,11 +18,6 @@ import Hidden from "@material-ui/core/Hidden";
 
 import MobileMenu from "../components/MobileMenu";
 
-import Devices from "../pages/devices";
-import Summary from "../pages/home";
-
-import Error404 from "../pages/Error404";
-
 const drawerWidth = 180;
 
 const useStyles = makeStyles((theme) => ({

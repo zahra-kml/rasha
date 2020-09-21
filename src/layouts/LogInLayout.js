@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  Switch,
-  Route,
-  Link,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import Router from "../routers/LoginLayoutRouter";
 import PropTypes from "prop-types";
-import LogInPage from "../pages/login";
+
 import LoginHeader from "../components/LoginHeader";
 
 import Paper from "@material-ui/core/Paper";
 
 import { makeStyles } from "@material-ui/core/styles";
-import SignUpPage from "../pages/signup";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -26,10 +19,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LogInLayout(props) {
-  const { match } = props;
+export default function LogInLayout() {
   const classes = useStyles();
-  let { path, url } = useRouteMatch();
   return (
     <>
       <LoginHeader />
@@ -41,17 +32,7 @@ export default function LogInLayout(props) {
         }}
       >
         <Paper elevation={3} className={classes.paper}>
-          <Switch>
-            {path === "/" ? (
-              <Route exact path={path}>
-                <LogInPage />
-              </Route>
-            ) : (
-              <Route exact path={path}>
-                <SignUpPage />
-              </Route>
-            )}
-          </Switch>
+          <Router />
         </Paper>
       </main>
     </>
