@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useRouteMatch } from "react-router-dom";
 
 import PropTypes from "prop-types";
 import HeaderAppBar from "../components/MainHeader";
-import SideMenuContextProvider from "../contexts/MenuContext";
+
 import {
   LanguageContext,
   MenuContext,
@@ -12,7 +12,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 import SideMenu from "../components/SidbarMenu";
-import Paper from "@material-ui/core/Paper";
+
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
 
@@ -21,6 +21,8 @@ import MobileMenu from "../components/MobileMenu";
 import Devices from "../pages/devices";
 import Summary from "../pages/home";
 import { Typography } from "@material-ui/core";
+import Error404 from "../pages/Error404";
+import Link from "@material-ui/core/Link";
 
 const drawerWidth = 180;
 
@@ -45,9 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MainPageLayout(props) {
-  const { match } = props;
+export default function MainPageLayout() {
+  let { path, url } = useRouteMatch();
   const classes = useStyles();
+  const [hidden, setHidden] = useState(false);
 
   return (
     <UserContext.Consumer>
@@ -57,13 +60,17 @@ export default function MainPageLayout(props) {
             <LanguageContext.Consumer>
               {(languageContext) => (
                 <>
-                  <HeaderAppBar />
-                  <Hidden smDown implementation="css">
-                    <SideMenu />
-                  </Hidden>
-                  <Hidden smUp implementation="css">
-                    <MobileMenu />
-                  </Hidden>
+                  {hidden === false && (
+                    <>
+                      <HeaderAppBar />
+                      <Hidden smDown implementation="css">
+                        <SideMenu />
+                      </Hidden>
+                      <Hidden smUp implementation="css">
+                        <MobileMenu />
+                      </Hidden>
+                    </>
+                  )}
                   <main
                     className={clsx(classes.content, {
                       [classes.contentShift]: menuContext.SideMenuIsOpen,
@@ -72,20 +79,17 @@ export default function MainPageLayout(props) {
                       zIndex: 3,
                     }}
                   >
-                    {/*
-                      <Switch>
-                        <Route
-                          exact
-                          path={`${match.path}`}
-                          component={(props) => <Summary {...props} />}
-                        />
-                        <Route
-                          exact
-                          path={`${match.path}/devices`}
-                          component={(props) => <Devices {...props} />}
-                        />
-                      </Switch>
-                   */}
+                    <Switch>
+                      <Route exact path={path}>
+                        <Summary />
+                      </Route>
+                      <Route path={`${path}/devices`}>
+                        <Devices />
+                      </Route>
+                      <Route path="*">
+                        <Error404 />
+                      </Route>
+                    </Switch>
                   </main>
                 </>
               )}

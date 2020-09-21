@@ -42,7 +42,7 @@ export default function LogInLayout(props) {
       >
         <Paper elevation={3} className={classes.paper}>
           <Switch>
-            {path === "/login" ? (
+            {path === "/" ? (
               <Route exact path={path}>
                 <LogInPage />
               </Route>
@@ -52,24 +52,6 @@ export default function LogInLayout(props) {
               </Route>
             )}
           </Switch>
-          {/*
-            <Switch>
-              {match.path === "/login" && (
-                <Route
-                  exact
-                  path={`${match.path}`}
-                  component={(props) => <LogInPage {...props} />}
-                />
-              )}
-              {match.path === "/signup" && (
-                <Route
-                  exact
-                  path={`${match.path}`}
-                  component={(props) => <SignUpPage {...props} />}
-                />
-              )}
-            </Switch>
-          */}
         </Paper>
       </main>
     </>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LogInPage() {
   const classes = useStyles();
   let history = useHistory();
-
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   return (
     <UserContext.Consumer>
       {(userContext) => (
@@ -72,8 +73,8 @@ export default function LogInPage() {
                 color="primary"
                 className={classes.submit}
                 onClick={() => {
-                  history.push("/");
                   userContext.setIsUserAuthenticated(true);
+                  history.replace(from);
                 }}
               >
                 ورود
@@ -82,6 +83,7 @@ export default function LogInPage() {
                 <Grid item xs>
                   <Link href="/signup" variant="body2" className={classes.text}>
                     کاربر جدید هستید؟ ثبت نام کنید
+                    {userContext.isUserAuthenticated ? 1 : 2}
                   </Link>
                 </Grid>
               </Grid>

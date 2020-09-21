@@ -102,14 +102,14 @@ export default function SignUpPage() {
                 color="primary"
                 className={classes.submit}
                 onClick={() => {
-                  history.push("/login");
+                  history.push("/");
                 }}
               >
                 ثبت نام
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/login" variant="body2" className={classes.text}>
+                  <Link href="/" variant="body2" className={classes.text}>
                     قبلا ثبت نام کردید؟ وارد شوید
                   </Link>
                 </Grid>

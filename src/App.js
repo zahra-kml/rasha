@@ -9,6 +9,8 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
+import MainRouter from "./routers/MainRouter";
+import Error404 from "./pages/Error404";
 import { StylesProvider, ThemeProvider, jssPreset } from "@material-ui/styles";
 import { Theme } from "./themes/Theme";
 import { LanguageContext, UserContext } from "./contexts/contexts";
@@ -49,24 +51,16 @@ function App() {
                       <CssBaseline />
                       {ChangeDir("rtl")}
                       <StylesProvider jss={jss}>
-                        <Switch>
-                          <Route exact path="/">
-                            <MainPageLayout />
-                          </Route>
-                          <Route path="/login">
-                            <LogInLayout />
-                          </Route>
-                          <Route path="/signup">
-                            <LogInLayout />
-                          </Route>
-                        </Switch>
+                        <MainRouter />
                       </StylesProvider>
                     </ThemeProvider>
                   ) : (
                     <ThemeProvider theme={Theme("ltr")}>
                       <CssBaseline />
                       {ChangeDir("ltr")}
-                      <StylesProvider jss={jss}></StylesProvider>
+                      <StylesProvider jss={jss}>
+                        <MainRouter />
+                      </StylesProvider>
                     </ThemeProvider>
                   )}
                 </div>
