@@ -12,8 +12,6 @@ class UserContextProvider extends React.Component {
     const isUserAuthenticated =
       localStorage.getItem("isUserAuthenticated") === "true";
     this.setState({ isUserAuthenticated: isUserAuthenticated });
-    const chosenMenuItemId = localStorage.getItem("chosenMenuItemId");
-    const chosenSubMenuItemId = localStorage.getItem("chosenSubMenuItemId");
   }
 
   render() {
