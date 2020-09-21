@@ -73,10 +73,6 @@ export default function MainPageLayout() {
                       zIndex: 3,
                     }}
                   >
-                    <div style={{ color: "white" }}>
-                      {userContext.isUserAuthenticated ? 1 : 2}
-                      {localStorage.getItem("isUserAuthenticated")}
-                    </div>
                     <Router />
                   </main>
                 </>
