@@ -26,7 +26,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 1),
     padding: theme.spacing(1),
   },
-  container: {
+  placesContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flexGrow: 1,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: "2%",
+    direction: "rtl",
+  },
+  infoContainer: {
     display: "flex",
     flexDirection: "row",
     flexGrow: 1,
@@ -145,7 +154,7 @@ export default function Device() {
           </IconButton>
         </Tooltip>
 
-        <div className={classes.container}>
+        <div className={classes.infoContainer}>
           <div className={classes.info}>
             <Typography className={classes.firstText}>کد دستگاه :</Typography>
             <Typography className={classes.secondText}>
@@ -180,21 +189,35 @@ export default function Device() {
         </div>
 
         <Divider variant="middle" className={classes.divider} />
-        <div className={classes.container}>
+        <div className={classes.placesContainer}>
           {Places.map((item, index) => (
             <Paper
               elevation={item.ejected ? 1 : 3}
               className={classes.powerBank}
             >
-              <IconButton
-                variant="outlined"
-                className={classes.ejectIcon}
-                size="small"
-                id={"ejectIcon"}
-                style={item.ejected ? { display: "none" } : {}}
+              <div
+                style={
+                  item.ejected
+                    ? { display: "none" }
+                    : { width: `calc(${1.2 * width}px)` }
+                }
               >
-                <EjectIcon />
-              </IconButton>
+                <CircularProgressbar
+                  ballStrokeWidth={16}
+                  strokeWidth={10}
+                  value={item.percentage}
+                  text={`${item.percentage}%`}
+                  styles={buildStyles({
+                    strokeLinecap: "butt",
+                    textSize: "28px",
+                    pathTransitionDuration: 0.5,
+                    pathColor: `rgb(92, 184, 92)`,
+                    textColor: "rgb(92, 184, 92)",
+                    trailColor: "#d6d6d6",
+                    backgroundColor: "rgb(92, 184, 92)",
+                  })}
+                />
+              </div>
               <div
                 style={{
                   flexGrow: 1,
@@ -225,29 +248,15 @@ export default function Device() {
                   ID : {item.id}
                 </Typography>
               </div>
-              <div
-                style={
-                  item.ejected
-                    ? { display: "none" }
-                    : { width: `calc(${1.2 * width}px)` }
-                }
+              <IconButton
+                variant="outlined"
+                className={classes.ejectIcon}
+                size="small"
+                id={"ejectIcon"}
+                style={item.ejected ? { display: "none" } : {}}
               >
-                <CircularProgressbar
-                  ballStrokeWidth={16}
-                  strokeWidth={10}
-                  value={item.percentage}
-                  text={`${item.percentage}%`}
-                  styles={buildStyles({
-                    strokeLinecap: "butt",
-                    textSize: "28px",
-                    pathTransitionDuration: 0.5,
-                    pathColor: `rgb(92, 184, 92)`,
-                    textColor: "rgb(92, 184, 92)",
-                    trailColor: "#d6d6d6",
-                    backgroundColor: "rgb(92, 184, 92)",
-                  })}
-                />
-              </div>
+                <EjectIcon />
+              </IconButton>
             </Paper>
           ))}
         </div>
