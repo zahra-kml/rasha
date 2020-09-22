@@ -10,6 +10,7 @@
     "jss-rtl": "^0.3.0",
     "material-table": "^1.69.0",
     "react": "^16.13.1",
+    "react-circle-progress-bar": "^0.1.4",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3"
   },
@@ -40,6 +41,7 @@
     "@material-ui/styles": "^4.10.0",
     "prettier": "2.1.1",
     "prop-types": "^15.7.2",
+    "react-circular-progressbar": "^2.0.3",
     "react-router-dom": "^5.2.0"
   }
 }

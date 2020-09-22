@@ -1,17 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
-import Icon from "@material-ui/core/Icon";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 import IconButton from "@material-ui/core/IconButton";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableBody from "@material-ui/core/TableBody";
-import TableHead from "@material-ui/core/TableHead";
-import Table from "@material-ui/core/Table";
-import TableContainer from "@material-ui/core/TableContainer";
+import EjectIcon from "@material-ui/icons/Eject";
 import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
@@ -82,8 +77,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   powerBank: {
+    padding: theme.spacing(1),
     margin: "2%",
-    height: "10vh",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     [theme.breakpoints.between("xs", "sm")]: {
       width: "96%",
     },
@@ -97,6 +96,10 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     margin: theme.spacing(2),
+  },
+  ejectIcon: {
+    border: "1px solid #082666",
+    color: "#082666",
   },
 }));
 
@@ -655,7 +658,13 @@ export default function Device() {
       },
     ],
   });
+  const [width, setWidth] = useState(0);
 
+  useEffect(() => {
+    let Width = document.getElementById("ejectIcon").clientHeight;
+    setWidth(Width);
+  }, []);
+  const percentage = 66;
   return (
     <>
       <Typography variant="h6" className={classes.title}>
@@ -690,7 +699,7 @@ export default function Device() {
               موقعیت دستگاه :
             </Typography>
             <Typography className={classes.secondText}>
-              کافههههههه رستوراااان فورنووووو السعادت شمالی
+              کافه رستوران فورنو
             </Typography>
           </div>
         </div>
@@ -698,40 +707,47 @@ export default function Device() {
         <Divider variant="middle" className={classes.divider} />
         <div className={classes.container}>
           <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
-          </Paper>
-          <Paper elevation={2} className={classes.powerBank}>
-            t
+            <IconButton
+              variant="outlined"
+              className={classes.ejectIcon}
+              size="small"
+              id={"ejectIcon"}
+            >
+              <EjectIcon />
+            </IconButton>
+            <div
+              style={{
+                flexGrow: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Typography style={{ fontSize: 13, marginBottom: "1%" }}>
+                Port {"1"}
+              </Typography>
+              <Typography style={{ fontSize: 11 }}>
+                ID : {"12345678909876543212"}
+              </Typography>
+            </div>
+            <div style={{ width: `calc(${1.2 * width}px)` }}>
+              <CircularProgressbar
+                ballStrokeWidth={16}
+                strokeWidth={10}
+                value={percentage}
+                text={`${percentage}%`}
+                styles={buildStyles({
+                  strokeLinecap: "butt",
+                  textSize: "35px",
+                  pathTransitionDuration: 0.5,
+                  pathColor: `rgb(92, 184, 92)`,
+                  textColor: "rgb(92, 184, 92)",
+                  trailColor: "#d6d6d6",
+                  backgroundColor: "rgb(92, 184, 92)",
+                })}
+              />
+            </div>
           </Paper>
         </div>
       </Paper>
