@@ -10,11 +10,11 @@ export default function () {
       <Route exact path={path}>
         <Summary />
       </Route>
-      <Route path={`${path}/devices`}>
+      <Route exact path={`${path}/devices`}>
         <Devices />
       </Route>
       <Route path="*">
-        <Error404 />
+        <Error404 inDashboard={true} />
       </Route>
     </Switch>
   );

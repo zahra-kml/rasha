@@ -61,7 +61,7 @@ export default function () {
         <LogInLayout />
       </LoginPrivateRoute>
       <Route path="*">
-        <Error404 />
+        <Error404 inDashboard={false} />
       </Route>
     </Switch>
   );
