@@ -76,6 +76,7 @@ const useStyles = makeStyles((theme) => ({
   },
   secondText: {
     fontSize: 12,
+    textAlign: "center",
     [theme.breakpoints.between("xs", "sm")]: {
       marginBottom: theme.spacing(1),
     },
