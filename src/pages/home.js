@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(2),
     },
   },
+  paper: {
+    padding: theme.spacing(1),
+  },
 }));
 
 export default function Summary() {
@@ -576,64 +579,68 @@ export default function Summary() {
 
   return (
     <>
-      <Typography className={classes.title}>خلاصه ی وضعیت دستگاه ها</Typography>
-      <MaterialTable
-        options={{
-          headerStyle: {
-            position: "sticky",
-            top: 0,
-            fontSize: 14,
-            whiteSpace: "nowrap",
-          },
-          maxBodyHeight: 500,
-          // selection: true,
-          searchFieldStyle: {
-            fontSize: 12,
-            width: "100%",
-            // backgroundColor: "red",
-            alignSelf: "flex-end",
-          },
-        }}
-        localization={{
-          grouping: {
-            placeholder: "جهت دسته بندی سرستون را اینجا بکشید",
-            groupedBy: "دسته بندی براساس",
-          },
-          body: {
-            addTooltip: "افزودن",
-            deleteTooltip: "حذف",
-            editTooltip: "ویرایش",
-            emptyDataSourceMessage: "گروهی برای نمایش وجود ندارد",
-            editRow: {
-              deleteText: "از حذف این سطر اطمینان دارید؟",
+      <Typography variant="h6" className={classes.title}>
+        خلاصه ی وضعیت دستگاه ها
+      </Typography>
+      <div style={{ marginBottom: "2%" }}>
+        <MaterialTable
+          options={{
+            headerStyle: {
+              position: "sticky",
+              top: 0,
+              fontSize: 14,
+              whiteSpace: "nowrap",
             },
-          },
-          toolbar: {
-            exportAriaLabel: "خروجی",
-            exportTitle: "خروجی",
-            exportName: "خروجی فرمت CSV",
-            searchTooltip: "جستجو",
-            searchPlaceholder: "جستجو",
-          },
-          pagination: {
-            nextTooltip: "صفحه بعد",
-            previousTooltip: "صفحه قبل",
-            firstTooltip: "صفحه اول",
-            lastTooltip: "صفحه آخر",
-            labelRowsSelect: "ردیف",
-            labelDisplayedRows: "{from}-{to} از {count}",
-          },
-        }}
-        title={
-          <div>
-            <IconButton size="small" color="primary" onClick={() => {}}>
-              <RefreshIcon />
-            </IconButton>
-          </div>
-        }
-        columns={state.columns}
-        data={state.data}
-      />
+            maxBodyHeight: 500,
+            // selection: true,
+            searchFieldStyle: {
+              fontSize: 12,
+              width: "100%",
+              // backgroundColor: "red",
+              alignSelf: "flex-end",
+            },
+          }}
+          localization={{
+            grouping: {
+              placeholder: "جهت دسته بندی سرستون را اینجا بکشید",
+              groupedBy: "دسته بندی براساس",
+            },
+            body: {
+              addTooltip: "افزودن",
+              deleteTooltip: "حذف",
+              editTooltip: "ویرایش",
+              emptyDataSourceMessage: "گروهی برای نمایش وجود ندارد",
+              editRow: {
+                deleteText: "از حذف این سطر اطمینان دارید؟",
+              },
+            },
+            toolbar: {
+              exportAriaLabel: "خروجی",
+              exportTitle: "خروجی",
+              exportName: "خروجی فرمت CSV",
+              searchTooltip: "جستجو",
+              searchPlaceholder: "جستجو",
+            },
+            pagination: {
+              nextTooltip: "صفحه بعد",
+              previousTooltip: "صفحه قبل",
+              firstTooltip: "صفحه اول",
+              lastTooltip: "صفحه آخر",
+              labelRowsSelect: "ردیف",
+              labelDisplayedRows: "{from}-{to} از {count}",
+            },
+          }}
+          title={
+            <div>
+              <IconButton size="small" color="primary" onClick={() => {}}>
+                <RefreshIcon />
+              </IconButton>
+            </div>
+          }
+          columns={state.columns}
+          data={state.data}
+        />
+      </div>
     </>
   );
 }

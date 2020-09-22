@@ -31,17 +31,16 @@ function AppPrivateRoute({ children, ...rest }) {
         <Route
           {...rest}
           render={({ location }) =>
-            userContext.isUserAuthenticated === false
-              ? (alert(userContext.isUserAuthenticated ? 1 : 2),
-                (
-                  <Redirect
-                    to={{
-                      pathname: "/",
-                      state: { from: location },
-                    }}
-                  />
-                ))
-              : (alert(userContext.isUserAuthenticated ? 1 : 2), children)
+            userContext.isUserAuthenticated === false ? (
+              <Redirect
+                to={{
+                  pathname: "/",
+                  state: { from: location },
+                }}
+              />
+            ) : (
+              children
+            )
           }
         />
       )}

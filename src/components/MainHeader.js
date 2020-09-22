@@ -175,6 +175,7 @@ export default function HeaderAppBar(props) {
                           color="inherit"
                           aria-label="menu"
                           onClick={menuContext.setSideMenuOpen}
+                          size="medium"
                         >
                           <MenuIcon />
                         </IconButton>
@@ -184,6 +185,7 @@ export default function HeaderAppBar(props) {
                           color="inherit"
                           aria-label="menu"
                           onClick={menuContext.setMobileMenuOpen}
+                          size="medium"
                         >
                           <MenuIcon />
                         </IconButton>
@@ -191,24 +193,27 @@ export default function HeaderAppBar(props) {
                           src={logo}
                           style={{ height: `calc(${StickyPaper / 3}px)` }}
                         />
-                        <div variant="h6" className={classes.space} />
+                        <div className={classes.space} />
 
-                        <Button
-                          className={classes.LanguageButton}
-                          color="inherit"
-                          endIcon={<ExpandMoreIcon />}
-                          onClick={LanguageHandleClick}
-                        >
-                          {languageContext.language === "fa"
-                            ? "فارسی"
-                            : "English"}
-                        </Button>
+                        {/*
+                          <Button
+                            className={classes.LanguageButton}
+                            color="inherit"
+                            endIcon={<ExpandMoreIcon />}
+                            onClick={LanguageHandleClick}
+                          >
+                            {languageContext.language === "fa"
+                              ? "فارسی"
+                              : "English"}
+                          </Button>
+                          */}
                         <IconButton
                           edge="end"
                           color="inherit"
                           aria-controls="profile-menu"
                           aria-haspopup="true"
                           onClick={ProfileHandleClick}
+                          size="medium"
                         >
                           <AccountCircle />
                         </IconButton>
@@ -238,24 +243,26 @@ export default function HeaderAppBar(props) {
                           </StyledMenuItem>
                         </StyledMenu>
 
-                        <StyledMenu
-                          id="profile-menu"
-                          anchorEl={LanguageAnchorEl}
-                          keepMounted
-                          open={Boolean(LanguageAnchorEl)}
-                          onClose={LanguageHandleClose}
-                        >
-                          <StyledMenuItem onClick={LanguageHandleClose}>
-                            <ListItemText
-                              primary={
-                                languageContext.language === "fa"
-                                  ? "English"
-                                  : "فارسی"
-                              }
-                              onClick={languageContext.changeLanguage}
-                            />
-                          </StyledMenuItem>
-                        </StyledMenu>
+                        {/*
+                          <StyledMenu
+                            id="profile-menu"
+                            anchorEl={LanguageAnchorEl}
+                            keepMounted
+                            open={Boolean(LanguageAnchorEl)}
+                            onClose={LanguageHandleClose}
+                          >
+                            <StyledMenuItem onClick={LanguageHandleClose}>
+                              <ListItemText
+                                primary={
+                                  languageContext.language === "fa"
+                                    ? "English"
+                                    : "فارسی"
+                                }
+                                onClick={languageContext.changeLanguage}
+                              />
+                            </StyledMenuItem>
+                          </StyledMenu>
+                          */}
                       </Toolbar>
                     </AppBar>
                   </ElevationScroll>
