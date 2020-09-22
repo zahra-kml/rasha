@@ -109,18 +109,18 @@ const info = {
   devicePosition: "کافه رستوران فورنو",
 };
 const places = [
-  { port: 1, percentage: 60, id: "e853456789khg0987" },
-  { port: 2, percentage: 100, id: "e853456789khg0987" },
-  { port: 3, percentage: 80, id: "e853456789khg0987" },
-  { port: 4, percentage: 100, id: "e853456789khg0987" },
-  { port: 5, percentage: 100, id: "e853456789khg0987" },
-  { port: 6, percentage: 100, id: "e853456789khg0987" },
-  { port: 7, percentage: 100, id: "e853456789khg0987" },
-  { port: 8, percentage: 100, id: "e853456789khg0987" },
-  { port: 9, percentage: 100, id: "e853456789khg0987" },
-  { port: 10, percentage: 100, id: "e853456789khg0987" },
-  { port: 11, percentage: 100, id: "e853456789khg0987" },
-  { port: 12, percentage: 100, id: "e853456789khg0987" },
+  { port: 1, percentage: 60, id: "e853456789khg0987", ejected: false },
+  { port: 2, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 3, percentage: 80, id: "e853456789khg0987", ejected: false },
+  { port: 4, percentage: 100, id: "e853456789khg0987", ejected: true },
+  { port: 5, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 6, percentage: 100, id: "e853456789khg0987", ejected: true },
+  { port: 7, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 8, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 9, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 10, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 11, percentage: 100, id: "e853456789khg0987", ejected: false },
+  { port: 12, percentage: 100, id: "e853456789khg0987", ejected: false },
 ];
 export default function Device() {
   const classes = useStyles();
@@ -178,12 +178,16 @@ export default function Device() {
         <Divider variant="middle" className={classes.divider} />
         <div className={classes.container}>
           {Places.map((item, index) => (
-            <Paper elevation={2} className={classes.powerBank}>
+            <Paper
+              elevation={item.ejected ? 1 : 3}
+              className={classes.powerBank}
+            >
               <IconButton
                 variant="outlined"
                 className={classes.ejectIcon}
                 size="small"
                 id={"ejectIcon"}
+                style={item.ejected ? { display: "none" } : {}}
               >
                 <EjectIcon />
               </IconButton>
@@ -196,12 +200,34 @@ export default function Device() {
                   alignItems: "center",
                 }}
               >
-                <Typography style={{ fontSize: 13, marginBottom: "1%" }}>
+                <Typography
+                  style={
+                    item.ejected
+                      ? { fontSize: 13, marginBottom: "1%", color: "#b7b4b4" }
+                      : { fontSize: 13, marginBottom: "1%" }
+                  }
+                >
                   Port {item.port}
                 </Typography>
-                <Typography style={{ fontSize: 11 }}>ID : {item.id}</Typography>
+                <Divider
+                  style={item.ejected ? { width: "100%" } : { display: "none" }}
+                />
+
+                <Typography
+                  style={
+                    item.ejected ? { visibility: "hidden" } : { fontSize: 11 }
+                  }
+                >
+                  ID : {item.id}
+                </Typography>
               </div>
-              <div style={{ width: `calc(${1.2 * width}px)` }}>
+              <div
+                style={
+                  item.ejected
+                    ? { display: "none" }
+                    : { width: `calc(${1.2 * width}px)` }
+                }
+              >
                 <CircularProgressbar
                   ballStrokeWidth={16}
                   strokeWidth={10}
@@ -209,7 +235,7 @@ export default function Device() {
                   text={`${item.percentage}%`}
                   styles={buildStyles({
                     strokeLinecap: "butt",
-                    textSize: "30px",
+                    textSize: "28px",
                     pathTransitionDuration: 0.5,
                     pathColor: `rgb(92, 184, 92)`,
                     textColor: "rgb(92, 184, 92)",
