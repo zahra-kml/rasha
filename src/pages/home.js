@@ -4,6 +4,7 @@ import RefreshIcon from "@material-ui/icons/Refresh";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -281,11 +282,11 @@ export default function Summary() {
             },
           }}
           title={
-            <div>
+            <Tooltip title="به روز رسانی">
               <IconButton size="small" color="primary" onClick={() => {}}>
                 <RefreshIcon />
               </IconButton>
-            </div>
+            </Tooltip>
           }
           columns={state.columns}
           data={state.data}

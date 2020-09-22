@@ -8,6 +8,7 @@ import "react-circular-progressbar/dist/styles.css";
 import IconButton from "@material-ui/core/IconButton";
 import EjectIcon from "@material-ui/icons/Eject";
 import Divider from "@material-ui/core/Divider";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -138,9 +139,12 @@ export default function Device() {
         مشاهده ی دستگاه
       </Typography>
       <Paper style={{ marginBottom: "2%" }} className={classes.paper}>
-        <IconButton size="medium" color="primary" onClick={() => {}}>
-          <RefreshIcon />
-        </IconButton>
+        <Tooltip title="به روز رسانی">
+          <IconButton size="medium" color="primary" onClick={() => {}}>
+            <RefreshIcon />
+          </IconButton>
+        </Tooltip>
+
         <div className={classes.container}>
           <div className={classes.info}>
             <Typography className={classes.firstText}>کد دستگاه :</Typography>
