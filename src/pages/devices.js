@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(2, 0),
   },
-  powerBanksContainer: {
+  container: {
     display: "flex",
     flexDirection: "row",
     flexGrow: 1,
@@ -36,19 +36,49 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     marginTop: "2%",
   },
+  info: {
+    marginLeft: "2%",
+    marginRight: "2%",
+
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "row",
+    // backgroundColor: "red",
+    [theme.breakpoints.between("xs", "sm")]: {
+      width: "96%",
+      flexDirection: "column",
+      marginBottom: "2%",
+    },
+
+    [theme.breakpoints.between("sm", "md")]: {
+      flexGrow: 1,
+      width: "46%",
+      flexDirection: "row",
+      marginBottom: "1%",
+    },
+    [theme.breakpoints.between("md", "xl")]: {
+      width: "29%",
+      flexDirection: "row",
+      marginBottom: "1%",
+    },
+  },
   powerBank: {
     margin: "2%",
     height: "10vh",
     [theme.breakpoints.between("xs", "sm")]: {
-      width: "90%",
+      width: "96%",
     },
 
     [theme.breakpoints.between("sm", "md")]: {
-      width: "45%",
+      width: "46%",
     },
     [theme.breakpoints.between("md", "xl")]: {
-      width: "25%",
+      width: "29%",
     },
+  },
+  divider: {
+    margin: theme.spacing(2),
   },
 }));
 
@@ -617,10 +647,40 @@ export default function Device() {
         <IconButton size="medium" color="primary" onClick={() => {}}>
           <RefreshIcon />
         </IconButton>
-        <div style={{}}></div>
+        <div className={classes.container}>
+          <div className={classes.info}>
+            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+              کد دستگاه :
+            </Typography>
+            <Typography style={{ fontSize: 12 }}>
+              3bc724444447895464754r
+            </Typography>
+          </div>
 
-        <Divider variant="middle" />
-        <div className={classes.powerBanksContainer}>
+          <div className={classes.info}>
+            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+              بارکد دستگاه :
+            </Typography>
+            <Typography style={{ fontSize: 12 }}>3bc72444444</Typography>
+          </div>
+          <div className={classes.info}>
+            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+              تعداد جایگاه خالی :
+            </Typography>
+            <Typography style={{ fontSize: 12 }}>12</Typography>
+          </div>
+          <div className={classes.info}>
+            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+              موقعیت دستگاه :
+            </Typography>
+            <Typography style={{ fontSize: 12 }}>
+              کافههههههه رستوراااان فورنووووو السعادت شمالی
+            </Typography>
+          </div>
+        </div>
+
+        <Divider variant="middle" className={classes.divider} />
+        <div className={classes.container}>
           <Paper elevation={2} className={classes.powerBank}>
             t
           </Paper>
