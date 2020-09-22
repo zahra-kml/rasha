@@ -98,568 +98,35 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
   },
   ejectIcon: {
-    border: "1px solid #082666",
-    color: "#082666",
+    border: "1px solid #01adaa",
+    color: "#01adaa",
   },
 }));
-
+const info = {
+  deviceCode: "3bc724444447895464754r",
+  deviceBarcode: 372444444,
+  numberOfVacancies: 5,
+  devicePosition: "کافه رستوران فورنو",
+};
+const places = [
+  { port: 1, percentage: 60, id: "e853456789khg0987" },
+  { port: 2, percentage: 100, id: "e853456789khg0987" },
+  { port: 3, percentage: 80, id: "e853456789khg0987" },
+  { port: 4, percentage: 100, id: "e853456789khg0987" },
+  { port: 5, percentage: 100, id: "e853456789khg0987" },
+  { port: 6, percentage: 100, id: "e853456789khg0987" },
+  { port: 7, percentage: 100, id: "e853456789khg0987" },
+  { port: 8, percentage: 100, id: "e853456789khg0987" },
+  { port: 9, percentage: 100, id: "e853456789khg0987" },
+  { port: 10, percentage: 100, id: "e853456789khg0987" },
+  { port: 11, percentage: 100, id: "e853456789khg0987" },
+  { port: 12, percentage: 100, id: "e853456789khg0987" },
+];
 export default function Device() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    columns: [
-      { title: "کد دستگاه", field: "DeviceCode" },
-      { title: "بارکد دستگاه", field: "DeviceBarcode" },
-      { title: "وضعیت دستگاه", field: "DeviceStatus" },
-      { title: "موقعیت دستگاه", field: "DevicePosition" },
-      { title: "تعداد پورت های دستگاه", field: "NumberOfDevicePorts" },
-      { title: "تعداد پورت های خالی", field: "NumberOfEmptyPorts" },
-      { title: "آخرین به روز رسانی", field: "latestUpdate" },
-    ],
-    data: [
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-      {
-        DeviceCode: "3BC7205d099A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "بیمارستان خاتم الانبیا",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 5,
-        latestUpdate: "11:07 1399/05/26",
-      },
-      {
-        DeviceCode: "3AF7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لئون",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 3,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "4AO7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "خارج از سرویس",
-        DevicePosition: "رستوران ریناس",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 0,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1RT7205d090A7A9E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "رستوران لیدو",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 2,
-        latestUpdate: "10:00 1399/05/26",
-      },
-      {
-        DeviceCode: "1QW7205d091G7A0E",
-        DeviceBarcode: "01200348",
-        DeviceStatus: "آماده",
-        DevicePosition: "چلو کبابی برادران",
-        NumberOfDevicePorts: 12,
-        NumberOfEmptyPorts: 7,
-        latestUpdate: "9:08 1399/05/26",
-      },
-    ],
-  });
-  const [width, setWidth] = useState(0);
-
+  const [Information, setInformation] = useState(info);
+  const [Places, setPlaces] = useState(places);
+  const [width, setWidth] = useState();
   useEffect(() => {
     let Width = document.getElementById("ejectIcon").clientHeight;
     setWidth(Width);
@@ -678,7 +145,7 @@ export default function Device() {
           <div className={classes.info}>
             <Typography className={classes.firstText}>کد دستگاه :</Typography>
             <Typography className={classes.secondText}>
-              3bc724444447895464754r
+              {Information.deviceCode}
             </Typography>
           </div>
 
@@ -686,69 +153,73 @@ export default function Device() {
             <Typography className={classes.firstText}>
               بارکد دستگاه :
             </Typography>
-            <Typography className={classes.secondText}>3bc72444444</Typography>
+            <Typography className={classes.secondText}>
+              {Information.deviceBarcode}
+            </Typography>
           </div>
           <div className={classes.info}>
             <Typography className={classes.firstText}>
               تعداد جایگاه خالی :
             </Typography>
-            <Typography className={classes.secondText}>12</Typography>
+            <Typography className={classes.secondText}>
+              {Information.numberOfVacancies}
+            </Typography>
           </div>
           <div className={classes.info}>
             <Typography className={classes.firstText}>
               موقعیت دستگاه :
             </Typography>
             <Typography className={classes.secondText}>
-              کافه رستوران فورنو
+              {Information.devicePosition}
             </Typography>
           </div>
         </div>
 
         <Divider variant="middle" className={classes.divider} />
         <div className={classes.container}>
-          <Paper elevation={2} className={classes.powerBank}>
-            <IconButton
-              variant="outlined"
-              className={classes.ejectIcon}
-              size="small"
-              id={"ejectIcon"}
-            >
-              <EjectIcon />
-            </IconButton>
-            <div
-              style={{
-                flexGrow: 1,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Typography style={{ fontSize: 13, marginBottom: "1%" }}>
-                Port {"1"}
-              </Typography>
-              <Typography style={{ fontSize: 11 }}>
-                ID : {"12345678909876543212"}
-              </Typography>
-            </div>
-            <div style={{ width: `calc(${1.2 * width}px)` }}>
-              <CircularProgressbar
-                ballStrokeWidth={16}
-                strokeWidth={10}
-                value={percentage}
-                text={`${percentage}%`}
-                styles={buildStyles({
-                  strokeLinecap: "butt",
-                  textSize: "35px",
-                  pathTransitionDuration: 0.5,
-                  pathColor: `rgb(92, 184, 92)`,
-                  textColor: "rgb(92, 184, 92)",
-                  trailColor: "#d6d6d6",
-                  backgroundColor: "rgb(92, 184, 92)",
-                })}
-              />
-            </div>
-          </Paper>
+          {Places.map((item, index) => (
+            <Paper elevation={2} className={classes.powerBank}>
+              <IconButton
+                variant="outlined"
+                className={classes.ejectIcon}
+                size="small"
+                id={"ejectIcon"}
+              >
+                <EjectIcon />
+              </IconButton>
+              <div
+                style={{
+                  flexGrow: 1,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Typography style={{ fontSize: 13, marginBottom: "1%" }}>
+                  Port {item.port}
+                </Typography>
+                <Typography style={{ fontSize: 11 }}>ID : {item.id}</Typography>
+              </div>
+              <div style={{ width: `calc(${1.2 * width}px)` }}>
+                <CircularProgressbar
+                  ballStrokeWidth={16}
+                  strokeWidth={10}
+                  value={item.percentage}
+                  text={`${item.percentage}%`}
+                  styles={buildStyles({
+                    strokeLinecap: "butt",
+                    textSize: "30px",
+                    pathTransitionDuration: 0.5,
+                    pathColor: `rgb(92, 184, 92)`,
+                    textColor: "rgb(92, 184, 92)",
+                    trailColor: "#d6d6d6",
+                    backgroundColor: "rgb(92, 184, 92)",
+                  })}
+                />
+              </div>
+            </Paper>
+          ))}
         </div>
       </Paper>
     </>
