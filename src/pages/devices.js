@@ -17,16 +17,18 @@ import Divider from "@material-ui/core/Divider";
 const useStyles = makeStyles((theme) => ({
   title: {
     color: "white",
-    margin: theme.spacing(0, 1),
+
+    margin: theme.spacing(1),
     [theme.breakpoints.up("md")]: {
-      margin: theme.spacing(0, 1),
+      margin: theme.spacing(1),
     },
     [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(0, 2),
+      margin: theme.spacing(2),
     },
   },
   paper: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(2, 1),
+    padding: theme.spacing(1),
   },
   container: {
     display: "flex",
@@ -50,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
       marginBottom: "2%",
     },
-
     [theme.breakpoints.between("sm", "md")]: {
       flexGrow: 1,
       width: "46%",
@@ -61,6 +62,22 @@ const useStyles = makeStyles((theme) => ({
       width: "29%",
       flexDirection: "row",
       marginBottom: "1%",
+    },
+  },
+  firstText: {
+    fontSize: 12,
+
+    [theme.breakpoints.between("xs", "sm")]: {
+      marginBottom: theme.spacing(1),
+    },
+    [theme.breakpoints.between("sm", "xl")]: {
+      marginRight: theme.spacing(1),
+    },
+  },
+  secondText: {
+    fontSize: 12,
+    [theme.breakpoints.between("xs", "sm")]: {
+      marginBottom: theme.spacing(1),
     },
   },
   powerBank: {
@@ -649,31 +666,29 @@ export default function Device() {
         </IconButton>
         <div className={classes.container}>
           <div className={classes.info}>
-            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
-              کد دستگاه :
-            </Typography>
-            <Typography style={{ fontSize: 12 }}>
+            <Typography className={classes.firstText}>کد دستگاه :</Typography>
+            <Typography className={classes.secondText}>
               3bc724444447895464754r
             </Typography>
           </div>
 
           <div className={classes.info}>
-            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+            <Typography className={classes.firstText}>
               بارکد دستگاه :
             </Typography>
-            <Typography style={{ fontSize: 12 }}>3bc72444444</Typography>
+            <Typography className={classes.secondText}>3bc72444444</Typography>
           </div>
           <div className={classes.info}>
-            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+            <Typography className={classes.firstText}>
               تعداد جایگاه خالی :
             </Typography>
-            <Typography style={{ fontSize: 12 }}>12</Typography>
+            <Typography className={classes.secondText}>12</Typography>
           </div>
           <div className={classes.info}>
-            <Typography style={{ fontSize: 12, marginLeft: "2%" }}>
+            <Typography className={classes.firstText}>
               موقعیت دستگاه :
             </Typography>
-            <Typography style={{ fontSize: 12 }}>
+            <Typography className={classes.secondText}>
               کافههههههه رستوراااان فورنووووو السعادت شمالی
             </Typography>
           </div>
