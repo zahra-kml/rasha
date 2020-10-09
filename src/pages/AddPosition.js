@@ -41,12 +41,20 @@ const useStyles = makeStyles((theme) => ({
   map: {
     width: "65%",
     backgroundColor: "red",
-    height: "70vh",
+    margin: theme.spacing(1),
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
   },
   info: {
     width: "30%",
     display: "flex",
     flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    [theme.breakpoints.down("sm")]: {
+      width: "90%",
+    },
   },
   submit: {
     margin: theme.spacing(1),
@@ -62,6 +70,11 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: "100%",
     margin: theme.spacing(1),
+    display: "flex",
+    [theme.breakpoints.down("sm")]: {
+      alignItems: "center",
+      justifyContent: "center",
+    },
   },
   field: {
     width: "90%",
@@ -70,6 +83,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddPosition(props) {
   const classes = useStyles();
+  const [MapHeight, setMapHeight] = useState(0);
+
+  useEffect(() => {
+    let Height = document.getElementById("map").clientWidth;
+    setMapHeight(0.5 * Height);
+  }, []);
   return (
     <>
       <Typography variant="h6" className={classes.title}>
@@ -119,7 +138,11 @@ export default function AddPosition(props) {
             />
           </div>
         </div>
-        <div className={classes.map}></div>
+        <div
+          style={{ height: `calc(${MapHeight}px)` }}
+          className={classes.map}
+          id={"map"}
+        ></div>
         <div className={classes.button}>
           <Button
             variant="contained"
