@@ -8,6 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
+import Map from "../components/Map";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -39,11 +40,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   map: {
-    width: "65%",
-    backgroundColor: "red",
+    position: "relative",
+    width: "50vw",
+    height: "30vw",
     margin: theme.spacing(1),
+    overflow: "hidden",
     [theme.breakpoints.down("sm")]: {
-      width: "90%",
+      width: "90vw",
+      height: "45vw",
     },
   },
   info: {
@@ -83,12 +87,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AddPosition(props) {
   const classes = useStyles();
-  const [MapHeight, setMapHeight] = useState(0);
 
-  useEffect(() => {
-    let Height = document.getElementById("map").clientWidth;
-    setMapHeight(0.5 * Height);
-  }, []);
   return (
     <>
       <Typography variant="h6" className={classes.title}>
@@ -139,10 +138,12 @@ export default function AddPosition(props) {
           </div>
         </div>
         <div
-          style={{ height: `calc(${MapHeight}px)` }}
+          //style={{ height: `calc(${MapHeight}px)` }}
           className={classes.map}
           id={"map"}
-        ></div>
+        >
+          <Map />
+        </div>
         <div className={classes.button}>
           <Button
             variant="contained"
