@@ -4,6 +4,7 @@ import Summary from "../pages/home";
 import Devices from "../pages/devices";
 import Error404 from "../pages/Error404";
 import AddStation from "../pages/AddStation";
+import AddPosition from "../pages/AddPosition";
 export default function () {
   let { path, url } = useRouteMatch();
   return (
@@ -16,6 +17,9 @@ export default function () {
       </Route>
       <Route exact path={`${path}/addstation`}>
         <AddStation />
+      </Route>
+      <Route exact path={`${path}/addposition`}>
+        <AddPosition />
       </Route>
       <Route path="*">
         <Error404 inDashboard={true} />
