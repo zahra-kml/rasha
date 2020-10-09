@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -27,10 +28,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     justifyContent: "center",
     flexDirection: "row",
+    flexWrap: "wrap",
   },
-  margin: {
-    margin: theme.spacing(2, 0),
-  },
+
   formControl: {
     margin: theme.spacing(1, 0),
     width: "90%",
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
   map: {
-    width: "60%",
+    width: "65%",
     backgroundColor: "red",
     height: "70vh",
   },
@@ -51,6 +51,14 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(1),
   },
+  button: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: theme.spacing(4),
+  },
+
   container: {
     width: "100%",
     margin: theme.spacing(1),
@@ -94,8 +102,33 @@ export default function AddPosition(props) {
               multiline
             />
           </div>
+          <div className={classes.container}>
+            <TextField
+              label="ساعات سرویس دهی"
+              variant="outlined"
+              className={classes.field}
+              multiline
+            />
+          </div>
+          <div className={classes.container}>
+            <TextField
+              label="توضیحات"
+              variant="outlined"
+              className={classes.field}
+              multiline
+            />
+          </div>
         </div>
         <div className={classes.map}></div>
+        <div className={classes.button}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            ثبت
+          </Button>
+        </div>
       </Paper>
     </>
   );
