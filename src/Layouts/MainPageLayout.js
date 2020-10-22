@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Router from "../routers/MainPageLayoutRouter";
+import Router from "../Routers/MainPageLayoutRouter";
 
 import PropTypes from "prop-types";
-import HeaderAppBar from "../components/MainHeader";
+import HeaderAppBar from "../Components/MainHeader";
 
 import {
   LanguageContext,
   MenuContext,
   UserContext,
-} from "../contexts/contexts";
+} from "../Contexts/contexts";
 import { makeStyles } from "@material-ui/core/styles";
 
-import SideMenu from "../components/SidbarMenu";
+import SideMenu from "../Components/SidbarMenu";
 
 import clsx from "clsx";
 import Hidden from "@material-ui/core/Hidden";
 
-import MobileMenu from "../components/MobileMenu";
+import MobileMenu from "../Components/MobileMenu";
 import Link from "@material-ui/core/Link";
 
 const drawerWidth = 180;

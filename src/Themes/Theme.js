@@ -1,6 +1,6 @@
 import React from "react";
 import { createMuiTheme } from "@material-ui/core/styles";
-import ShabnamWoff from "../fonts/ShabnamFont.woff";
+import ShabnamWoff from "../Fonts/ShabnamFont.woff";
 
 const shabnam = {
   fontFamily: "Shabnam",
@@ -19,6 +19,9 @@ export const Theme = (Direction) =>
     palette: {
       primary: {
         main: "#23a267",
+      },
+      secondary: {
+        main: "#197c4e",
       },
     },
     typography: {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactMapGL from "react-map-gl";
+import Geocoder from "react-mapbox-gl-geocoder";
 import { setRTLTextPlugin } from "react-map-gl";
+
 setRTLTextPlugin(
   "https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-rtl-text/v0.2.3/mapbox-gl-rtl-text.js",
   null,
@@ -14,16 +16,14 @@ export default function Map(props) {
   });
 
   return (
-    <>
-      <ReactMapGL
-        {...Viewport}
-        width="100%"
-        height="100%"
-        style={{ direction: "ltr" }}
-        onViewportChange={(viewport) => setViewport(viewport)}
-        mapboxApiAccessToken="pk.eyJ1IjoiemFocmExOTk3a21sIiwiYSI6ImNrZzJmbTJrbDAwZWIyd3Fua3EyMXM0bmcifQ.TRGQdEfAlXz_OAhgW-ynlA"
-        mapStyle="mapbox://styles/zahra1997kml/ckg2fowao0ofb19mkaur5ub1q"
-      />
-    </>
+    <ReactMapGL
+      {...Viewport}
+      width="100%"
+      height="100%"
+      style={{ direction: "ltr" }}
+      onViewportChange={(viewport) => setViewport(viewport)}
+      mapboxApiAccessToken="pk.eyJ1IjoiemFocmExOTk3a21sIiwiYSI6ImNrZzJmbTJrbDAwZWIyd3Fua3EyMXM0bmcifQ.TRGQdEfAlXz_OAhgW-ynlA"
+      mapStyle="mapbox://styles/zahra1997kml/ckg2fowao0ofb19mkaur5ub1q"
+    />
   );
 }

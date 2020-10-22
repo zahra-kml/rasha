@@ -6,9 +6,9 @@ import Toolbar from "@material-ui/core/Toolbar";
 
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
-import { LanguageContext, MenuContext } from "../contexts/contexts";
+import { LanguageContext, MenuContext } from "../Contexts/contexts";
 
-import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
+import logo from "../Assets/Rasha-Logo-Energy-Dark-S.png";
 
 const drawerWidth = 180;
 

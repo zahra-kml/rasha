@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import { UserContext } from "../contexts/contexts";
+import { UserContext } from "../Contexts/contexts";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // fontFamily: "ir_sans",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -28,9 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUpPage() {
+export default function LogInPage() {
   const classes = useStyles();
   let history = useHistory();
+  let location = useLocation();
+  let { from } = location.state || { from: { pathname: "/" } };
   return (
     <UserContext.Consumer>
       {(userContext) => (
@@ -38,39 +39,9 @@ export default function SignUpPage() {
           <CssBaseline />
           <div className={classes.paper}>
             <Typography component="h1" variant="h5" className={classes.text}>
-              ثبت نام در پنل مدیریت
+              ورود به پنل مدیریت
             </Typography>
             <form className={classes.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="firstName"
-                label="نام"
-                name="نام"
-                autoFocus
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="نام خانوادگی"
-                label="نام  خانوادگی"
-                id="lastName"
-                className={classes.text}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="userName"
-                label="شماره ی موبایل"
-                name="شماره ی موبایل"
-                autoFocus
-              />
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -102,15 +73,17 @@ export default function SignUpPage() {
                 color="primary"
                 className={classes.submit}
                 onClick={() => {
-                  history.push("/");
+                  userContext.setIsUserAuthenticated(true);
+                  history.replace(from);
+                  localStorage.setItem("isUserAuthenticated", "true");
                 }}
               >
-                ثبت نام
+                ورود
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/" variant="body2" className={classes.text}>
-                    قبلا ثبت نام کردید؟ وارد شوید
+                  <Link href="/signup" variant="body2" className={classes.text}>
+                    کاربر جدید هستید؟ ثبت نام کنید
                   </Link>
                 </Grid>
               </Grid>

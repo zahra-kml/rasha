@@ -9,12 +9,12 @@ import {
   LanguageContext,
   MenuContext,
   UserContext,
-} from "../contexts/contexts";
+} from "../Contexts/contexts";
 import clsx from "clsx";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 import useTheme from "@material-ui/core/styles/useTheme";
-import { MenuArray } from "../values/strings";
+import { MenuArray } from "../Values/strings";
 import ListItemText from "@material-ui/core/ListItemText";
 import { ExpandLess, ExpandMore, StarBorder } from "@material-ui/icons";
 import ListItemIcon from "@material-ui/core/ListItemIcon";

@@ -4,11 +4,11 @@ import {
   LanguageContext,
   MenuContext,
   UserContext,
-} from "../contexts/contexts";
-import logo from "../assets/Rasha-Fav-Energy.png";
+} from "../Contexts/contexts";
+import logo from "../Assets/Rasha-Fav-Energy.png";
 import useTheme from "@material-ui/core/styles/useTheme";
 
-import { MenuArray } from "../values/strings";
+import { MenuArray } from "../Values/strings";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 import ListItem from "@material-ui/core/ListItem";

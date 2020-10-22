@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import LogInPage from "../pages/login";
-import SignUpPage from "../pages/signup";
+import LogInPage from "../Pages/login";
+import SignUpPage from "../Pages/signup";
 
 export default function () {
   let { path, url } = useRouteMatch();

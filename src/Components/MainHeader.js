@@ -19,9 +19,9 @@ import {
   LanguageContext,
   MenuContext,
   UserContext,
-} from "../contexts/contexts";
+} from "../Contexts/contexts";
 import clsx from "clsx";
-import logo from "../assets/Rasha-Logo-Energy-Dark-S.png";
+import logo from "../Assets/Rasha-Logo-Energy-Dark-S.png";
 import { useHistory } from "react-router-dom";
 
 const drawerWidth = 180;
@@ -195,18 +195,17 @@ export default function HeaderAppBar(props) {
                         />
                         <div className={classes.space} />
 
-                        {/*
-                          <Button
-                            className={classes.LanguageButton}
-                            color="inherit"
-                            endIcon={<ExpandMoreIcon />}
-                            onClick={LanguageHandleClick}
-                          >
-                            {languageContext.language === "fa"
-                              ? "فارسی"
-                              : "English"}
-                          </Button>
-                          */}
+                        <Button
+                          className={classes.LanguageButton}
+                          color="inherit"
+                          endIcon={<ExpandMoreIcon />}
+                          onClick={LanguageHandleClick}
+                        >
+                          {languageContext.language === "fa"
+                            ? "فارسی"
+                            : "English"}
+                        </Button>
+
                         <IconButton
                           edge="end"
                           color="inherit"

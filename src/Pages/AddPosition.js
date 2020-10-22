@@ -8,7 +8,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
-import Map from "../components/Map";
+import Map from "../Components/Map";
+import Fab from "@material-ui/core/Fab";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -83,6 +85,17 @@ const useStyles = makeStyles((theme) => ({
   field: {
     width: "90%",
   },
+  fab: {
+    zIndex: 500000000000,
+    position: "absolute",
+    margin: theme.spacing(1),
+    right: 0,
+    bottom: 0,
+    backgroundColor: theme.palette.primary.main,
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.main,
+    },
+  },
 }));
 
 export default function AddPosition(props) {
@@ -142,6 +155,9 @@ export default function AddPosition(props) {
           className={classes.map}
           id={"map"}
         >
+          <Fab color="secondary" aria-label="edit" className={classes.fab}>
+            <SearchIcon />
+          </Fab>
           <Map />
         </div>
         <div className={classes.button}>

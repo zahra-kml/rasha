@@ -1,8 +1,8 @@
 import React from "react";
-import Router from "../routers/LoginLayoutRouter";
+import Router from "../Routers/LoginLayoutRouter";
 import PropTypes from "prop-types";
 
-import LoginHeader from "../components/LoginHeader";
+import LoginHeader from "../Components/LoginHeader";
 
 import Paper from "@material-ui/core/Paper";
 

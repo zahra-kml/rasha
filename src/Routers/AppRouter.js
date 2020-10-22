@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserContext } from "../contexts/contexts";
-import MainPageLayout from "../layouts/MainPageLayout";
-import LogInLayout from "../layouts/LogInLayout";
-import Error404 from "../pages/Error404";
+import { UserContext } from "../Contexts/contexts";
+import MainPageLayout from "../Layouts/MainPageLayout";
+import LogInLayout from "../Layouts/LogInLayout";
+import Error404 from "../Pages/Error404";
 
 function LoginPrivateRoute({ children, ...rest }) {
   return (

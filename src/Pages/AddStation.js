@@ -99,7 +99,7 @@ export default function AddStation(props) {
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        اضافه کردن دستگاه
+        اضافه کردن ایستگاه
       </Typography>
       <Paper className={classes.paper} elevation={3}>
         <div className={classes.container}>
