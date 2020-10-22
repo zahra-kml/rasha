@@ -26,10 +26,24 @@ const useStyles = makeStyles((theme) => ({
     //padding: theme.spacing(1),
     position: "relative",
   },
-  addIcon: {
+  FAB: {
     position: "absolute",
     bottom: 10,
     right: 10,
+    [theme.breakpoints.between("sm", "md")]: {
+      display: "none",
+    },
+  },
+  extendedFAB: {
+    display: "none",
+
+    [theme.breakpoints.between("sm", "md")]: {
+      position: "absolute",
+      bottom: 10,
+      right: 10,
+      display: "flex",
+      flexDirection: "row",
+    },
   },
   extendedIcon: {
     marginRight: theme.spacing(1),
@@ -293,10 +307,19 @@ export default function DevicesList() {
           size="small"
           color="primary"
           aria-label="add"
-          className={classes.addIcon}
+          className={classes.extendedFAB}
         >
           <AddIcon className={classes.extendedIcon} />
           اضافه کردن ایستگاه
+        </Fab>
+
+        <Fab
+          size="small"
+          color="primary"
+          aria-label="add"
+          className={classes.FAB}
+        >
+          <AddIcon />
         </Fab>
       </Paper>
     </>
