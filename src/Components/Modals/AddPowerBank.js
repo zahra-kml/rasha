@@ -4,6 +4,15 @@ import Modal from "@material-ui/core/Modal";
 import Paper from "@material-ui/core/Paper";
 import { Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -13,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
-    width: "60vw",
+    width: "30vw",
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[5],
     top: "50%",
@@ -29,23 +38,23 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: theme.spacing(3),
-    width: "95%",
+    width: "90%",
   },
-
   container: {
+    width: "90%",
+    margin: theme.spacing(1),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    margin: "1%",
-    [theme.breakpoints.between("xs", "sm")]: {
-      width: "90%",
-    },
-    [theme.breakpoints.between("sm", "xl")]: {
-      width: "47%",
-    },
   },
+
   formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    flexGrow: 1,
+  },
+  field: {
     margin: theme.spacing(1),
     minWidth: 120,
     flexGrow: 1,
@@ -64,17 +73,10 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(0.5),
   },
-
-  field: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    flexGrow: 1,
-  },
 }));
 
-export default function AddTariffModal(props) {
+export default function AddPowerBankModal(props) {
   const classes = useStyles();
-
   return (
     <Modal
       disableBackdropClick
@@ -84,45 +86,31 @@ export default function AddTariffModal(props) {
     >
       <Paper className={classes.paper}>
         <Typography variant="h6" className={classes.title}>
-          اضافه کردن تعرفه ی ایستگاه
+          اضافه کردن پاوربانک
         </Typography>
         <div className={classes.container}>
-          <TextField label="نام" variant="outlined" className={classes.field} />
-        </div>
-        <div className={classes.container}>
           <TextField
-            label="مدت زمان محدودیت"
+            label="کد پاوربانک"
             variant="outlined"
             className={classes.field}
           />
+          <IconButton aria-label="add" style={{ visibility: "hidden" }}>
+            <AddIcon />
+          </IconButton>
         </div>
         <div className={classes.container}>
-          <TextField
-            label="مدت زمان رایگان"
-            variant="outlined"
-            className={classes.field}
-          />
-        </div>
-        <div className={classes.container}>
-          <TextField
-            label="جریمه ی بالاتر از محدودیت"
-            variant="outlined"
-            className={classes.field}
-          />
-        </div>
-        <div className={classes.container}>
-          <TextField
-            label="هزینه ی هر 30 دقیقه"
-            variant="outlined"
-            className={classes.field}
-          />
-        </div>
-        <div className={classes.container}>
-          <TextField
-            label="پایه ی هزینه"
-            variant="outlined"
-            className={classes.field}
-          />
+          <FormControl className={classes.formControl} variant="outlined">
+            <InputLabel>حالت پاوربانک</InputLabel>
+            <Select label="حالت پاوربانک">
+              <MenuItem value={10}>6 تایی</MenuItem>
+              <MenuItem value={20}>12 تایی</MenuItem>
+            </Select>
+          </FormControl>
+          <Tooltip title="اضافه کردن حالت جدید" aria-label="add">
+            <IconButton aria-label="add">
+              <AddIcon />
+            </IconButton>
+          </Tooltip>
         </div>
         <div className={classes.buttonContainer}>
           <Button

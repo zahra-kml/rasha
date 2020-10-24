@@ -14,6 +14,9 @@ import icon1 from "../Assets/icons8-assignment-return-90.png";
 import icon2 from "../Assets/icons8-return-96.png";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+import ReturnModal from "../Components/Modals/Return";
+import AddStationModal from "../Components/Modals/AddStation";
+import ReturnAccordingToTheOperatorModal from "../Components/Modals/ReturnAccordingToTheOperator";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -69,8 +72,34 @@ export default function RentsList() {
       },
     ],
   });
-  const [selectedDay, setSelectedDay] = React.useState(null);
+  const [startDay, setStartDay] = React.useState(null);
+  const [endDay, setEndDay] = React.useState(null);
+  const [openReturnModal, setOpenReturnModal] = React.useState(false);
+  const [
+    openReturnAccordingToTheOperatorModal,
+    setOpenReturnAccordingToTheOperatorModal,
+  ] = React.useState(false);
+  const handleOpenReturnModal = () => {
+    setOpenReturnModal(true);
+  };
+  const handleOpenReturnAccordingToTheOperatorModal = () => {
+    setOpenReturnAccordingToTheOperatorModal(true);
+  };
 
+  const handleCloseReturnModal = () => {
+    setOpenReturnModal(false);
+  };
+  const handleCloseReturnAccordingToTheOperatorModal = () => {
+    setOpenReturnAccordingToTheOperatorModal(false);
+  };
+  const submitReturnModal = () => {
+    setOpenReturnModal(false);
+    //
+  };
+  const submitReturnAccordingToTheOperatorModal = () => {
+    setOpenReturnAccordingToTheOperatorModal(false);
+    //
+  };
   return (
     <>
       <Typography variant="h6" className={classes.title}>
@@ -82,8 +111,8 @@ export default function RentsList() {
           <Typography variant="body1">از تاریخ</Typography>
           <div className={classes.datePicker} style={{ zIndex: 31 }}>
             <DatePicker
-              value={selectedDay}
-              onChange={setSelectedDay}
+              value={startDay}
+              onChange={setStartDay}
               inputPlaceholder="یک روز را انتخاب کنید"
               shouldHighlightWeekends
               locale="fa"
@@ -93,8 +122,8 @@ export default function RentsList() {
           <Typography variant="body1">تا تاریخ</Typography>
           <div className={classes.datePicker} style={{ zIndex: 30 }}>
             <DatePicker
-              value={selectedDay}
-              onChange={setSelectedDay}
+              value={endDay}
+              onChange={setEndDay}
               inputPlaceholder="یک روز را انتخاب کنید"
               shouldHighlightWeekends
               locale="fa"
@@ -177,12 +206,16 @@ export default function RentsList() {
             {
               icon: () => <img src={icon1} className={classes.icon} />,
               tooltip: "بازگشت با توجه به نظر اپراتور",
-              onClick: (event) => {},
+              onClick: (event) => {
+                handleOpenReturnAccordingToTheOperatorModal();
+              },
             },
             {
               icon: () => <img src={icon2} className={classes.icon} />,
               tooltip: "بازگشت",
-              onClick: (event) => {},
+              onClick: (event) => {
+                handleOpenReturnModal();
+              },
             },
           ]}
           editable={{
@@ -213,6 +246,16 @@ export default function RentsList() {
           }}
           columns={state.columns}
           data={state.data}
+        />
+        <ReturnModal
+          open={openReturnModal}
+          handleClose={handleCloseReturnModal}
+          submit={submitReturnModal}
+        />
+        <ReturnAccordingToTheOperatorModal
+          open={openReturnAccordingToTheOperatorModal}
+          handleClose={handleCloseReturnAccordingToTheOperatorModal}
+          submit={submitReturnAccordingToTheOperatorModal}
         />
       </Paper>
     </>

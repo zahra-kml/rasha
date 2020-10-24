@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddTariffModal(props) {
+export default function ReturnAccordingToTheOperatorModal(props) {
   const classes = useStyles();
 
   return (
@@ -84,46 +84,51 @@ export default function AddTariffModal(props) {
     >
       <Paper className={classes.paper}>
         <Typography variant="h6" className={classes.title}>
-          اضافه کردن تعرفه ی ایستگاه
+          بازگشت با توجه به نظر اپراتور
         </Typography>
         <div className={classes.container}>
-          <TextField label="نام" variant="outlined" className={classes.field} />
-        </div>
-        <div className={classes.container}>
           <TextField
-            label="مدت زمان محدودیت"
+            label="شماره ی تلفن کاربر"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="مدت زمان رایگان"
+            label="کد پاور بانک"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="جریمه ی بالاتر از محدودیت"
+            label="نام کاربری اپراتور"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="هزینه ی هر 30 دقیقه"
+            label="مدت زمان"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="پایه ی هزینه"
+            label="هزینه"
             variant="outlined"
             className={classes.field}
           />
         </div>
+        <div className={classes.container}>
+          <TextField
+            label="شماره ی ایستگاه تحویل"
+            variant="outlined"
+            className={classes.field}
+          />
+        </div>
+
         <div className={classes.buttonContainer}>
           <Button
             variant="contained"

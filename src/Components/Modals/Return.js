@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddTariffModal(props) {
+export default function ReturnModal(props) {
   const classes = useStyles();
 
   return (
@@ -84,42 +84,60 @@ export default function AddTariffModal(props) {
     >
       <Paper className={classes.paper}>
         <Typography variant="h6" className={classes.title}>
-          اضافه کردن تعرفه ی ایستگاه
+          بازگشت
         </Typography>
         <div className={classes.container}>
-          <TextField label="نام" variant="outlined" className={classes.field} />
-        </div>
-        <div className={classes.container}>
           <TextField
-            label="مدت زمان محدودیت"
+            label="شماره ی تلفن کاربر"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="مدت زمان رایگان"
+            label="به کانال تحویل داده شده"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="جریمه ی بالاتر از محدودیت"
+            label="شماره ی ایستگاه تحویل"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="هزینه ی هر 30 دقیقه"
+            label="شماره ی ایستگاه دریافت"
             variant="outlined"
             className={classes.field}
           />
         </div>
         <div className={classes.container}>
           <TextField
-            label="پایه ی هزینه"
+            label="کد پاوربانک"
+            variant="outlined"
+            className={classes.field}
+          />
+        </div>
+        <div className={classes.container}>
+          <TextField
+            label="مقدار شارژ پاور بانک"
+            variant="outlined"
+            className={classes.field}
+          />
+        </div>
+        <div className={classes.container}>
+          <TextField
+            label="مدت زمان"
+            variant="outlined"
+            className={classes.field}
+          />
+        </div>
+        <div className={classes.container}>
+          <TextField
+            label="هزینه"
             variant="outlined"
             className={classes.field}
           />

@@ -6,6 +6,7 @@ import Error404 from "../Pages/Error404";
 import DevicesList from "../Pages/DevicesList";
 import UsersList from "../Pages/UsersList";
 import RentsList from "../Pages/Rents";
+import PowerBanksList from "../Pages/PowerBanksList";
 export default function () {
   let { path, url } = useRouteMatch();
   return (
@@ -24,6 +25,9 @@ export default function () {
       </Route>
       <Route exact path={`${path}/rents`}>
         <RentsList />
+      </Route>
+      <Route exact path={`${path}/powerbanks`}>
+        <PowerBanksList />
       </Route>
 
       <Route path="*">
