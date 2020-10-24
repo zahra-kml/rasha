@@ -7,6 +7,7 @@ import DevicesList from "../Pages/DevicesList";
 import UsersList from "../Pages/UsersList";
 import RentsList from "../Pages/Rents";
 import PowerBanksList from "../Pages/PowerBanksList";
+import EntryAndExitReportsOfPowerBanks from "../Pages/EntryAndExitReportsOfPowerBanks";
 export default function () {
   let { path, url } = useRouteMatch();
   return (
@@ -28,6 +29,9 @@ export default function () {
       </Route>
       <Route exact path={`${path}/powerbanks`}>
         <PowerBanksList />
+      </Route>
+      <Route exact path={`${path}/EntryAndExitReportsOfPowerBanks`}>
+        <EntryAndExitReportsOfPowerBanks />
       </Route>
 
       <Route path="*">

@@ -62,170 +62,23 @@ export default function DevicesList() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
-      { title: "کد دستگاه", field: "DeviceCode" },
-      { title: "بارکد دستگاه", field: "DeviceBarcode" },
-      { title: "موقعیت دستگاه", field: "DevicePosition" },
-      { title: "تعداد پورت های خالی", field: "NumberOfEmptyPorts" },
+      { title: "کد پاوربانک", field: "PowerBankCode" },
+      { title: "بارکد محل ورود", field: "BarcodeOfEntry" },
+      { title: "زمان دریافت", field: "ReceiptTime" },
+      { title: "بارکد محل خروج", field: "ExitBarcode" },
+      { title: "زمان خروج", field: "ExitTime" },
+      { title: "اپراتور", field: "Operator" },
+      { title: "کانال", field: "Channel" },
     ],
-    data: [
-      /*{
-              DeviceCode: "3BC7205d099A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "بیمارستان خاتم الانبیا",
-              NumberOfEmptyPorts: 5,
-            },
-            {
-              DeviceCode: "3AF7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران لئون",
-              NumberOfEmptyPorts: 3,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "1RT7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران لیدو",
-              NumberOfEmptyPorts: 2,
-            },
-            {
-              DeviceCode: "1QW7205d091G7A0E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "چلو کبابی برادران",
-              NumberOfEmptyPorts: 7,
-            },
-            {
-              DeviceCode: "3BC7205d099A7A9E",
-              DeviceBarcode: "01200348",
-              DeviceStatus: "آماده",
-              DevicePosition: "بیمارستان خاتم الانبیا",
-              NumberOfDevicePorts: 12,
-              NumberOfEmptyPorts: 5,
-              latestUpdate: "11:07 1399/05/26",
-            },
-            {
-              DeviceCode: "3AF7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران لئون",
-              NumberOfEmptyPorts: 3,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-            {
-              DeviceCode: "4AO7205d090A7A9E",
-              DeviceBarcode: "01200348",
-              DevicePosition: "رستوران ریناس",
-              NumberOfEmptyPorts: 0,
-            },
-              */
-    ],
+    data: [],
   });
   const [startDay, setStartDay] = React.useState(null);
   const [endDay, setEndDay] = React.useState(null);
-  const [openAddStationModal, setOpenAddStationModal] = React.useState(false);
-
-  const handleOpenAddStationModal = () => {
-    setOpenAddStationModal(true);
-  };
-
-  const handleCloseAddStationModal = () => {
-    setOpenAddStationModal(false);
-  };
-  const submitAddStationModal = () => {
-    setOpenAddStationModal(false);
-    //
-  };
 
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        گزارش دستگاه ها
+        گزارش ورود و خروج پاوربانک ها
       </Typography>
 
       <Paper className={classes.paper}>
@@ -324,59 +177,8 @@ export default function DevicesList() {
               </IconButton>
             </Tooltip>
           }
-          actions={[
-            {
-              icon: () => <DomainIcon />,
-              tooltip: "نمایش دستگاه",
-              onClick: (event) => {},
-            },
-          ]}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
           columns={state.columns}
           data={state.data}
-        />
-        <Divider />
-        <div className={classes.buttonContainer}>
-          <Button
-            variant="contained"
-            color="primary"
-            size="medium"
-            className={classes.button}
-            startIcon={<AddIcon />}
-            onClick={handleOpenAddStationModal}
-          >
-            اضافه کردن ایستگاه
-          </Button>
-        </div>
-        <AddStationModal
-          open={openAddStationModal}
-          handleClose={handleCloseAddStationModal}
-          submit={submitAddStationModal}
         />
       </Paper>
     </>
