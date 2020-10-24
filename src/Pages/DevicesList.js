@@ -13,7 +13,6 @@ import Divider from "@material-ui/core/Divider";
 import AddStationModal from "../Components/Modals/AddStation";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -69,7 +68,7 @@ export default function DevicesList() {
       { title: "تعداد پورت های خالی", field: "NumberOfEmptyPorts" },
     ],
     data: [
-      {
+      /*{
         DeviceCode: "3BC7205d099A7A9E",
         DeviceBarcode: "01200348",
         DevicePosition: "بیمارستان خاتم الانبیا",
@@ -204,6 +203,7 @@ export default function DevicesList() {
         DevicePosition: "رستوران ریناس",
         NumberOfEmptyPorts: 0,
       },
+        */
     ],
   });
   const [selectedDay, setSelectedDay] = React.useState(null);
@@ -251,7 +251,12 @@ export default function DevicesList() {
               colorPrimary="#23a267"
             />
           </div>
-          <Button variant="outlined" color="primary" size="medium">
+          <Button
+            variant="outlined"
+            color="primary"
+            size="medium"
+            className={classes.datePicker}
+          >
             اعمال فیلتر
           </Button>
         </div>
