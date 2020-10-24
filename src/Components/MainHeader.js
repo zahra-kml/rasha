@@ -194,17 +194,18 @@ export default function HeaderAppBar(props) {
                           style={{ height: `calc(${StickyPaper / 3}px)` }}
                         />
                         <div className={classes.space} />
-
-                        <Button
-                          className={classes.LanguageButton}
-                          color="inherit"
-                          endIcon={<ExpandMoreIcon />}
-                          onClick={LanguageHandleClick}
-                        >
-                          {languageContext.language === "fa"
-                            ? "فارسی"
-                            : "English"}
-                        </Button>
+                        {/*
+                          <Button
+                            className={classes.LanguageButton}
+                            color="inherit"
+                            endIcon={<ExpandMoreIcon />}
+                            onClick={LanguageHandleClick}
+                          >
+                            {languageContext.language === "fa"
+                              ? "فارسی"
+                              : "English"}
+                          </Button>
+                        */}
 
                         <IconButton
                           edge="end"
