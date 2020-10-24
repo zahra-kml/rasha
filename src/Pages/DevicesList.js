@@ -8,7 +8,8 @@ import Tooltip from "@material-ui/core/Tooltip";
 import DomainIcon from "@material-ui/icons/Domain";
 import AddIcon from "@material-ui/icons/Add";
 import Paper from "@material-ui/core/Paper";
-import Fab from "@material-ui/core/Fab";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,30 +24,22 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     margin: theme.spacing(2, 1),
-    //padding: theme.spacing(1),
     position: "relative",
+    display: "flex",
+    flexDirection: "column",
   },
-  FAB: {
-    position: "absolute",
-    bottom: 10,
-    right: 10,
-    [theme.breakpoints.between("sm", "md")]: {
-      display: "none",
-    },
-  },
-  extendedFAB: {
-    display: "none",
 
+  button: {
+    margin: theme.spacing(1),
     [theme.breakpoints.between("sm", "md")]: {
-      position: "absolute",
-      bottom: 10,
+      bottom: 0,
       right: 10,
-      display: "flex",
-      flexDirection: "row",
+      position: "absolute",
     },
   },
-  extendedIcon: {
-    marginRight: theme.spacing(1),
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
 
@@ -302,25 +295,18 @@ export default function DevicesList() {
           columns={state.columns}
           data={state.data}
         />
-        <Fab
-          variant="extended"
-          size="small"
-          color="primary"
-          aria-label="add"
-          className={classes.extendedFAB}
-        >
-          <AddIcon className={classes.extendedIcon} />
-          اضافه کردن ایستگاه
-        </Fab>
-
-        <Fab
-          size="small"
-          color="primary"
-          aria-label="add"
-          className={classes.FAB}
-        >
-          <AddIcon />
-        </Fab>
+        <Divider />
+        <div className={classes.buttonContainer}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            className={classes.button}
+            startIcon={<AddIcon />}
+          >
+            اضافه کردن ایستگاه
+          </Button>
+        </div>
       </Paper>
     </>
   );
