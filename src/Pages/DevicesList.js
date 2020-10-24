@@ -251,6 +251,9 @@ export default function DevicesList() {
               colorPrimary="#23a267"
             />
           </div>
+          <Button variant="outlined" color="primary" size="medium">
+            اعمال فیلتر
+          </Button>
         </div>
         <Divider />
         <MaterialTable
