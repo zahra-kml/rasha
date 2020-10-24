@@ -10,6 +10,10 @@ import AddIcon from "@material-ui/icons/Add";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
+import AddStationModal from "../Components/Modals/AddStation";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker from "react-modern-calendar-datepicker";
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -28,7 +32,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
-
+  datePickersContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
+  datePicker: {
+    margin: theme.spacing(1, 2),
+  },
   button: {
     margin: theme.spacing(1),
     [theme.breakpoints.between("sm", "md")]: {
@@ -190,13 +206,53 @@ export default function DevicesList() {
       },
     ],
   });
+  const [selectedDay, setSelectedDay] = React.useState(null);
+  const [openAddStationModal, setOpenAddStationModal] = React.useState(false);
+
+  const handleOpenAddStationModal = () => {
+    setOpenAddStationModal(true);
+  };
+
+  const handleCloseAddStationModal = () => {
+    setOpenAddStationModal(false);
+  };
+  const submitAddStationModal = () => {
+    setOpenAddStationModal(false);
+    //
+  };
 
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        خلاصه ی وضعیت دستگاه ها
+        گزارش دستگاه ها
       </Typography>
+
       <Paper className={classes.paper}>
+        <div className={classes.datePickersContainer}>
+          <Typography variant="body1">از تاریخ</Typography>
+          <div className={classes.datePicker} style={{ zIndex: 31 }}>
+            <DatePicker
+              value={selectedDay}
+              onChange={setSelectedDay}
+              inputPlaceholder="یک روز را انتخاب کنید"
+              shouldHighlightWeekends
+              locale="fa"
+              colorPrimary="#23a267"
+            />
+          </div>
+          <Typography variant="body1">تا تاریخ</Typography>
+          <div className={classes.datePicker} style={{ zIndex: 30 }}>
+            <DatePicker
+              value={selectedDay}
+              onChange={setSelectedDay}
+              inputPlaceholder="یک روز را انتخاب کنید"
+              shouldHighlightWeekends
+              locale="fa"
+              colorPrimary="#23a267"
+            />
+          </div>
+        </div>
+        <Divider />
         <MaterialTable
           components={{
             Container: (props) => (
@@ -303,10 +359,16 @@ export default function DevicesList() {
             size="medium"
             className={classes.button}
             startIcon={<AddIcon />}
+            onClick={handleOpenAddStationModal}
           >
             اضافه کردن ایستگاه
           </Button>
         </div>
+        <AddStationModal
+          open={openAddStationModal}
+          handleClose={handleCloseAddStationModal}
+          submit={submitAddStationModal}
+        />
       </Paper>
     </>
   );

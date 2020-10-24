@@ -5,6 +5,8 @@ import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker from "react-modern-calendar-datepicker";
 
 const useStyles = makeStyles((theme) => ({
   title: {

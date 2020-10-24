@@ -1,41 +1,57 @@
-import React, { useEffect, useState } from "react";
-import { Typography } from "@material-ui/core";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
 import Paper from "@material-ui/core/Paper";
+import { Button, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
-import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    color: "white",
-
-    margin: theme.spacing(1),
-    [theme.breakpoints.up("md")]: {
-      margin: theme.spacing(1),
+  paper: {
+    position: "absolute",
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "30vw",
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    "&:focus": {
+      outline: "none",
     },
+
     [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(2),
+      width: "90vw",
     },
   },
-  paper: {
-    margin: theme.spacing(2, 1),
-    padding: theme.spacing(1, 1),
+  title: {
+    marginTop: theme.spacing(2),
+    width: "90%",
+  },
+  container: {
+    width: "90%",
+    margin: theme.spacing(1),
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    flexWrap: "wrap",
   },
+
   formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    flexGrow: 1,
+  },
+  field: {
     margin: theme.spacing(1),
     minWidth: 120,
     flexGrow: 1,
@@ -43,35 +59,20 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-  container: {
-    width: "20%",
-    margin: theme.spacing(1),
+  buttonContainer: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
     flexDirection: "row",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-    },
-  },
-  submit: {
-    margin: theme.spacing(1),
+    justifyContent: "center",
+    width: "100%",
   },
   button: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: theme.spacing(4),
-  },
-  field: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    flexGrow: 1,
+    margin: theme.spacing(0.5),
   },
 }));
 
-export default function AddDevice(props) {
+export default function AddDeviceModal(props) {
   const classes = useStyles();
   const [active, setActive] = React.useState(false);
 
@@ -79,11 +80,16 @@ export default function AddDevice(props) {
     setActive((prev) => !prev);
   };
   return (
-    <>
-      <Typography variant="h6" className={classes.title}>
-        اضافه کردن دستگاه
-      </Typography>
-      <Paper className={classes.paper} elevation={3}>
+    <Modal
+      disableBackdropClick
+      disableEscapeKeyDown
+      open={props.open}
+      onClose={props.handleClose}
+    >
+      <Paper className={classes.paper}>
+        <Typography variant="h6" className={classes.title}>
+          اضافه کردن دستگاه
+        </Typography>
         <div className={classes.container}>
           <TextField
             label="کد دستگاه"
@@ -103,19 +109,29 @@ export default function AddDevice(props) {
         <div className={classes.container}>
           <FormControlLabel
             control={<Switch checked={active} onChange={toggleChecked} />}
-            label="فعال"
+            label="فعال سازی"
           />
         </div>
-        <div className={classes.button}>
+        <div className={classes.buttonContainer}>
           <Button
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            color="default"
+            variant="outlined"
+            className={classes.button}
+            onClick={props.handleClose}
+          >
+            انصراف
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            className={classes.button}
+            onClick={props.submit}
           >
             ثبت
           </Button>
         </div>
       </Paper>
-    </>
+    </Modal>
   );
 }

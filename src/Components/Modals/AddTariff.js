@@ -1,37 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { Typography } from "@material-ui/core";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
 import Paper from "@material-ui/core/Paper";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Button from "@material-ui/core/Button";
-import AddIcon from "@material-ui/icons/Add";
-import IconButton from "@material-ui/core/IconButton";
-import Tooltip from "@material-ui/core/Tooltip";
+import { Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    color: "white",
-
-    margin: theme.spacing(1),
-    [theme.breakpoints.up("md")]: {
-      margin: theme.spacing(1),
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(2),
-    },
-  },
   paper: {
-    margin: theme.spacing(2, 1),
-    padding: theme.spacing(1, 1),
+    position: "absolute",
     display: "flex",
-    alignItems: "flex-end",
-    justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "60vw",
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    "&:focus": {
+      outline: "none",
+    },
+
+    [theme.breakpoints.down("sm")]: {
+      width: "90vw",
+    },
+  },
+  title: {
+    marginTop: theme.spacing(2),
+    width: "95%",
   },
 
   container: {
@@ -39,38 +37,55 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
-    margin: theme.spacing(2),
+    margin: "1%",
     [theme.breakpoints.between("xs", "sm")]: {
       width: "90%",
     },
-    [theme.breakpoints.between("sm", "md")]: {
-      width: "40%",
-    },
-    [theme.breakpoints.between("md", "xl")]: {
-      width: "30%",
+    [theme.breakpoints.between("sm", "xl")]: {
+      width: "47%",
     },
   },
-  submit: {
+  formControl: {
     margin: theme.spacing(1),
+    minWidth: 120,
+    flexGrow: 1,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  buttonContainer: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    width: "100%",
   },
   button: {
-    width: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: theme.spacing(4),
+    margin: theme.spacing(0.5),
+  },
+
+  field: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    flexGrow: 1,
   },
 }));
 
-export default function AddTariff(props) {
+export default function AddTariffModal(props) {
   const classes = useStyles();
 
   return (
-    <>
-      <Typography variant="h6" className={classes.title}>
-        اضافه کردن تعرفه ی ایستگاه
-      </Typography>
-      <Paper className={classes.paper} elevation={3}>
+    <Modal
+      disableBackdropClick
+      disableEscapeKeyDown
+      open={props.open}
+      onClose={props.handleClose}
+    >
+      <Paper className={classes.paper}>
+        <Typography variant="h6" className={classes.title}>
+          اضافه کردن تعرفه ی ایستگاه
+        </Typography>
         <div className={classes.container}>
           <TextField label="نام" variant="outlined" className={classes.field} />
         </div>
@@ -109,17 +124,26 @@ export default function AddTariff(props) {
             className={classes.field}
           />
         </div>
-
-        <div className={classes.button}>
+        <div className={classes.buttonContainer}>
           <Button
             variant="contained"
-            color="primary"
-            className={classes.submit}
+            color="default"
+            variant="outlined"
+            className={classes.button}
+            onClick={props.handleClose}
+          >
+            انصراف
+          </Button>
+          <Button
+            variant="outlined"
+            color="secondary"
+            className={classes.button}
+            onClick={props.submit}
           >
             ثبت
           </Button>
         </div>
       </Paper>
-    </>
+    </Modal>
   );
 }
