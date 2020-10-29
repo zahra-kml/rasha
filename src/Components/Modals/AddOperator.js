@@ -78,9 +78,22 @@ const useStyles = makeStyles((theme) => ({
 export default function AddOperatorModal(props) {
   const classes = useStyles();
   const [searchResult, setSearchResult] = useState({});
+  const [haveResult, setHaveResult] = useState(false);
   const search = () => {
     //fake data
-    setSearchResult({ firstName: "زهرا", lastName: "کمالی", checked: false });
+    setSearchResult({
+      firstName: "زهرا",
+      lastName: "کمالی",
+      phoneNumber: "09124172775",
+      checked: false,
+    });
+    setHaveResult(true);
+  };
+  const resultHandleChange = (event) => {
+    setSearchResult({
+      ...searchResult,
+      ["checked"]: event.target.checked,
+    });
   };
   return (
     <Modal
@@ -107,13 +120,19 @@ export default function AddOperatorModal(props) {
             <SearchIcon />
           </IconButton>
         </div>
-        {searchResult.length > 0 && (
+        {haveResult && (
           <div className={classes.resultContainer}>
             <FormControlLabel
-              control={<Checkbox onChange={() => {}} name="result" />}
-              label={searchResult[0].firstName + " " + searchResult[0].lastName}
+              control={
+                <Checkbox
+                  checked={searchResult.checked}
+                  onChange={resultHandleChange}
+                  name="result"
+                />
+              }
+              label={searchResult.firstName + " " + searchResult.lastName}
             />
-            <Typography>{searchResult[0].phoneNumber}</Typography>
+            <Typography>{searchResult.phoneNumber}</Typography>
           </div>
         )}
 
