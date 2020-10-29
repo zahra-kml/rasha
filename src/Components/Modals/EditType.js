@@ -10,7 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Tooltip from "@material-ui/core/Tooltip";
 import IconButton from "@material-ui/core/IconButton";
 import AddIcon from "@material-ui/icons/Add";
-import AddGroupModal from "./AddGroup";
+import AddTypeModal from "./AddType";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,18 +73,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditGroupModal(props) {
+export default function EditTypeModal(props) {
   const classes = useStyles();
-  const [openAddGroupModal, setOpenAddGroupModal] = React.useState(false);
-  const handleOpenAddGroupModal = () => {
-    setOpenAddGroupModal(true);
+  const [openAddTypeModal, setOpenAddTypeModal] = React.useState(false);
+  const handleOpenAddTypeModal = () => {
+    setOpenAddTypeModal(true);
   };
 
-  const handleCloseAddGroupModal = () => {
-    setOpenAddGroupModal(false);
+  const handleCloseAddTypeModal = () => {
+    setOpenAddTypeModal(false);
   };
-  const submitAddGroupModal = () => {
-    setOpenAddGroupModal(false);
+  const submitAddTypeModal = () => {
+    setOpenAddTypeModal(false);
     //
   };
 
@@ -108,7 +108,7 @@ export default function EditGroupModal(props) {
             </Select>
           </FormControl>
           <Tooltip title="اضافه کردن گروه جدید" aria-label="add">
-            <IconButton aria-label="add" onClick={handleOpenAddGroupModal}>
+            <IconButton aria-label="add" onClick={handleOpenAddTypeModal}>
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -133,10 +133,10 @@ export default function EditGroupModal(props) {
             ثبت
           </Button>
         </div>
-        <AddGroupModal
-          open={openAddGroupModal}
-          handleClose={handleCloseAddGroupModal}
-          submit={submitAddGroupModal}
+        <AddTypeModal
+          open={openAddTypeModal}
+          handleClose={handleCloseAddTypeModal}
+          submit={submitAddTypeModal}
         />
       </Paper>
     </Modal>

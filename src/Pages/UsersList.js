@@ -13,6 +13,7 @@ import DatePicker from "react-modern-calendar-datepicker";
 import CreateIcon from "@material-ui/icons/Create";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import EditGroupModal from "../Components/Modals/EditGroup";
+import EditTypeModal from "../Components/Modals/EditType";
 const useStyles = makeStyles((theme) => ({
   title: {
     color: "white",
@@ -81,15 +82,26 @@ export default function TransactionList() {
   const [startDay, setStartDay] = React.useState(null);
   const [endDay, setEndDay] = React.useState(null);
   const [openEditGroupModal, setOpenEditGroupModal] = React.useState(false);
+  const [openEditTypeModal, setOpenEditTypeModal] = React.useState(false);
   const handleOpenEditGroupModal = () => {
     setOpenEditGroupModal(true);
+  };
+  const handleOpenEditTypeModal = () => {
+    setOpenEditTypeModal(true);
   };
 
   const handleCloseEditGroupModal = () => {
     setOpenEditGroupModal(false);
   };
+  const handleCloseEditTypeModal = () => {
+    setOpenEditTypeModal(false);
+  };
   const submitEditGroupModal = () => {
     setOpenEditGroupModal(false);
+    //
+  };
+  const submitEditTypeModal = () => {
+    setOpenEditTypeModal(false);
     //
   };
   return (
@@ -200,7 +212,9 @@ export default function TransactionList() {
             {
               icon: () => <CreateOutlinedIcon />,
               tooltip: "ویرایش نوع",
-              onClick: (event) => {},
+              onClick: (event) => {
+                handleOpenEditTypeModal();
+              },
             },
           ]}
           columns={state.columns}
@@ -210,6 +224,11 @@ export default function TransactionList() {
           open={openEditGroupModal}
           handleClose={handleCloseEditGroupModal}
           submit={submitEditGroupModal}
+        />
+        <EditTypeModal
+          open={openEditTypeModal}
+          handleClose={handleCloseEditTypeModal}
+          submit={submitEditTypeModal}
         />
       </Paper>
     </>

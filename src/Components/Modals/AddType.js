@@ -3,14 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Paper from "@material-ui/core/Paper";
 import { Button, Typography } from "@material-ui/core";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import Tooltip from "@material-ui/core/Tooltip";
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
-import AddGroupModal from "./AddGroup";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -73,20 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditGroupModal(props) {
+export default function AddTypeModal(props) {
   const classes = useStyles();
-  const [openAddGroupModal, setOpenAddGroupModal] = React.useState(false);
-  const handleOpenAddGroupModal = () => {
-    setOpenAddGroupModal(true);
-  };
-
-  const handleCloseAddGroupModal = () => {
-    setOpenAddGroupModal(false);
-  };
-  const submitAddGroupModal = () => {
-    setOpenAddGroupModal(false);
-    //
-  };
 
   return (
     <Modal
@@ -97,21 +78,14 @@ export default function EditGroupModal(props) {
     >
       <Paper className={classes.paper}>
         <Typography variant="h6" className={classes.title}>
-          ویرایش گروه
+          اضافه کردن گروه
         </Typography>
         <div className={classes.container}>
-          <FormControl className={classes.formControl} variant="outlined">
-            <InputLabel>نام گروه</InputLabel>
-            <Select label="نام گروه">
-              <MenuItem value={10}>a</MenuItem>
-              <MenuItem value={20}>b</MenuItem>
-            </Select>
-          </FormControl>
-          <Tooltip title="اضافه کردن گروه جدید" aria-label="add">
-            <IconButton aria-label="add" onClick={handleOpenAddGroupModal}>
-              <AddIcon />
-            </IconButton>
-          </Tooltip>
+          <TextField
+            label="نام گروه"
+            variant="outlined"
+            className={classes.field}
+          />
         </div>
 
         <div className={classes.buttonContainer}>
@@ -133,11 +107,6 @@ export default function EditGroupModal(props) {
             ثبت
           </Button>
         </div>
-        <AddGroupModal
-          open={openAddGroupModal}
-          handleClose={handleCloseAddGroupModal}
-          submit={submitAddGroupModal}
-        />
       </Paper>
     </Modal>
   );
