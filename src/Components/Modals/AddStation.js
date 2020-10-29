@@ -13,6 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import AddDeviceModal from "./AddDevice";
 import AddTariffModal from "./AddTariff";
 import AddStatus from "./AddStatus";
+import AddOperatorModal from "./AddOperator";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -80,6 +81,7 @@ export default function AddStationModal(props) {
   const [openAddDeviceModal, setOpenAddDeviceModal] = React.useState(false);
   const [openAddTariffModal, setOpenAddTariffModal] = React.useState(false);
   const [openAddStatusModal, setOpenAddStatusModal] = React.useState(false);
+  const [openAddOperatorModal, setOpenAddOperatorModal] = React.useState(false);
 
   const handleOpenAddDeviceModal = () => {
     setOpenAddDeviceModal(true);
@@ -91,6 +93,9 @@ export default function AddStationModal(props) {
   const handleOpenAddStatusModal = () => {
     setOpenAddStatusModal(true);
   };
+  const handleOpenAddOperatorModal = () => {
+    setOpenAddOperatorModal(true);
+  };
 
   const handleCloseAddDeviceModal = () => {
     setOpenAddDeviceModal(false);
@@ -100,6 +105,9 @@ export default function AddStationModal(props) {
   };
   const handleCloseAddStatusModal = () => {
     setOpenAddStatusModal(false);
+  };
+  const handleCloseAddOperatorModal = () => {
+    setOpenAddOperatorModal(false);
   };
   const submitAddDeviceModal = () => {
     setOpenAddDeviceModal(false);
@@ -111,6 +119,10 @@ export default function AddStationModal(props) {
   };
   const submitAddStatusModal = () => {
     setOpenAddStatusModal(false);
+    //
+  };
+  const submitAddOperatorModal = () => {
+    setOpenAddOperatorModal(false);
     //
   };
   const [DevicePosition, setDevicePosition] = React.useState("");
@@ -236,7 +248,7 @@ export default function AddStationModal(props) {
             </Select>
           </FormControl>
           <Tooltip title="اضافه کردن متصدی جدید" aria-label="add">
-            <IconButton aria-label="add">
+            <IconButton aria-label="add" onClick={handleOpenAddOperatorModal}>
               <AddIcon />
             </IconButton>
           </Tooltip>
@@ -293,6 +305,11 @@ export default function AddStationModal(props) {
           open={openAddStatusModal}
           handleClose={handleCloseAddStatusModal}
           submit={submitAddStatusModal}
+        />
+        <AddOperatorModal
+          open={openAddOperatorModal}
+          handleClose={handleCloseAddOperatorModal}
+          submit={submitAddOperatorModal}
         />
       </Paper>
     </Modal>

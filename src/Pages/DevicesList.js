@@ -68,7 +68,7 @@ export default function DevicesList() {
       { title: "تعداد پورت های خالی", field: "NumberOfEmptyPorts" },
     ],
     data: [
-      /*{
+      {
         DeviceCode: "3BC7205d099A7A9E",
         DeviceBarcode: "01200348",
         DevicePosition: "بیمارستان خاتم الانبیا",
@@ -203,7 +203,6 @@ export default function DevicesList() {
         DevicePosition: "رستوران ریناس",
         NumberOfEmptyPorts: 0,
       },
-        */
     ],
   });
   const [startDay, setStartDay] = React.useState(null);
