@@ -1,14 +1,18 @@
 import React from "react";
-import MaterialTable, { MTableToolbar } from "material-table";
+import MaterialTable from "material-table";
 import RefreshIcon from "@material-ui/icons/Refresh";
 import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
-import HistoryIcon from "@material-ui/icons/History";
-
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Divider from "@material-ui/core/Divider";
+import "react-modern-calendar-datepicker/lib/DatePicker.css";
+import DatePicker from "react-modern-calendar-datepicker";
+import CreateIcon from "@material-ui/icons/Create";
+import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
+import EditGroupModal from "../Components/Modals/EditGroup";
 const useStyles = makeStyles((theme) => ({
   title: {
     color: "white",
@@ -21,59 +25,113 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    margin: theme.spacing(0),
-    padding: theme.spacing(1),
+    margin: theme.spacing(2, 1),
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+  },
+  datePickersContainer: {
+    display: "flex",
+    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      flexDirection: "column",
+    },
+  },
+  datePicker: {
+    margin: theme.spacing(1, 2),
+  },
+  button: {
+    margin: theme.spacing(1),
+    [theme.breakpoints.between("sm", "md")]: {
+      bottom: 0,
+      right: 10,
+      position: "absolute",
+    },
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
 
-export default function UsersList() {
+export default function TransactionList() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
       { title: "اسم", field: "FirstName" },
       { title: "فامیل", field: "LastName" },
-      { title: "شماره ی موبایل", field: "phoneNumber" },
+      { title: "شماره ی موبایل", field: "PhoneNumber" },
+      { title: "گروه", field: "Group" },
+      { title: "نوع", field: "Type" },
     ],
     data: [
       {
         FirstName: "زهرا",
         LastName: "کمالی",
-        phoneNumber: "09124172775",
-      },
-      {
-        FirstName: "احمد",
-        LastName: "محمدی",
-        phoneNumber: "09124172995",
-      },
-      {
-        FirstName: "فائزه",
-        LastName: "زمانی",
-        phoneNumber: "09124145775",
-      },
-      {
-        FirstName: "محسن",
-        LastName: "اکبری",
-        phoneNumber: "09187672775",
-      },
-      {
-        FirstName: "علی",
-        LastName: "کمالی",
-        phoneNumber: "09124999775",
-      },
-      {
-        FirstName: "زهرا",
-        LastName: "کمالی",
-        phoneNumber: "09124172775",
+        PhoneNumber: "09124172775",
+        Group: "a",
+        Type: "c",
       },
     ],
   });
 
+  const [startDay, setStartDay] = React.useState(null);
+  const [endDay, setEndDay] = React.useState(null);
+  const [openEditGroupModal, setOpenEditGroupModal] = React.useState(false);
+  const handleOpenEditGroupModal = () => {
+    setOpenEditGroupModal(true);
+  };
+
+  const handleCloseEditGroupModal = () => {
+    setOpenEditGroupModal(false);
+  };
+  const submitEditGroupModal = () => {
+    setOpenEditGroupModal(false);
+    //
+  };
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        خلاصه ی وضعیت دستگاه ها
+        گزارش کاربران
       </Typography>
-      <div className={classes.paper}>
+
+      <Paper className={classes.paper}>
+        <div className={classes.datePickersContainer}>
+          <Typography variant="body1">از تاریخ</Typography>
+          <div className={classes.datePicker} style={{ zIndex: 31 }}>
+            <DatePicker
+              value={startDay}
+              onChange={setStartDay}
+              inputPlaceholder="یک روز را انتخاب کنید"
+              shouldHighlightWeekends
+              locale="fa"
+              colorPrimary="#23a267"
+            />
+          </div>
+          <Typography variant="body1">تا تاریخ</Typography>
+          <div className={classes.datePicker} style={{ zIndex: 30 }}>
+            <DatePicker
+              value={endDay}
+              onChange={setEndDay}
+              inputPlaceholder="یک روز را انتخاب کنید"
+              shouldHighlightWeekends
+              locale="fa"
+              colorPrimary="#23a267"
+            />
+          </div>
+          <Button
+            variant="outlined"
+            color="primary"
+            size="medium"
+            className={classes.datePicker}
+          >
+            اعمال فیلتر
+          </Button>
+        </div>
+        <Divider />
         <MaterialTable
           options={{
             headerStyle: {
@@ -133,40 +191,27 @@ export default function UsersList() {
           }
           actions={[
             {
-              icon: () => <AttachMoneyIcon />,
-              tooltip: "تراکنش های بانکی",
-              onClick: (event) => {},
+              icon: () => <CreateIcon />,
+              tooltip: "ویرایش گروه",
+              onClick: (event) => {
+                handleOpenEditGroupModal();
+              },
             },
             {
-              icon: () => <CardGiftcardIcon />,
-              tooltip: "کد های هدیه",
-              onClick: (event) => {},
-            },
-            {
-              icon: () => <HistoryIcon />,
-              tooltip: "اجاره ها",
+              icon: () => <CreateOutlinedIcon />,
+              tooltip: "ویرایش نوع",
               onClick: (event) => {},
             },
           ]}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-          }}
           columns={state.columns}
           data={state.data}
         />
-      </div>
+        <EditGroupModal
+          open={openEditGroupModal}
+          handleClose={handleCloseEditGroupModal}
+          submit={submitEditGroupModal}
+        />
+      </Paper>
     </>
   );
 }
