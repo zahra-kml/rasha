@@ -8,12 +8,10 @@ import Tooltip from "@material-ui/core/Tooltip";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
-import icon1 from "../Assets/icons8-assignment-return-90.png";
-import icon2 from "../Assets/icons8-return-96.png";
+import AddStationModal from "../Components/Modals/AddStation";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-import ReturnModal from "../Components/Modals/Return";
-import ReturnByOperatorModal from "../Components/Modals/ReturnByOperator";
+import CreateIcon from "@material-ui/icons/Create";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -45,62 +43,45 @@ const useStyles = makeStyles((theme) => ({
   datePicker: {
     margin: theme.spacing(1, 2),
   },
-  icon: {
-    width: "1em",
-    height: "1em",
+  button: {
+    margin: theme.spacing(1),
+    [theme.breakpoints.between("sm", "md")]: {
+      bottom: 0,
+      right: 10,
+      position: "absolute",
+    },
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
 
-export default function RentsList() {
+export default function TransactionList() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
-      { title: "شماره ی کاربر", field: "UserNumber" },
-      { title: "کد پاوربانک", field: "PowerBankCode" },
-      { title: "محل دریافت", field: "PlaceOfReceipt" },
-      { title: "زمان دریافت", field: "ReceiptTime" },
+      { title: "زمان تراکنش", field: "TransactionTime" },
+      { title: "کد پیگیری", field: "TrackingCode" },
+      { title: "مبلغ", field: "Amount" },
+      { title: "شماره ی تلفن", field: "PhoneNumber" },
     ],
     data: [
       {
-        UserNumber: 123,
-        PowerBankCode: 7857,
-        PlaceOfReceipt: "کافه فورنو",
-        ReceiptTime: "12:56",
+        TransactionTime: "5/9/1399",
+        TrackingCode: "383690874",
+        Amount: "250000",
+        PhoneNumber: "09124172775",
       },
     ],
   });
   const [startDay, setStartDay] = React.useState(null);
   const [endDay, setEndDay] = React.useState(null);
-  const [openReturnModal, setOpenReturnModal] = React.useState(false);
-  const [
-    openReturnAccordingToTheOperatorModal,
-    setOpenReturnAccordingToTheOperatorModal,
-  ] = React.useState(false);
-  const handleOpenReturnModal = () => {
-    setOpenReturnModal(true);
-  };
-  const handleOpenReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(true);
-  };
 
-  const handleCloseReturnModal = () => {
-    setOpenReturnModal(false);
-  };
-  const handleCloseReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(false);
-  };
-  const submitReturnModal = () => {
-    setOpenReturnModal(false);
-    //
-  };
-  const submitReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(false);
-    //
-  };
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        گزارش اجاره ها
+        گزارش تراکنش ها
       </Typography>
 
       <Paper className={classes.paper}>
@@ -192,6 +173,13 @@ export default function RentsList() {
               actions: "گزینه ها",
             },
           }}
+          actions={[
+            {
+              icon: () => <CreateIcon />,
+              tooltip: "ویرایش",
+              onClick: (event) => {},
+            },
+          ]}
           title={
             <Tooltip title="به روز رسانی">
               <IconButton size="small" color="primary" onClick={() => {}}>
@@ -199,60 +187,8 @@ export default function RentsList() {
               </IconButton>
             </Tooltip>
           }
-          actions={[
-            {
-              icon: () => <img src={icon1} className={classes.icon} />,
-              tooltip: "بازگشت با توجه به نظر اپراتور",
-              onClick: (event) => {
-                handleOpenReturnAccordingToTheOperatorModal();
-              },
-            },
-            {
-              icon: () => <img src={icon2} className={classes.icon} />,
-              tooltip: "بازگشت",
-              onClick: (event) => {
-                handleOpenReturnModal();
-              },
-            },
-          ]}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
           columns={state.columns}
           data={state.data}
-        />
-        <ReturnModal
-          open={openReturnModal}
-          handleClose={handleCloseReturnModal}
-          submit={submitReturnModal}
-        />
-        <ReturnByOperatorModal
-          open={openReturnAccordingToTheOperatorModal}
-          handleClose={handleCloseReturnAccordingToTheOperatorModal}
-          submit={submitReturnAccordingToTheOperatorModal}
         />
       </Paper>
     </>

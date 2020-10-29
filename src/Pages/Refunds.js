@@ -5,15 +5,13 @@ import IconButton from "@material-ui/core/IconButton";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
+import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import Divider from "@material-ui/core/Divider";
-import icon1 from "../Assets/icons8-assignment-return-90.png";
-import icon2 from "../Assets/icons8-return-96.png";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-import ReturnModal from "../Components/Modals/Return";
-import ReturnByOperatorModal from "../Components/Modals/ReturnByOperator";
+import Divider from "@material-ui/core/Divider";
+import DoneRefundModal from "../Components/Modals/DoneRefund";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -45,62 +43,54 @@ const useStyles = makeStyles((theme) => ({
   datePicker: {
     margin: theme.spacing(1, 2),
   },
-  icon: {
-    width: "1em",
-    height: "1em",
+  button: {
+    margin: theme.spacing(1),
+    [theme.breakpoints.between("sm", "md")]: {
+      bottom: 0,
+      right: 10,
+      position: "absolute",
+    },
+  },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "flex-end",
   },
 }));
 
-export default function RentsList() {
+export default function RefundsList() {
   const classes = useStyles();
   const [state, setState] = React.useState({
     columns: [
-      { title: "شماره ی کاربر", field: "UserNumber" },
-      { title: "کد پاوربانک", field: "PowerBankCode" },
-      { title: "محل دریافت", field: "PlaceOfReceipt" },
-      { title: "زمان دریافت", field: "ReceiptTime" },
+      { title: "شماره ی شبا", field: "shabaNumber" },
+      { title: "تاریخ درخواست", field: "dateOfRequest" },
+      { title: "شماره ی تلفن", field: "phoneNumber" },
     ],
     data: [
       {
-        UserNumber: 123,
-        PowerBankCode: 7857,
-        PlaceOfReceipt: "کافه فورنو",
-        ReceiptTime: "12:56",
+        shabaNumber: 12455642567,
+        dateOfRequest: "1399/5/9",
+        phoneNumber: 9124172775,
       },
     ],
   });
   const [startDay, setStartDay] = React.useState(null);
   const [endDay, setEndDay] = React.useState(null);
-  const [openReturnModal, setOpenReturnModal] = React.useState(false);
-  const [
-    openReturnAccordingToTheOperatorModal,
-    setOpenReturnAccordingToTheOperatorModal,
-  ] = React.useState(false);
-  const handleOpenReturnModal = () => {
-    setOpenReturnModal(true);
-  };
-  const handleOpenReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(true);
+  const [openDoneRefundModal, setOpenDoneRefundModal] = React.useState(false);
+  const handleOpenDoneRefundModal = () => {
+    setOpenDoneRefundModal(true);
   };
 
-  const handleCloseReturnModal = () => {
-    setOpenReturnModal(false);
+  const handleCloseDoneRefundModal = () => {
+    setOpenDoneRefundModal(false);
   };
-  const handleCloseReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(false);
-  };
-  const submitReturnModal = () => {
-    setOpenReturnModal(false);
-    //
-  };
-  const submitReturnAccordingToTheOperatorModal = () => {
-    setOpenReturnAccordingToTheOperatorModal(false);
+  const submitDoneRefundModal = () => {
+    setOpenDoneRefundModal(false);
     //
   };
   return (
     <>
       <Typography variant="h6" className={classes.title}>
-        گزارش اجاره ها
+        لیست استرداد ها
       </Typography>
 
       <Paper className={classes.paper}>
@@ -192,6 +182,15 @@ export default function RentsList() {
               actions: "گزینه ها",
             },
           }}
+          actions={[
+            {
+              icon: () => <DoneOutlineIcon />,
+              tooltip: "انجام استرداد",
+              onClick: (event) => {
+                handleOpenDoneRefundModal();
+              },
+            },
+          ]}
           title={
             <Tooltip title="به روز رسانی">
               <IconButton size="small" color="primary" onClick={() => {}}>
@@ -199,60 +198,13 @@ export default function RentsList() {
               </IconButton>
             </Tooltip>
           }
-          actions={[
-            {
-              icon: () => <img src={icon1} className={classes.icon} />,
-              tooltip: "بازگشت با توجه به نظر اپراتور",
-              onClick: (event) => {
-                handleOpenReturnAccordingToTheOperatorModal();
-              },
-            },
-            {
-              icon: () => <img src={icon2} className={classes.icon} />,
-              tooltip: "بازگشت",
-              onClick: (event) => {
-                handleOpenReturnModal();
-              },
-            },
-          ]}
-          editable={{
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: (oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
           columns={state.columns}
           data={state.data}
         />
-        <ReturnModal
-          open={openReturnModal}
-          handleClose={handleCloseReturnModal}
-          submit={submitReturnModal}
-        />
-        <ReturnByOperatorModal
-          open={openReturnAccordingToTheOperatorModal}
-          handleClose={handleCloseReturnAccordingToTheOperatorModal}
-          submit={submitReturnAccordingToTheOperatorModal}
+        <DoneRefundModal
+          open={openDoneRefundModal}
+          handleClose={handleCloseDoneRefundModal}
+          submit={submitDoneRefundModal}
         />
       </Paper>
     </>
