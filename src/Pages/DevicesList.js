@@ -13,6 +13,7 @@ import Divider from "@material-ui/core/Divider";
 import AddStationModal from "../Components/Modals/AddStation";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
+import ShowDeviceModal from "../Components/Modals/ShowDevice";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -208,16 +209,26 @@ export default function DevicesList() {
   const [startDay, setStartDay] = React.useState(null);
   const [endDay, setEndDay] = React.useState(null);
   const [openAddStationModal, setOpenAddStationModal] = React.useState(false);
-
+  const [openShowDeviceModal, setOpenShowDeviceModal] = React.useState(false);
   const handleOpenAddStationModal = () => {
     setOpenAddStationModal(true);
   };
+  const handleOpenShowDeviceModal = () => {
+    setOpenShowDeviceModal(true);
+  };
 
+  const handleCloseShowDeviceModal = () => {
+    setOpenShowDeviceModal(false);
+  };
   const handleCloseAddStationModal = () => {
     setOpenAddStationModal(false);
   };
   const submitAddStationModal = () => {
     setOpenAddStationModal(false);
+    //
+  };
+  const submitShowDeviceModal = () => {
+    setOpenShowDeviceModal(false);
     //
   };
 
@@ -327,7 +338,9 @@ export default function DevicesList() {
             {
               icon: () => <DomainIcon />,
               tooltip: "نمایش دستگاه",
-              onClick: (event) => {},
+              onClick: (event) => {
+                handleOpenShowDeviceModal();
+              },
             },
           ]}
           editable={{
@@ -376,6 +389,11 @@ export default function DevicesList() {
           open={openAddStationModal}
           handleClose={handleCloseAddStationModal}
           submit={submitAddStationModal}
+        />
+        <ShowDeviceModal
+          open={openShowDeviceModal}
+          handleClose={handleCloseShowDeviceModal}
+          submit={submitShowDeviceModal}
         />
       </Paper>
     </>
