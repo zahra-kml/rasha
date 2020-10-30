@@ -3,14 +3,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Paper from "@material-ui/core/Paper";
 import { Button, Typography } from "@material-ui/core";
-
 import SearchIcon from "@material-ui/icons/Search";
-import DirectionsIcon from "@material-ui/icons/Directions";
 import IconButton from "@material-ui/core/IconButton";
-import Divider from "@material-ui/core/Divider";
 import InputBase from "@material-ui/core/InputBase";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,7 +59,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(0.5),
     margin: theme.spacing(1),
   },
-
+  listContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    width: "90%",
+    padding: theme.spacing(0.5),
+    margin: theme.spacing(0.5),
+  },
   buttonContainer: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
@@ -79,6 +84,7 @@ export default function AddOperatorModal(props) {
   const classes = useStyles();
   const [searchResult, setSearchResult] = useState({});
   const [haveResult, setHaveResult] = useState(false);
+  const [operatorsList, setOperatorsList] = useState([]);
   const search = () => {
     //fake data
     setSearchResult({
@@ -89,11 +95,22 @@ export default function AddOperatorModal(props) {
     });
     setHaveResult(true);
   };
-  const resultHandleChange = (event) => {
+  const addOperator = () => {
+    const tmp = [...operatorsList];
+    tmp.push(searchResult);
+    setOperatorsList(tmp);
+  };
+  const deleteOperator = (phoneNumber) => {
+    const tmp = [...operatorsList];
+    tmp.filter((operator) => operator.phoneNumber !== phoneNumber);
+    setOperatorsList([...tmp]);
+  };
+  const resultHandleChange = (event, phoneNumber) => {
     setSearchResult({
       ...searchResult,
       ["checked"]: event.target.checked,
     });
+    event.target.checked === true ? addOperator() : deleteOperator(phoneNumber);
   };
   return (
     <Modal
@@ -126,7 +143,9 @@ export default function AddOperatorModal(props) {
               control={
                 <Checkbox
                   checked={searchResult.checked}
-                  onChange={resultHandleChange}
+                  onChange={(event) => {
+                    resultHandleChange(event, searchResult.phoneNumber);
+                  }}
                   name="result"
                 />
               }
@@ -135,14 +154,35 @@ export default function AddOperatorModal(props) {
             <Typography>{searchResult.phoneNumber}</Typography>
           </div>
         )}
-
+        {/*operatorsList.length > 0 && (
+          <div className={classes.listContainer}>
+            <Typography variant="body1" className={classes.title}>
+              لیست متصدیان
+            </Typography>
+            <Divider light />
+            {operatorsList.map((item, index) => (
+              <div className={classes.resultContainer}>
+                <FormControlLabel
+                  control={<Checkbox checked={item.checked} name={index} />}
+                  label={item.firstName + " " + item.lastName}
+                />
+                <Typography>{item.phoneNumber}</Typography>
+              </div>
+            ))}
+          </div>
+        )*/}
         <div className={classes.buttonContainer}>
           <Button
             variant="contained"
             color="default"
             variant="outlined"
             className={classes.button}
-            onClick={props.handleClose}
+            onClick={() => {
+              props.handleClose();
+              setSearchResult({});
+              setHaveResult(false);
+              setOperatorsList([]);
+            }}
           >
             انصراف
           </Button>
@@ -150,7 +190,12 @@ export default function AddOperatorModal(props) {
             variant="outlined"
             color="secondary"
             className={classes.button}
-            onClick={props.submit}
+            onClick={() => {
+              props.submit();
+              setSearchResult({});
+              setHaveResult(false);
+              setOperatorsList([]);
+            }}
           >
             ثبت
           </Button>
