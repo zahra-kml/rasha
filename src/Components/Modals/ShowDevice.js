@@ -37,7 +37,13 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: theme.spacing(3),
-    width: "90%",
+    width: "70%",
+  },
+  refresh: {
+    marginTop: theme.spacing(3),
+    width: "25%",
+    display: "flex",
+    justifyContent: "flex-end",
   },
   placesContainer: {
     display: "flex",
@@ -170,11 +176,13 @@ export default function ShowDeviceModal(props) {
         <Typography variant="h6" className={classes.title}>
           نمایش دستگاه
         </Typography>
-        <Tooltip title="به روز رسانی">
-          <IconButton size="medium" color="primary" onClick={() => {}}>
-            <RefreshIcon />
-          </IconButton>
-        </Tooltip>
+        <div className={classes.refresh}>
+          <Tooltip title="به روز رسانی">
+            <IconButton size="medium" color="primary" onClick={() => {}}>
+              <RefreshIcon />
+            </IconButton>
+          </Tooltip>
+        </div>
 
         <div className={classes.infoContainer}>
           <div className={classes.info}>
